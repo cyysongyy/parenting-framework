@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>親子教育架構</title>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>親子教育架構・練習</title>
 <style>
+
 :root{--ink:#1F2A3A;--mut:#4A5568;--line:#DDE3E1;--bg:#FBFBF8;--card:#fff;--teal:#2A7F7A;--amber:#B7791F;--red:#B5473A;--blue:#2A5C8A;--track:#E9EEF2;--chipfg:#FFFFFF;--sky:#E4EDF4;--sea:#BFD9EE}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745;--chipfg:#10233A;--sky:#1A2230;--sea:#223B57}}
 :root[data-theme="dark"]{--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745;--chipfg:#10233A;--sky:#1A2230;--sea:#223B57}
@@ -64,7 +65,8 @@ ul,ol{padding-left:20px;margin:6px 0}
 .hidden{display:none}
 .rank{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
 .rank .n{flex:0 0 28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;text-align:center;line-height:28px;font-weight:700}
-</style><style>
+
+
 /* Visual refresh — all assets remain self-contained. */
 :root,:root[data-theme="light"]{color-scheme:light;--ink:#253c35;--mut:#66766e;--line:#e1e7df;--bg:#f6f7f1;--card:#fffefa;--teal:#32634f;--amber:#af762e;--red:#a74337;--blue:#427a92;--track:#edf1e9;--chipfg:#fff;--sky:#edf4f5;--sea:#d3e5e8;--soft:#eaf0e5;--shadow:0 5px 24px #263d3305}
 :root[data-theme="dark"]{color-scheme:dark;--ink:#e3ece3;--mut:#acbcb1;--line:#354b40;--bg:#16251e;--card:#203329;--teal:#9fc9ab;--amber:#e3b46d;--red:#f1a393;--blue:#9fc7d9;--track:#2d4336;--chipfg:#17271e;--sky:#243d43;--sea:#2b4c55;--soft:#2c4435;--shadow:none}
@@ -108,13 +110,81 @@ details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summar
 @media(max-width:700px){.wrap{padding:0 18px}.masthead{padding:18px 0}.brand-name{font-size:15px}.brand small{font-size:8px}.brand-mark{width:35px;height:35px}.header-right{gap:7px}.header-right .offline{display:none}.hero{padding:28px 0 26px;gap:0;position:relative}.hero-art{width:135px;height:140px;opacity:.65;position:absolute;right:-5px;top:18px;z-index:-1}.hero-copy{max-width:100%}.hero h1{font-size:29px}.hero p{font-size:12px;max-width:85%}.eyebrow{font-size:9px}.workspace{display:block;padding-bottom:20px}.settings{position:static;padding:18px;margin-bottom:20px}.settings h2{font-size:15px;margin-bottom:10px}.panel-eyebrow{display:none}.settings .row{display:flex;gap:12px;align-items:start}.settings .row>div{flex:1 1 150px!important;margin:0}.settings label{margin-top:8px}.settings .seg{display:flex;flex-wrap:wrap;gap:7px}.settings .seg button{flex:1 1 75px;text-align:center;font-size:12px;padding:7px;min-height:40px}.settings .seg button.on:after{display:none}.side-note{display:none}.tabs{margin-bottom:16px}.tabs button{font-size:12px;min-height:42px}.tab-number{display:none}.card{border-radius:15px;padding:22px 18px;margin-bottom:15px}.card h2{font-size:17px}#view>.card:first-child{padding:23px 20px}#view>.card:first-child>p>b{font-size:17px}.map{grid-template-columns:auto 9px auto 9px minmax(0,1fr);gap:8px 3px}.map .box{font-size:11px;padding:6px}.map .chip{font-size:10px;padding:3px 5px}.map .ar{font-size:10px}.legend b{min-width:100%;margin-top:4px}.page-footer{display:block;font-size:10px}.page-footer span{display:block;margin:4px 0}.grid,.f4,.sel5{grid-template-columns:1fr}.chain div{flex-basis:130px}.card .row>button{flex:1 1 150px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 @media print{body{background:#fff;color:#111;font-size:12px}.wrap{max-width:none;padding:0}.masthead,.hero,.settings,.tabs,.page-footer,.skip-link{display:none}.workspace{display:block}.card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}.mut{color:#444}}
+
+/* ── 簡化首頁與引導式流程 ── */
+.app{max-width:860px;margin:0 auto;padding:6px 0 36px;outline:none}
+.home{padding:30px 0 6px}
+.home h1{margin:12px 0 10px}
+.home .lead{font-size:15px;color:var(--mut);margin:0 0 6px}
+.big3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0 18px}
+.bigcard{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:176px;box-shadow:var(--shadow);width:100%;font-size:15px;font-weight:500;line-height:1.7;cursor:pointer}
+.bigcard b{font-size:19px;font-weight:750;color:var(--ink)}
+.bigcard .d{font-size:13px;color:var(--mut);font-weight:400;line-height:1.8}
+.bigcard .ico{width:48px;height:48px;border-radius:15px;background:var(--soft);display:grid;place-items:center;color:var(--teal);margin-bottom:4px}
+.bigcard:hover{border-color:var(--teal);transform:translateY(-2px)}
+.linkrow{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.linkbtn{background:transparent;border:0;color:var(--teal);text-decoration:underline;padding:6px 2px;min-height:36px;font-weight:600}
+.linkbtn:hover{background:transparent}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:4px 0 8px}
+.progress{display:flex;gap:6px;margin:4px 0 16px}
+.progress i{flex:1;height:6px;border-radius:3px;background:var(--track)}
+.progress i.done{background:var(--teal)}.progress i.cur{background:var(--amber)}
+.kicker{font-size:12px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin:0 0 6px}
+.q{font-size:20px;font-weight:700;line-height:1.7;margin:4px 0 12px}
+.choices{display:grid;gap:10px;margin:14px 0}
+.choice{display:block;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:14px 16px;font-weight:500;font-size:15px;line-height:1.8;cursor:pointer;min-height:52px}
+.choice small{display:block;color:var(--mut);font-weight:400;font-size:12px}
+.choice.right{border-color:var(--f-findings);background:var(--soft)}
+.choice.wrong{border-color:var(--red);animation:shake .4s}
+.choice[disabled]{cursor:default;opacity:1}
+.note{border-left:5px solid var(--teal);background:var(--soft);border-radius:10px;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.85}
+.note.bad{border-color:var(--red)}
+.sitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.sitcard{display:flex;flex-direction:column;gap:6px;text-align:left;background:var(--card);border:1px solid var(--line);border-left:8px solid var(--dc);border-radius:14px;padding:14px 16px;font-weight:500;cursor:pointer;min-height:112px;width:100%}
+.sitcard b{font-size:16px}.sitcard small{color:var(--mut);font-weight:400;font-size:12px;line-height:1.7}
+.sitcard .tg{font-size:11px;font-weight:700;color:var(--dc)}
+.star{display:inline-block;background:var(--amber);color:var(--chipfg);border-radius:999px;font-size:11px;padding:1px 8px;margin-left:6px}
+.row2{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.slots{display:grid;gap:8px;margin:12px 0}
+.slot{display:flex;gap:10px;align-items:flex-start;border:2px dashed var(--line);border-radius:12px;padding:10px 12px;min-height:50px;font-size:14px}
+.slot b{flex:0 0 28px;height:28px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-size:12px}
+.slot.ok{border-style:solid;border-color:var(--c);background:var(--soft)}
+.slot.ok b{background:var(--c);color:var(--chipfg)}
+.slot.bad{border-color:var(--red)}
+.pool{display:grid;gap:8px;margin:12px 0}
+.pool button.used{opacity:.35}
+.scorebar{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--mut);margin:4px 0 12px}
+.scorebar b{color:var(--ink)}
+.big{font-size:42px;font-weight:800;color:var(--teal);line-height:1.2}
+.summary{white-space:pre-wrap;font-size:14px;line-height:1.9;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0}
+.layerbtn{border:0;border-radius:12px;padding:12px;font-weight:700;width:100%;cursor:pointer;min-height:48px}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0}
+.five{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.colbtn{border:0;border-radius:12px;padding:12px;font-weight:700;color:var(--chipfg);cursor:pointer;min-height:48px;background:var(--c)}
+.colbtn:hover{background:var(--c);filter:brightness(.92)}
+.chosen{outline:3px solid var(--ink)}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ref>.card:first-child{background:var(--soft);border-color:transparent}
+.refbar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:6px 0 14px}
+.refbar>div{flex:1 1 220px}
+@media(max-width:700px){.app{padding-bottom:20px}.q{font-size:18px}.big3{margin-top:18px}.bigcard{min-height:0;padding:20px}}
+@media print{.topbar,.progress,.row2,.linkrow,.big3{display:none}.summary{border:0}}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px}
+.bar2 .t{flex:0 0 40px;color:var(--mut)}.bar2 .tr{flex:1;height:14px;background:var(--track);border-radius:7px;overflow:hidden}
+.bar2 .fl{display:block;height:100%;border-radius:7px}.bar2 .v{flex:0 0 44px;text-align:right}
+.rk{display:flex;gap:12px;align-items:flex-start;margin:12px 0}.rk .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--teal);color:var(--chipfg);display:grid;place-items:center;font-weight:700}
+.qchoice{border:0;color:var(--chipfg);background:var(--c);text-align:center;font-weight:700}
+.qchoice:hover{background:var(--c);filter:brightness(.92)}
+.qchoice.dim{opacity:.35}
+.chk{display:flex;gap:6px;align-items:flex-start;font-size:14px;margin:6px 0;color:var(--ink)}
+/* 系統為深色、但沒按切換鈕時，補上改版色票（原改版只在手動切換時才套用深色） */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--ink:#e3ece3;--mut:#acbcb1;--line:#354b40;--bg:#16251e;--card:#203329;--teal:#9fc9ab;--amber:#e3b46d;--red:#f1a393;--blue:#9fc7d9;--track:#2d4336;--chipfg:#17271e;--sky:#243d43;--sea:#2b4c55;--soft:#2c4435;--shadow:none}}
+
 </style></head>
-<body><a class="skip-link" href="#view">跳到教學內容</a><div class="wrap">
-<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
-<section class="hero" aria-label="歡迎"><div class="hero-copy"><div class="eyebrow">PARENTING & CONNECTION</div><h1>從理解開始，<br>讓對話更靠近。</h1><p>看見行為背後的感受，陪孩子一起找到下一步。<br>選一個生活情境，展開今天的親子對話。</p></div>
-<svg class="hero-art" viewBox="0 0 310 185" fill="none" aria-hidden="true"><ellipse cx="167" cy="165" rx="115" ry="9" fill="var(--soft)"/><circle cx="169" cy="87" r="72" fill="var(--soft)"/><path d="M40 60Q40 39 61 39H117Q137 39 137 60V78Q137 96 118 96H83L66 110V96H61Q40 96 40 78Z" fill="var(--card)" stroke="#93aa88" stroke-width="1.3"/><path d="M63 61H113M63 74H97" stroke="#93aa88" stroke-width="3" stroke-linecap="round"/><path d="M157 38Q157 19 177 19H237Q258 19 258 40V59Q258 78 238 78H219L205 92V78H177Q157 78 157 59Z" fill="#d8e4cc"/><path d="M195 45C188 31 174 46 195 59C216 46 202 31 195 45Z" fill="#5c7d57"/><path d="M90 161C87 138 95 116 117 115C139 114 148 139 147 161" fill="#a8b99b"/><circle cx="118" cy="99" r="16" fill="#e8d8bc"/><path d="M103 97C101 74 134 73 134 99C125 94 121 88 120 85C116 94 108 96 103 97Z" fill="#45654d"/><path d="M155 161C153 141 161 125 178 125C195 125 205 142 205 161" fill="#dbbc86"/><circle cx="177" cy="112" r="13" fill="#ecdcc1"/><path d="M164 109C162 92 188 88 191 111C181 110 176 102 176 102L164 109Z" fill="#557158"/><path d="M136 137Q151 151 167 140" stroke="#45654d" stroke-width="6" stroke-linecap="round"/><path d="M238 160V115M238 140C220 139 218 126 220 121C233 121 240 130 238 140ZM238 129C251 130 259 118 256 112C245 113 236 119 238 129Z" stroke="#7b9468" stroke-width="2" stroke-linejoin="round"/><path d="M227 161H248L246 145H229Z" fill="#c8d4ba"/><path d="M62 127L66 132M69 120L75 122M272 89L277 85" stroke="#bb9c65" stroke-width="2" stroke-linecap="round"/></svg></section>
-<div class="workspace"><aside class="settings" aria-label="教學情境設定"><p class="panel-eyebrow">MAKE IT YOURS</p><h2>今天，聊聊什麼？</h2><div class="row"><div style="flex:2 1 260px"><label for="sit">生活情境</label><select id="sit"></select></div><div style="flex:1 1 200px"><label for="rd">結果顯示</label><select id="rd"><option value="">依設定</option><option value="projector">講師投影</option><option value="phone">家長／學生看手機</option></select></div></div><label id="audLabel">孩子的年段</label><div class="row seg" id="aud" role="group" aria-labelledby="audLabel"></div><div class="side-note"><strong>每一次理解，都是靠近。</strong><p>先看見自己，再理解孩子，<br>最後一起練習新的可能。</p></div></aside>
-<main class="main-content"><nav class="tabs" id="tabs" aria-label="功能分頁"></nav><div id="view" tabindex="-1"></div></main></div><footer class="page-footer"><span>親子教育架構 · 陪伴比完美更重要</span><span>情境學習 ／ 冰山探索 ／ 4F 對話 ／ SEL 練習</span></footer></div>
+<body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
+<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
+<main id="app" class="app" tabindex="-1"></main>
+<footer class="page-footer"><span>親子教育架構 · 陪伴比完美更重要</span><span>每一步都是互動，不需要登入，資料只留在這個頁面</span></footer></div>
 <script>window.FW_EMBED={
   "name": "親子教育架構",
   "version": "2.0.0",
@@ -1756,161 +1826,185 @@ details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summar
 });
 </script>
 <script>
-(async function(){
-const fw=window.FW_EMBED;
-if(!fw){document.getElementById('view').textContent='請用 GitHub Pages 或本機伺服器開啟（直接開檔案時無法讀取 framework.json）。';return;}
-const PF=window.ParentingFramework;
-const $=id=>document.getElementById(id);
+(function(){
+const fw=window.FW_EMBED,PF=window.ParentingFramework;
+const $=id=>document.getElementById(id),A=$('app');
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const state={sit:fw.situations[0].id,aud:fw.settings.defaultAudience,tab:'layers',role:'parent',picks:{emotion:[],behavior:[],social:[]},responses:[],guess:0};
-const TABS=[['layers','六個層次'],['interact','提問與互動'],['survey','問卷統計']];
 const DOMAIN={emotion:'情緒',behavior:'行為',interpersonal:'人際'};
-
-fw.situations.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=DOMAIN[s.domain]+'・'+s.title;$('sit').appendChild(o)});
-function drawAud(){ $('aud').innerHTML=PF.AUDIENCES.map(a=>'<button data-a="'+a+'" aria-pressed="'+(state.aud===a)+'" class="'+(state.aud===a?'on':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('');}
-function drawTabs(){ $('tabs').innerHTML=TABS.map(t=>'<button data-t="'+t[0]+'" aria-current="'+(state.tab===t[0]?'page':'false')+'" class="'+(state.tab===t[0]?'on':'')+'"><span class="tab-number" aria-hidden="true">0'+(TABS.indexOf(t)+1)+'</span>'+t[1]+'</button>').join('');}
-function plan(){return PF.buildPlan(fw,{situation:state.sit,audience:state.aud,resultsDisplay:$('rd').value||undefined});}
-function ul(a){return '<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';}
-function colorCSS(){const c=fw.core.colors;let l='',d='';
-  Object.keys(c.fourF).forEach(k=>{l+='--f-'+k+':'+c.fourF[k].l+';';d+='--f-'+k+':'+c.fourF[k].d+';';});
-  Object.keys(c.sel).forEach(k=>{l+='--s-'+k+':'+c.sel[k].l+';';d+='--s-'+k+':'+c.sel[k].d+';';});
-  Object.keys(c.iceberg).forEach(k=>{l+='--i-'+k+':'+c.iceberg[k].bg.l+';--if-'+k+':'+c.iceberg[k].fg.l+';';d+='--i-'+k+':'+c.iceberg[k].bg.d+';--if-'+k+':'+c.iceberg[k].fg.d+';';});
-  return ':root{'+l+'}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){'+d+'}}:root[data-theme="dark"]{'+d+'}';}
-const st=document.createElement('style');st.textContent=colorCSS();document.head.appendChild(st);
-const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
-const chipS=(id,t)=>'<span class="chip" style="--c:var(--s-'+id+')">'+esc(t)+'</span>';
-const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
-const selOf=id=>fw.core.sel.find(x=>x.id===id);
-const fOf=id=>fw.core.fourF.find(x=>x.id===id);
+const DOMCOL={emotion:'var(--f-feelings)',behavior:'var(--f-facts)',interpersonal:'var(--f-future)'};
+const ICE=fw.core.iceberg.layers,F=fw.core.fourF,SEL=fw.core.sel;
+const AUD=['elementary','junior','senior'];
+// 顏色
+(function(){const c=fw.core.colors;let l='',d='';
+ Object.keys(c.fourF).forEach(k=>{l+='--f-'+k+':'+c.fourF[k].l+';';d+='--f-'+k+':'+c.fourF[k].d+';'});
+ Object.keys(c.sel).forEach(k=>{l+='--s-'+k+':'+c.sel[k].l+';';d+='--s-'+k+':'+c.sel[k].d+';'});
+ Object.keys(c.iceberg).forEach(k=>{l+='--i-'+k+':'+c.iceberg[k].bg.l+';--if-'+k+':'+c.iceberg[k].fg.l+';';d+='--i-'+k+':'+c.iceberg[k].bg.d+';--if-'+k+':'+c.iceberg[k].fg.d+';'});
+ const s=document.createElement('style');
+ s.textContent=':root{'+l+'}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){'+d+'}}:root[data-theme="dark"]{'+d+'}';document.head.appendChild(s);})();
+const sitOf=id=>fw.situations.find(s=>s.id===id);
 const iceBg=id=>'background:var(--i-'+id+');color:var(--if-'+id+')';
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
+const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
+function ice(title,ic,upto){ // upto: 1..3 層
+ const band=(i,cls)=>upto>i?'<div class="band '+cls+'" style="'+iceBg(ICE[i].id)+'"><small>'+esc(ICE[i].label)+'</small>'+esc(ic[ICE[i].id])+'</div>':'<div class="band '+cls+'" style="background:var(--track);color:var(--mut)"><small>'+esc(ICE[i].label)+'</small>？</div>';
+ return (title?'<h3>'+title+'</h3>':'')+'<div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div>';}
 
-function icebergBlock(title,ic,layers){
-  const L=layers;
-  const band=(i,cls)=>'<div class="band '+cls+'" style="'+iceBg(L[i].id)+'"><small>'+esc(L[i].label)+'</small>'+esc(ic[L[i].id])+'</div>';
-  return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
+const S={view:'home',aud:'junior',sit:null,step:0,a:{},role:'parent',picks:{},resp:[],quiz:null};
+const STEPS=['sit','story','ido','guess','match','order','commit','done'];
+const STEPNAME={sit:'選情境',story:'看故事',ido:'I do 先看自己',guess:'You do 猜冰山',match:'You do 分層',order:'We do 排 4F',commit:'We do 約定',done:'我的約定卡'};
+function go(v){S.view=v;draw();window.scrollTo({top:0,behavior:'smooth'});A.focus({preventScroll:true});}
+function start(sit){S.sit=sit||null;S.step=sit?1:0;S.a={};S.view='practice';draw();window.scrollTo({top:0});}
 
-function legendCard(){
-  const c=fw.core;
-  return '<div class="card legend-card"><h2>色彩對照</h2><div class="legend"><b>4F</b>'+c.fourFOrder.map(id=>chipF(id,fOf(id).label)).join('')+'</div>'
-   +'<div class="legend"><b>SEL 五大核心</b>'+c.sel.map(s=>chipS(s.id,s.label)).join('')+'</div>'
-   +'<div class="legend"><b>冰山三層</b>'+c.iceberg.layers.map(l=>chipI(l.id,l.label)).join('')+'</div>'
-   +'<p class="mut">同一個顏色在每個畫面都代表同一件事，看顏色就知道現在是哪一步、哪一層、哪一項能力。</p></div>';
+function topbar(extra){return '<div class="topbar"><button data-act="home">← 回首頁</button><span class="mut">'+(extra||'')+'</span></div>';}
+
+function vHome(){
+ const ic=(p)=>'<span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg></span>';
+ return '<section class="home"><div class="eyebrow">PARENTING & CONNECTION</div><h1>今天，想怎麼練習？</h1><p class="lead">選一個就好，每一步都能點、能猜、能玩。</p>'
+ +'<div class="big3">'
+ +'<button class="bigcard" data-act="practice">'+ic('<path d="M5 20 12 4l7 16M8 14h8"/>')+'<b>開始練習</b><span class="d">選一個生活情境，一步一步走完：看自己、猜孩子、排 4F、訂約定。約 10 分鐘。</span></button>'
+ +'<button class="bigcard" data-act="games">'+ic('<rect x="3" y="7" width="18" height="11" rx="4"/><path d="M8 10v5M5.5 12.5h5M16 11h.01M18 14h.01"/>')+'<b>玩一玩</b><span class="d">三個 5 題小遊戲：冰山分層、4F 找位置、SEL 五核心。每題馬上有回饋。</span></button>'
+ +'<button class="bigcard" data-act="survey">'+ic('<path d="M5 20V10M12 20V4M19 20v-7"/>')+'<b>問卷統計</b><span class="d">家長和學生各填一份，看見兩邊的落差，排出今天先聊哪個情境。</span></button>'
+ +'</div><div class="linkrow"><button class="linkbtn" data-act="random">🎲 幫我隨機選一個情境開始</button><a class="linkbtn" href="full.html">看完整內容（六個層次總覽）→</a></div></section>';}
+
+function progress(){const i=STEPS.indexOf(STEPS[S.step]);return '<div class="progress" aria-label="進度">'+STEPS.map((s,k)=>'<i class="'+(k<S.step?'done':k===S.step?'cur':'')+'"></i>').join('')+'</div>';}
+function nav(next,label,disabled){return '<div class="row2">'+(S.step>0?'<button data-act="back">← 上一步</button>':'')+'<button class="primary" data-act="next" '+(disabled?'disabled':'')+'>'+(label||'下一步 →')+'</button></div>';}
+
+function vPractice(){
+ const id=STEPS[S.step],s=S.sit?sitOf(S.sit):null,au=s?s.byAudience[S.aud]:null;
+ let h=topbar(s?esc(DOMAIN[s.domain])+'・'+esc(s.title)+'・'+esc(fw.audiences[S.aud].label):'')+progress()+'<div class="card"><p class="kicker">'+(S.step+1)+' / '+STEPS.length+'　'+STEPNAME[id]+'</p>';
+ if(id==='sit'){
+  h+='<div class="q">孩子現在是哪個年段？</div><div class="row2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'<br><small>'+esc(fw.audiences[a].grades.split('（')[0])+'</small></button>').join('')+'</div>'
+  +'<div class="q" style="margin-top:22px">今天想練習哪一種情況？</div><div class="sitgrid">'+fw.situations.map(x=>'<button class="sitcard" style="--dc:'+DOMCOL[x.domain]+'" data-sit="'+x.id+'"><span class="tg">'+esc(DOMAIN[x.domain])+'</span><b>'+esc(x.title)+'</b><small>'+esc(x.byAudience[S.aud].example.slice(0,34))+'…</small></button>').join('')+'</div></div>';
+  return h;}
+ if(id==='story'){
+  h+='<div class="q">'+esc(au.example)+'</div><p class="mut">'+esc(s.storyline)+'</p>'
+  +'<div class="q" style="font-size:16px">先想一想：你覺得孩子這時候最需要什麼？</div><div class="choices">'
+  +['被聽完、被理解','被講道理、被糾正','被獨自留下、不要管'].map((t,i)=>'<button class="choice '+(S.a.story===i?(i===0?'right':'wrong'):'')+'" data-pick="story" data-v="'+i+'" '+(S.a.story!=null?'disabled':'')+'>'+esc(t)+'</button>').join('')+'</div>';
+  if(S.a.story!=null)h+='<div class="note">'+(S.a.story===0?'很接近。':'有時候孩子需要空間，但先被聽見，通常更有幫助。')+'水面上的行為是「'+esc(s.chain.surface)+'」，水面下常是「'+esc(s.chain.below)+'」。</div>';
+  return h+'</div>'+nav(0,'下一步 →',S.a.story==null);}
+ if(id==='ido'){
+  h+='<div class="q">先看自己。'+esc(s.triggerForParent)+'</div><p class="mut">當下，我的情緒強度是？</p><div class="three" style="grid-template-columns:repeat(5,1fr)">'
+  +[1,2,3,4,5].map(n=>'<button class="layerbtn '+(S.a.scale===n?'chosen':'')+'" style="background:var(--track)" data-pick="scale" data-v="'+n+'">'+n+'</button>').join('')+'</div><div class="mut" style="display:flex;justify-content:space-between"><span>很平靜</span><span>很激動</span></div>';
+  if(S.a.scale)h+='<div class="note">'+(S.a.scale>=4?'強度 '+S.a.scale+'：這時先照顧自己，再回到孩子身上最有效。':'強度 '+S.a.scale+'：還能對話的狀態。')+'<br><b>示範做法：</b>'+esc(s.idoModel)+'</div>'
+   +'<label for="ido">我通常會怎麼做？一句話就好（只存在這個頁面）</label><textarea id="ido" rows="2" placeholder="例如：我先深呼吸，再問他發生了什麼事">'+esc(S.a.ido||'')+'</textarea>';
+  return h+'</div>'+nav(0,'下一步 →',!S.a.scale);}
+ if(id==='guess'){
+  const n=S.a.g||0;
+  h+='<div class="q">換成孩子的角度：'+esc(au.example)+'</div>'+ice('孩子的冰山',au.childIceberg,n+1)
+  +'<div class="note">'+(n===0?'先看水面上的行為。請猜猜：這個行為底下，孩子可能是什麼感受與需要？':n===1?'再猜猜最深處，孩子相信著什麼？':'完整的冰山。注意：水面上的行為，只是整個故事的一角。')+'</div>'
+  +(n<2?'<button class="primary" data-act="reveal">揭曉'+(n===0?'「感受與需求」':'「價值信念」')+'</button>':'');
+  h+='<h3>可以這樣問孩子</h3><ul>'+au.youDoQuestions.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ul>';
+  return h+'</div>'+nav(0,'下一步 →',n<2);}
+ if(id==='match'){
+  if(!S.a.items)S.a.items=shuffle(ICE.map(l=>({text:au.childIceberg[l.id],ans:l.id,done:false})));
+  const it=S.a.items,ok=it.filter(x=>x.done).length;
+  h+='<div class="q">這三句話，分別放在冰山的哪一層？</div><div class="scorebar"><span>已完成 <b>'+ok+'/3</b></span><span>嘗試 <b>'+(S.a.tries||0)+'</b> 次</span></div>'
+  +it.map((x,i)=>'<div class="card" style="margin:10px 0;padding:14px 16px"><div style="margin-bottom:10px">'+esc(x.text)+'</div>'+(x.done?chipI(x.ans,'✓ '+ICE.find(l=>l.id===x.ans).label):'<div class="three">'+ICE.map(l=>'<button class="layerbtn" style="'+iceBg(l.id)+';border:1px solid var(--line)" data-act="place" data-i="'+i+'" data-l="'+l.id+'">'+esc(l.label)+'</button>').join('')+'</div>')+'</div>').join('');
+  return h+'</div>'+nav(0,'下一步 →',ok<3);}
+ if(id==='order'){
+  if(!S.a.pool){S.a.pool=shuffle(F.map(f=>f.id));S.a.placed=[];S.a.miss=0;}
+  const pl=S.a.placed;
+  h+='<div class="q">和孩子對話時，這四句話要依什麼順序說？</div><p class="mut">依序點出「第 1、2、3、4 步」。放對了，它的顏色和名稱才會出現。</p><div class="slots">'
+  +[0,1,2,3].map(i=>{const f=pl[i]?F.find(x=>x.id===pl[i]):null;return '<div class="slot '+(f?'ok':'')+'" '+(f?'style="--c:var(--f-'+f.id+')"':'')+'><b>'+(i+1)+'</b><span>'+(f?'<b style="all:unset;font-weight:700">'+esc(f.label)+'</b>　'+esc(s.wedoScript[f.id]||f.prompt):'')+'</span></div>';}).join('')+'</div>'
+  +'<div class="pool">'+S.a.pool.map(id=>{const f=F.find(x=>x.id===id),used=pl.indexOf(id)>-1;return '<button class="choice '+(used?'used':'')+'" '+(used?'disabled':'')+' data-act="f4" data-f="'+id+'">'+esc(f.prompt)+'</button>';}).join('')+'</div>'
+  +(S.a.miss?'<p class="mut">放錯 '+S.a.miss+' 次。提示：先還原事實，才有資格談感受。</p>':'');
+  if(pl.length===4)h+='<div class="note">順序是：<b>Facts → Feelings → Findings → Future</b>。先事實，再感受，再一起找原因，最後訂約定。</div>';
+  return h+'</div>'+nav(0,'下一步 →',pl.length<4);}
+ if(id==='commit'){
+  const opts=[{k:'a',t:au.future,tag:'建議的約定'},{k:'b',t:s.chain.agreement,tag:'重點：'+s.chain.skill}];
+  h+='<div class="q">最後一步：選一個明天就能做的小約定</div><div class="choices">'
+  +opts.map(o=>'<button class="choice '+(S.a.pk===o.k?'right':'')+'" data-pick="pk" data-v="'+o.k+'"><small>'+esc(o.tag)+'</small>'+esc(o.t)+'</button>').join('')
+  +'<button class="choice '+(S.a.pk==='c'?'right':'')+'" data-pick="pk" data-v="c"><small>用自己的話寫</small>'+(S.a.pk==='c'?'<textarea id="mine" rows="2" onclick="event.stopPropagation()" placeholder="寫下時間、地點、誰、做什麼">'+esc(S.a.mine||'')+'</textarea>':'點這裡自己寫')+'</button></div>'
+  +'<label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.a.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select>';
+  return h+'</div>'+nav(0,'完成，看約定卡',!S.a.pk);}
+ if(id==='done'){
+  const txt=summary(s,au);
+  h+='<div class="q">我的約定卡</div><div class="summary" id="sumtxt">'+esc(txt)+'</div><div class="scorebar"><span>冰山分層嘗試 <b>'+(S.a.tries||0)+'</b> 次</span><span>4F 排序放錯 <b>'+(S.a.miss||0)+'</b> 次</span></div>'
+  +'<div class="row2"><button class="primary" data-act="copy">複製約定卡</button><button data-act="print">列印</button><button data-act="again">再練一個情境</button><button data-act="games">去玩小遊戲</button></div><p class="mut" id="copied"></p></div>';
+  return h;}
+}
+function summary(s,au){
+ const pk=S.a.pk,ag=pk==='a'?au.future:pk==='b'?s.chain.agreement:(S.a.mine||'（自己寫）');
+ return '【親子約定卡】'+s.title+'（'+fw.audiences[S.aud].label+'）\n\n'
+ +'孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n'
+ +'我的做法：'+(S.a.ido||s.idoModel)+'\n\n'
+ +'我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n'
+ +'我的約定（'+(S.a.when||'明天')+'開始）\n'+ag+(s.referralNote?'\n\n提醒：'+s.referralNote:'');}
+
+// 小遊戲
+const GAMES={
+ ice:{name:'冰山分層',desc:'這句話屬於冰山的哪一層？',make(){const out=[];for(let i=0;i<5;i++){const s=rnd(fw.situations),a=rnd(AUD),l=rnd(ICE);out.push({q:s.byAudience[a].childIceberg[l.id],ctx:s.title,ans:l.id,ch:ICE.map(x=>({id:x.id,label:x.label,st:iceBg(x.id)+';border:1px solid var(--line)'})),why:l.label+'：'+l.desc});}return out;}},
+ f4:{name:'4F 找位置',desc:'這句話是 4F 的哪一步？',make(){const out=[];for(let i=0;i<5;i++){const s=rnd(fw.situations),f=rnd(F);out.push({q:s.wedoScript[f.id],ctx:s.title,ans:f.id,ch:F.map(x=>({id:x.id,label:x.label,st:'background:var(--f-'+x.id+');color:var(--chipfg)'})),why:f.label+'：'+f.prompt});}return out;}},
+ sel:{name:'SEL 五核心',desc:'這個做法在練 SEL 的哪一個核心？',make(){const out=[];for(let i=0;i<5;i++){const s=rnd(fw.situations),c=rnd(SEL);out.push({q:s.selMap[c.id],ctx:s.title,ans:c.id,ch:SEL.map(x=>({id:x.id,label:x.label,st:'background:var(--s-'+x.id+');color:var(--chipfg)'})),why:c.label+'：'+c.desc});}return out;}}
+};
+function vGames(){
+ if(!S.quiz)return topbar()+'<section class="home"><h1>玩一玩</h1><p class="lead">選一個遊戲，5 題。顏色在三個遊戲裡固定代表同一件事。</p><div class="big3">'
+  +Object.keys(GAMES).map(k=>'<button class="bigcard" data-act="qstart" data-g="'+k+'"><b>'+GAMES[k].name+'</b><span class="d">'+GAMES[k].desc+'</span></button>').join('')+'</div></section>';
+ const q=S.quiz,it=q.items[q.i];
+ if(q.i>=q.items.length)return topbar()+'<div class="card" style="text-align:center"><p class="kicker">'+GAMES[q.g].name+'</p><div class="big">'+q.score+' / '+q.items.length+'</div><p>'+(q.score===5?'全對！':q.score>=3?'不錯，再玩一次會更熟。':'沒關係，答錯的地方最值得記住。')+'</p><div class="row2" style="justify-content:center"><button class="primary" data-act="qstart" data-g="'+q.g+'">再玩一次</button><button data-act="qexit">換一個遊戲</button></div></div>';
+ return topbar(GAMES[q.g].name)+'<div class="progress">'+q.items.map((x,k)=>'<i class="'+(k<q.i?'done':k===q.i?'cur':'')+'"></i>').join('')+'</div><div class="card"><p class="kicker">第 '+(q.i+1)+' 題・情境：'+esc(it.ctx)+'</p><div class="q">'+esc(it.q)+'</div><p class="mut">'+GAMES[q.g].desc+'</p><div class="'+(q.g==='sel'?'five':'three')+'">'
+  +it.ch.map(c=>'<button class="layerbtn '+(q.picked?(c.id===it.ans?'chosen':'dim'):'')+'" style="'+c.st+'" '+(q.picked?'disabled':'')+' data-act="qans" data-c="'+c.id+'">'+esc(c.label)+'</button>').join('')+'</div>'
+  +(q.picked?'<div class="note '+(q.picked===it.ans?'':'bad')+'"><b>'+(q.picked===it.ans?'答對了！':'差一點。')+'</b> '+esc(it.why)+'</div><button class="primary" data-act="qnext">'+(q.i<q.items.length-1?'下一題 →':'看結果')+'</button>':'')+'</div>';
 }
 
-// ───────── 層次 ─────────
-function viewLayers(){
-  const p=plan(),L=p.layers,c=L.coherence,ib=L.iceberg,a=L.audience;let h='';
-  h+='<div class="card"><h2>範例（'+esc(p.audienceLabel)+'）</h2><p><b>'+esc(p.example)+'</b></p>'+(p.extras.leadIn?'<p class="mut">'+esc(p.extras.leadIn)+'</p>':'')+'</div>';
-  h+=legendCard();
-  h+='<div class="card"><h2>1 邏輯一貫性</h2><p>'+esc(c.storyline)+'</p><div class="chain">'+c.chain.map(x=>'<div><b>'+esc(x.label)+'</b>'+esc(x.text)+'</div>').join('')+'</div>'
-   +'<h3>冰山 × 4F × SEL 怎麼對應</h3><div class="map">'+c.fourFPath.map(x=>
-     '<div class="box" style="background:var(--f-'+x.id+');color:var(--chipfg)">'+esc(x.step.split(' ')[0])+'</div><div class="ar">→</div>'
-    +'<div class="box" style="'+iceBg(x.icebergId)+';border:1px solid var(--line)">'+esc(x.iceberg.replace(/（.*）/,''))+'</div><div class="ar">→</div>'
-    +'<div>'+x.selIds.map(s=>chipS(s,selOf(s).label)).join('')+'</div>').join('')+'</div>'
-   +'<details><summary class="mut">一致性規則</summary>'+ul(c.rules)+'</details></div>';
-  h+='<div class="card"><h2>2 冰山模式</h2><p class="mut">'+esc(ib.note)+'　'+esc(ib.depthNote)+'</p><div class="grid">'+icebergBlock('孩子的冰山',ib.child,ib.layers)+icebergBlock('父母的冰山',ib.parent,ib.layers)+'</div>'
-   +'<p><b>兩座冰山：</b>'+esc(ib.interplay)+'</p><p class="mut">'+esc(ib.rule)+'</p></div>';
-  h+='<div class="card"><h2>3 I do · You do · We do</h2><div class="grid">'+L.stages.map((s,i)=>{
-    const col=['var(--s-self_awareness)','var(--s-social_awareness)','var(--s-responsible_decision)'][i];
-    let x='<div style="border-top:8px solid '+col+';border-radius:10px;padding-top:6px"><h3>'+esc(s.label)+'</h3><p>'+esc(s.purpose)+'</p>';
-    x+='<p class="mut">講師：'+esc(s.leaderMoves.join('；'))+'<br>家長：'+esc(s.participantMoves.join('；'))+'<br>成果：'+esc(s.output)+'</p>';
-    if(s.id==='ido')x+='<p>'+esc(s.content.trigger)+'</p><p>示範句：'+esc(s.content.model)+'</p><p class="'+(s.content.experience.status==='TODO'?'todo':'')+'">'+esc(s.content.experience.text)+'</p>';
-    if(s.id==='youdo'){x+=ul(s.content.questions);if(s.content.reasons)x+='<p class="mut">可能的原因：'+esc(s.content.reasons.join('、'))+'</p>';}
-    if(s.id==='wedo')x+='<p>'+esc(s.content.future)+'</p><p class="mut">約定方式：'+esc(s.content.contractStyle)+'</p>';
-    return x+'</div>';}).join('')+'</div></div>';
-  h+='<div class="card"><h2>4 4F 模式</h2><div class="f4">'+L.fourF.map((f,i)=>'<div class="fc" style="--c:var(--f-'+f.id+')"><span class="fb">F'+(i+1)+'</span><b>'+esc(f.label)+'</b>'
-   +'<p>'+esc(f.script)+'</p><p class="mut">'+esc(a.label)+'的說法：'+esc(f.stem)+'<br>避免：'+esc(f.avoid)+'</p>'
-   +'<div>'+chipI(f.icebergId,f.iceberg)+f.selIds.map(s=>chipS(s,selOf(s).label)).join('')+'</div></div>').join('')+'</div></div>';
-  h+='<div class="card"><h2>5 對象：'+esc(a.label)+'（'+esc(a.grades)+'）</h2><p>'+esc(a.developmental)+'</p><p><b>決策權：</b>'+esc(a.autonomy)+'<br><b>家長角色：</b>'+esc(a.parentRole)+'<br><b>約定方式：</b>'+esc(a.contractStyle)+'</p><h3>說話方式</h3>'+ul(a.language)+'<h3>要避免</h3>'+ul(a.cautions)+'</div>';
-  h+='<div class="card"><h2>SEL 五大核心：在這個情境裡</h2><div class="sel5">'+p.extras.sel.map((s,i)=>'<div class="sc" style="--c:var(--s-'+s.id+')"><span class="num">'+(i+1)+'</span><b>'+esc(s.label)+'</b><small>'+esc(s.desc)+'</small>'+esc(s.inThisCase)+'</div>').join('')+'</div>'
-   +(p.extras.system?'<h3>系統觀</h3><p>'+esc(p.extras.system.layers.join(' → '))+'<br>'+esc(p.extras.system.question)+'</p>':'')
-   +'<h3>今天帶走一個行動</h3><div class="f4">'+p.extras.closing.map((x,i)=>'<div class="fc" style="--c:var(--f-'+fw.core.fourFOrder[i]+')"><span class="fb">F'+(i+1)+'</span>'+esc(x)+'</div>').join('')+'</div>'
-   +'<p class="mut">'+esc(p.extras.results.text)+'</p>'+(p.extras.referral?'<p class="mut"><b>轉介提醒：</b>'+esc(p.extras.referral)+'</p>':'')+'</div>';
-  if(p.todos.length)h+='<div class="card"><h2>待確認</h2><ul>'+p.todos.map(t=>'<li class="todo">'+esc(t)+'</li>').join('')+'</ul></div>';
-  return h;
-}
+// 問卷
+function ensurePicks(){fw.survey.groups.forEach(g=>{if(!S.picks[g.key])S.picks[g.key]=[];});}
+function bar(col,label,p){const w=p==null?0:Math.round(p*100);return '<div class="bar2"><span class="t">'+label+'</span><span class="tr"><span class="fl" style="width:'+w+'%;background:'+col+'"></span></span><span class="v">'+(p==null?'—':w+'%')+'</span></div>';}
+function vSurvey(){
+ ensurePicks();const spec=PF.surveySpec(fw,S.role),t=PF.tally(fw,S.resp);
+ let h=topbar('不記名，只存在這個頁面')+'<div class="card"><p class="kicker">1 / 2　我是…</p><div class="row2">'+fw.survey.respondents.map(r=>'<button data-act="role" data-r="'+r.id+'" class="'+(S.role===r.id?'primary':'')+'">'+esc(r.label)+'</button>').join('')+'</div><p class="mut">'+esc(spec.stem)+'</p>';
+ spec.groups.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<label class="chk"><input type="checkbox" data-g="'+g.key+'" data-v="'+esc(i.value)+'" '+(S.picks[g.key].indexOf(i.value)>-1?'checked':'')+'>'+esc(i.text)+'</label>').join('');});
+ h+='<div class="row2"><button class="primary" data-act="submit">送出這一份</button><button data-act="demo">載入示範資料</button><button data-act="clear">清除全部</button></div><p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份</p></div>';
+ if(!t.parent.total&&!t.student.total)return h+'<div class="card"><p class="mut">還沒有資料。先送出一份，或按「載入示範資料」。</p></div>';
+ const cmp=PF.compare(fw,t),rec=PF.recommendFromSurvey(fw,t).slice(0,3),ins=PF.insights(fw,t).slice(0,4);
+ const flat=[];cmp.forEach(g=>g.items.forEach(i=>{if(!i.none)flat.push(i);}));
+ flat.sort((a,b)=>((b.parentPct||0)+(b.studentPct||0))-((a.parentPct||0)+(a.studentPct||0)));
+ h+='<div class="card"><p class="kicker">2 / 2　結果</p><div class="q">今天先聊這三個情境</div>'
+  +rec.map((r,i)=>'<div class="rk"><span class="n">'+(i+1)+'</span><div><b>'+esc(DOMAIN[r.domain])+'・'+esc(r.title)+'</b><div class="mut">'+r.evidence.map(e=>esc(e.item)+'（家長 '+(e.parentPct==null?'—':Math.round(e.parentPct*100)+'%')+'／學生 '+(e.studentPct==null?'—':Math.round(e.studentPct*100)+'%')+'）').join('；')+'</div><button data-act="sitgo" data-s="'+r.situation+'" style="margin-top:6px">練習這個情境 →</button></div></div>').join('')+'</div>'
+  +'<div class="card"><div class="q">最常被勾選的前 6 項</div><p class="mut"><span style="color:var(--teal)">■</span> 家長　<span style="color:var(--amber)">■</span> 學生</p>'
+  +flat.slice(0,6).map(i=>'<div style="margin:12px 0"><div>'+esc(i.item)+(i.tag==='student_more'?' <span class="tag warn">學生更多</span>':i.tag==='parent_more'?' <span class="tag warn">家長更多</span>':'')+'</div>'+bar('var(--teal)','家長',i.parentPct)+bar('var(--amber)','學生',i.studentPct)+'</div>').join('')+'</div>'
+  +'<div class="card"><div class="q">看見落差</div>'+(ins.length?'<ul>'+ins.map(x=>'<li>'+esc(x.text)+'</li>').join('')+'</ul>':'<p class="mut">兩邊很接近，或某一邊還沒有資料。</p>')+'</div>';
+ return h;}
 
-// ───────── 互動 ─────────
-function shuffle(arr,seed){ const a=arr.slice();let s=0;for(const ch of seed)s=(s*31+ch.charCodeAt(0))>>>0;
-  for(let i=a.length-1;i>0;i--){s=(s*1664525+1013904223)>>>0;const j=s%(i+1);[a[i],a[j]]=[a[j],a[i]];}
-  if(a.length>1&&a.every((x,i)=>x===arr[i]))a.push(a.shift());return a;}
-function viewInteract(){
-  const p=plan(),I=p.layers.interaction;let h='<div class="card"><h2>提問與互動（'+esc(p.audienceLabel)+'）</h2><p class="mut">互動風格：'+esc(p.layers.audience.interactionStyle)+'。範例：'+esc(p.example)+'</p></div>';
-  I.forEach((it,idx)=>{
-    h+='<div class="card" data-i="'+idx+'"><h2>'+esc(it.title)+'</h2><p class="mut">'+esc(it.instruction)+'</p>';
-    const d=it.data;
-    if(it.type==='poll')h+=d.options.map((o,i)=>'<label style="color:var(--ink)"><input type="checkbox"> '+esc(o.item)+'</label>').join('');
-    if(it.type==='scale')h+='<input type="range" min="1" max="5" value="3" data-scale="'+idx+'"> <span id="sv'+idx+'">3</span>　<span class="mut">'+esc(d.labels[0])+' ←→ '+esc(d.labels[1])+'</span>';
-    if(it.type==='reflect'){ if(d.model)h+='<p class="mut">示範：'+esc(d.model)+'</p>'; h+='<textarea rows="2" placeholder="用一句話寫下來"></textarea>'; if(d.options)h+=d.options.map(o=>'<label style="color:var(--ink)"><input type="radio" name="cr"> '+esc(o)+'</label>').join(''); }
-    if(it.type==='guess'){ const n=state.guess; h+='<p><b>'+esc(d.example)+'</b></p>'
-        +d.steps.map((s,i)=>'<div class="layerrow" style="'+iceBg(s.layer)+'"><small>'+esc(s.label)+'</small>'+(i<=n?esc(s.text):'？')+'</div>').join('')
-        +'<button class="primary" data-guess="1">'+(n>=2?'重來':'按一下（第 '+(n+2)+' 下揭曉）')+'</button>'; }
-    if(it.type==='match'){ h+='<div class="legend">'+d.layers.map(l=>chipI(l.id,l.label)).join('')+'</div>'; const sh=shuffle(d.items,state.sit+state.aud); h+=sh.map((x,i)=>'<div class="item"><p>'+esc(x.text)+'</p><select data-match="'+idx+'" data-ans="'+x.answer+'"><option value="">放進哪一層？</option>'+d.layers.map(l=>'<option value="'+l.id+'">'+esc(l.label)+'</option>').join('')+'</select> <span class="r"></span></div>').join('')+'<button data-check="match" data-i="'+idx+'">檢查</button>'; }
-    if(it.type==='roleswap')h+=d.roles.map(r=>'<label style="color:var(--ink)">'+esc(r.role)+'會說什麼？<textarea rows="2"></textarea></label><details><summary class="mut">提示</summary><p class="mut">他心裡可能相信：'+esc(r.hint)+'</p></details>').join('');
-    if(it.type==='order'){ const sh=shuffle(d.items,state.aud+state.sit+'o'); h+=sh.map(x=>'<div class="item"><p>'+esc(x.text)+'</p><select data-order="'+idx+'" data-ans="'+x.answer+'"><option value="">第幾步？</option><option>1</option><option>2</option><option>3</option><option>4</option></select> <span class="r"></span></div>').join('')+'<button data-check="order" data-i="'+idx+'">檢查</button>'; }
-    if(it.type==='commit'){ h+=d.fields.map(f=>'<label style="color:var(--ink)">'+esc(f)+'<input type="text"></label>').join('')+'<p class="mut">參考：'+esc(d.example)+'</p>'; }
-    if(it.type==='ladder')h+=d.rungs.map((r,i)=>'<div class="layerrow" style="'+(['behavior','feeling','belief'][i]?iceBg(['behavior','feeling','belief'][i]):i===3?'background:var(--f-future);color:var(--chipfg)':'')+'"><small>'+esc(r.layer)+'</small>'+ul(r.questions)+'</div>').join('');
-    h+='</div>';
-  });
-  return h;
-}
+function draw(){A.innerHTML=S.view==='home'?vHome():S.view==='practice'?vPractice():S.view==='games'?vGames():vSurvey();}
 
-// ───────── 問卷統計 ─────────
-function bar(color,label,pct){const w=pct==null?0:Math.round(pct*100);return '<div class="bar"><span class="t">'+label+'</span><span class="track"><span class="fill" style="display:block;width:'+w+'%;background:'+color+'"></span></span><span class="v">'+(pct==null?'—':w+'%')+'</span></div>';}
-function viewSurvey(){
-  const spec=PF.surveySpec(fw,state.role),t=PF.tally(fw,state.responses);
-  let h='<div class="card"><h2>填問卷（不記名）</h2><div class="row seg" id="roleseg">'+fw.survey.respondents.map(r=>'<button data-role="'+r.id+'" class="'+(state.role===r.id?'on':'')+'">'+esc(r.label)+'</button>').join('')+'</div><p class="mut">'+esc(spec.stem)+'</p>';
-  spec.groups.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<label style="color:var(--ink)"><input type="checkbox" data-g="'+g.key+'" data-v="'+esc(i.value)+'" '+(state.picks[g.key].indexOf(i.value)>-1?'checked':'')+'> '+esc(i.text)+'</label>').join('');});
-  h+='<div class="row" style="margin-top:12px"><button class="primary" id="submit">送出（只存在這個頁面）</button><button id="demo">載入示範資料（家長、學生各 20 份）</button><button id="clear">清除</button></div>'
-   +'<p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份。問卷資料僅保留在目前頁面，重新整理或關閉後就會清除。</p></div>';
-  if(!t.parent.total&&!t.student.total){return h+'<div class="card"><p class="mut">還沒有資料。先送出一份，或載入示範資料。</p></div>';}
-  const cmp=PF.compare(fw,t);
-  h+='<div class="card"><h2>統計：家長 vs 學生</h2><p class="mut"><span style="color:var(--teal)">■</span> 家長　<span style="color:var(--amber)">■</span> 學生　（百分比＝該身分填寫者中勾選的比例）</p>';
-  cmp.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<div class="item"><div>'+esc(i.item)+(i.tag==='student_more'?' <span class="tag warn">學生更多</span>':i.tag==='parent_more'?' <span class="tag warn">家長更多</span>':'')+'</div>'+bar('var(--teal)','家長',i.parentPct)+bar('var(--amber)','學生',i.studentPct)+'</div>').join('');});
-  h+='</div>';
-  const ins=PF.insights(fw,t);
-  h+='<div class="card"><h2>看見落差</h2>'+(ins.length?'<ul>'+ins.map(x=>'<li>'+esc(x.text)+'</li>').join('')+'</ul>':'<p class="mut">兩邊的選擇很接近，或某一邊還沒有資料。</p>')+'</div>';
-  const rec=PF.recommendFromSurvey(fw,t);
-  h+='<div class="card"><h2>今天先討論哪些情境？</h2><p class="mut">依兩邊勾選比例加總，落差大的再加分。</p>'+rec.map((r,i)=>'<div class="rank"><span class="n">'+(i+1)+'</span><div><b>'+esc(DOMAIN[r.domain])+'・'+esc(r.title)+'</b> <button data-go="'+r.situation+'">看這個情境</button><div class="mut">'+r.evidence.map(e=>esc(e.item)+'（家長 '+(e.parentPct==null?'—':Math.round(e.parentPct*100)+'%')+'／學生 '+(e.studentPct==null?'—':Math.round(e.studentPct*100)+'%')+'）').join('；')+'</div></div></div>').join('')+'</div>';
-  return h;
-}
-
-function render(){ drawAud();drawTabs();$('sit').value=state.sit;
-  $('view').innerHTML=state.tab==='layers'?viewLayers():state.tab==='interact'?viewInteract():viewSurvey(); }
-
-document.addEventListener('click',e=>{
-  const b=e.target.closest('button');if(!b)return;
-  if(b.dataset.a){state.aud=b.dataset.a;state.guess=0;render();}
-  else if(b.dataset.t){state.tab=b.dataset.t;render();}
-  else if(b.dataset.guess){state.guess=state.guess>=2?0:state.guess+1;render();}
-  else if(b.dataset.check){
-    const sel=document.querySelectorAll('[data-'+b.dataset.check+'="'+b.dataset.i+'"]');let ok=0;
-    sel.forEach(s=>{const right=(b.dataset.check==='match'?s.value:s.value)===s.dataset.ans;if(right)ok++;s.parentNode.querySelector('.r').innerHTML=right?'<span class="ok">✓ 正確</span>':'<span class="bad">✗ 再想想</span>';});
-    b.insertAdjacentHTML('afterend','<span class="mut"> '+ok+' / '+sel.length+'</span>');b.remove();
-  }
-  else if(b.dataset.role){state.role=b.dataset.role;state.picks={emotion:[],behavior:[],social:[]};render();}
-  else if(b.id==='submit'){state.responses.push({role:state.role,picks:JSON.parse(JSON.stringify(state.picks))});state.picks={emotion:[],behavior:[],social:[]};render();}
-  else if(b.id==='demo'){state.responses=state.responses.concat(PF.demoResponses(fw));render();}
-  else if(b.id==='clear'){state.responses=[];state.picks={emotion:[],behavior:[],social:[]};render();}
-  else if(b.dataset.go){state.sit=b.dataset.go;state.tab='layers';render();window.scrollTo(0,0);}
+A.addEventListener('input',e=>{if(e.target.id==='ido')S.a.ido=e.target.value;if(e.target.id==='mine')S.a.mine=e.target.value;});
+A.addEventListener('change',e=>{const t=e.target;if(t.id==='when')S.a.when=t.value;
+ if(t.dataset&&t.dataset.g){const arr=S.picks[t.dataset.g];const i=arr.indexOf(t.dataset.v);if(t.checked&&i<0)arr.push(t.dataset.v);if(!t.checked&&i>-1)arr.splice(i,1);}});
+A.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;
+ if(d.aud){S.aud=d.aud;return draw();}
+ if(d.sit){S.sit=d.sit;S.a={};S.step=1;return draw();}
+ if(d.pick){const v=d.pick==='pk'?d.v:Number(d.v);S.a[d.pick]=v;return draw();}
+ switch(d.act){
+  case 'home':S.quiz=null;return go('home');
+  case 'practice':return start();
+  case 'random':S.aud=S.aud||'junior';return start(rnd(fw.situations).id);
+  case 'games':S.quiz=null;return go('games');
+  case 'survey':return go('survey');
+  case 'back':S.step=Math.max(0,S.step-1);return draw();
+  case 'next':S.step=Math.min(STEPS.length-1,S.step+1);draw();return window.scrollTo({top:0});
+  case 'reveal':S.a.g=(S.a.g||0)+1;return draw();
+  case 'place':{const it=S.a.items[+d.i];S.a.tries=(S.a.tries||0)+1;if(it.ans===d.l){it.done=true;}else{b.classList.add('wrong');setTimeout(()=>b.classList.remove('wrong'),450);}return draw();}
+  case 'f4':{const need=F[S.a.placed.length].id;if(d.f===need){S.a.placed.push(d.f);}else{S.a.miss++;b.classList.add('wrong');}return draw();}
+  case 'copy':{const t=$('sumtxt').textContent;const ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
+   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
+  case 'print':return window.print();
+  case 'again':return start();
+  case 'qstart':S.quiz={g:d.g,items:GAMES[d.g].make(),i:0,score:0,picked:null};S.view='games';return draw();
+  case 'qans':{const q=S.quiz;q.picked=d.c;if(d.c===q.items[q.i].ans)q.score++;return draw();}
+  case 'qnext':S.quiz.i++;S.quiz.picked=null;return draw();
+  case 'qexit':S.quiz=null;return draw();
+  case 'role':S.role=d.r;return draw();
+  case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}
+  case 'demo':S.resp=PF.demoResponses(fw,20,20);return draw();
+  case 'clear':S.resp=[];fw.survey.groups.forEach(g=>S.picks[g.key]=[]);return draw();
+  case 'sitgo':S.sit=d.s;S.step=1;S.a={};S.view='practice';draw();return window.scrollTo({top:0});
+ }
 });
-document.addEventListener('change',e=>{
-  const t=e.target;
-  if(t.dataset&&t.dataset.g){const arr=state.picks[t.dataset.g],v=t.dataset.v,i=arr.indexOf(v);if(t.checked&&i<0)arr.push(v);if(!t.checked&&i>-1)arr.splice(i,1);}
-  if(t.id==='sit'){state.sit=t.value;state.guess=0;render();}
-  if(t.id==='rd')render();
-});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset&&t.dataset.scale!==undefined){document.getElementById('sv'+t.dataset.scale).textContent=t.value;}});
-render();
+draw();
+const tb=$('themeToggle');if(tb)tb.addEventListener('click',function(){const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';this.textContent=dark?'☀ 淺色模式':'◐ 深色模式';this.setAttribute('aria-pressed',String(dark));this.setAttribute('aria-label',dark?'切換為淺色模式':'切換為深色模式');});
 })();
-</script>
-<script>
-document.getElementById('themeToggle').addEventListener('click',function(){
- const dark=document.documentElement.dataset.theme!=='dark';
- document.documentElement.dataset.theme=dark?'dark':'light';
- this.textContent=dark?'☀ 淺色模式':'◐ 深色模式';
- this.setAttribute('aria-pressed',String(dark));
- this.setAttribute('aria-label',dark?'切換為淺色模式':'切換為深色模式');
-});
-</script>
-</body></html>
+</script></body></html>

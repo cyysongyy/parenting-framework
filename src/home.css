@@ -1,0 +1,68 @@
+/* ── 簡化首頁與引導式流程 ── */
+.app{max-width:860px;margin:0 auto;padding:6px 0 36px;outline:none}
+.home{padding:30px 0 6px}
+.home h1{margin:12px 0 10px}
+.home .lead{font-size:15px;color:var(--mut);margin:0 0 6px}
+.big3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0 18px}
+.bigcard{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:176px;box-shadow:var(--shadow);width:100%;font-size:15px;font-weight:500;line-height:1.7;cursor:pointer}
+.bigcard b{font-size:19px;font-weight:750;color:var(--ink)}
+.bigcard .d{font-size:13px;color:var(--mut);font-weight:400;line-height:1.8}
+.bigcard .ico{width:48px;height:48px;border-radius:15px;background:var(--soft);display:grid;place-items:center;color:var(--teal);margin-bottom:4px}
+.bigcard:hover{border-color:var(--teal);transform:translateY(-2px)}
+.linkrow{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.linkbtn{background:transparent;border:0;color:var(--teal);text-decoration:underline;padding:6px 2px;min-height:36px;font-weight:600}
+.linkbtn:hover{background:transparent}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:4px 0 8px}
+.progress{display:flex;gap:6px;margin:4px 0 16px}
+.progress i{flex:1;height:6px;border-radius:3px;background:var(--track)}
+.progress i.done{background:var(--teal)}.progress i.cur{background:var(--amber)}
+.kicker{font-size:12px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin:0 0 6px}
+.q{font-size:20px;font-weight:700;line-height:1.7;margin:4px 0 12px}
+.choices{display:grid;gap:10px;margin:14px 0}
+.choice{display:block;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:14px 16px;font-weight:500;font-size:15px;line-height:1.8;cursor:pointer;min-height:52px}
+.choice small{display:block;color:var(--mut);font-weight:400;font-size:12px}
+.choice.right{border-color:var(--f-findings);background:var(--soft)}
+.choice.wrong{border-color:var(--red);animation:shake .4s}
+.choice[disabled]{cursor:default;opacity:1}
+.note{border-left:5px solid var(--teal);background:var(--soft);border-radius:10px;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.85}
+.note.bad{border-color:var(--red)}
+.sitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.sitcard{display:flex;flex-direction:column;gap:6px;text-align:left;background:var(--card);border:1px solid var(--line);border-left:8px solid var(--dc);border-radius:14px;padding:14px 16px;font-weight:500;cursor:pointer;min-height:112px;width:100%}
+.sitcard b{font-size:16px}.sitcard small{color:var(--mut);font-weight:400;font-size:12px;line-height:1.7}
+.sitcard .tg{font-size:11px;font-weight:700;color:var(--dc)}
+.star{display:inline-block;background:var(--amber);color:var(--chipfg);border-radius:999px;font-size:11px;padding:1px 8px;margin-left:6px}
+.row2{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.slots{display:grid;gap:8px;margin:12px 0}
+.slot{display:flex;gap:10px;align-items:flex-start;border:2px dashed var(--line);border-radius:12px;padding:10px 12px;min-height:50px;font-size:14px}
+.slot b{flex:0 0 28px;height:28px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-size:12px}
+.slot.ok{border-style:solid;border-color:var(--c);background:var(--soft)}
+.slot.ok b{background:var(--c);color:var(--chipfg)}
+.slot.bad{border-color:var(--red)}
+.pool{display:grid;gap:8px;margin:12px 0}
+.pool button.used{opacity:.35}
+.scorebar{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--mut);margin:4px 0 12px}
+.scorebar b{color:var(--ink)}
+.big{font-size:42px;font-weight:800;color:var(--teal);line-height:1.2}
+.summary{white-space:pre-wrap;font-size:14px;line-height:1.9;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0}
+.layerbtn{border:0;border-radius:12px;padding:12px;font-weight:700;width:100%;cursor:pointer;min-height:48px}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0}
+.five{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.colbtn{border:0;border-radius:12px;padding:12px;font-weight:700;color:var(--chipfg);cursor:pointer;min-height:48px;background:var(--c)}
+.colbtn:hover{background:var(--c);filter:brightness(.92)}
+.chosen{outline:3px solid var(--ink)}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ref>.card:first-child{background:var(--soft);border-color:transparent}
+.refbar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:6px 0 14px}
+.refbar>div{flex:1 1 220px}
+@media(max-width:700px){.app{padding-bottom:20px}.q{font-size:18px}.big3{margin-top:18px}.bigcard{min-height:0;padding:20px}}
+@media print{.topbar,.progress,.row2,.linkrow,.big3{display:none}.summary{border:0}}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px}
+.bar2 .t{flex:0 0 40px;color:var(--mut)}.bar2 .tr{flex:1;height:14px;background:var(--track);border-radius:7px;overflow:hidden}
+.bar2 .fl{display:block;height:100%;border-radius:7px}.bar2 .v{flex:0 0 44px;text-align:right}
+.rk{display:flex;gap:12px;align-items:flex-start;margin:12px 0}.rk .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--teal);color:var(--chipfg);display:grid;place-items:center;font-weight:700}
+.qchoice{border:0;color:var(--chipfg);background:var(--c);text-align:center;font-weight:700}
+.qchoice:hover{background:var(--c);filter:brightness(.92)}
+.qchoice.dim{opacity:.35}
+.chk{display:flex;gap:6px;align-items:flex-start;font-size:14px;margin:6px 0;color:var(--ink)}
+/* 系統為深色、但沒按切換鈕時，補上改版色票（原改版只在手動切換時才套用深色） */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--ink:#e3ece3;--mut:#acbcb1;--line:#354b40;--bg:#16251e;--card:#203329;--teal:#9fc9ab;--amber:#e3b46d;--red:#f1a393;--blue:#9fc7d9;--track:#2d4336;--chipfg:#17271e;--sky:#243d43;--sea:#2b4c55;--soft:#2c4435;--shadow:none}}
