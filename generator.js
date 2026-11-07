@@ -276,6 +276,13 @@
     const errors = [], warns = [];
     const E = m => errors.push(m);
     const f = fw.core, selIds = f.sel.map(x => x.id);
+    // 輔導式內容（啟發性提問與可選做法）
+    (fw.situations || []).forEach(sit => {
+      selIds.forEach(id => { if (!sit.selQuestions || !sit.selQuestions[id]) E(sit.id + ' 缺少 SEL 提問：' + id); });
+      ['exception', 'scale', 'hope', 'resource'].forEach(k => { if (!sit.counselorQuestions || !sit.counselorQuestions[k]) E(sit.id + ' 缺少輔導提問：' + k); });
+      ['facts', 'feelings', 'findings', 'future'].forEach(k => { if (!sit.wedoScript || !sit.wedoScript[k]) E(sit.id + ' 缺少 4F 句子：' + k); });
+      Object.keys(sit.byAudience || {}).forEach(a => { const o = sit.byAudience[a].options; if (!o || o.length < 2) E(sit.id + '/' + a + ' 可選做法少於 2 個'); });
+    });
     // core
     if (JSON.stringify(f.fourFOrder) !== JSON.stringify(f.fourF.map(x => x.id))) E('4F 順序與定義不一致');
     f.fourFOrder.forEach(id => {

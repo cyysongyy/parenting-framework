@@ -23,7 +23,7 @@ const ICE=fw.core.iceberg.layers,F=fw.core.fourF,SEL=fw.core.sel,AUD=['elementar
  Object.keys(c.iceberg).forEach(k=>{l+='--i-'+k+':'+c.iceberg[k].bg.l+';--if-'+k+':'+c.iceberg[k].fg.l+';';d+='--i-'+k+':'+c.iceberg[k].bg.d+';--if-'+k+':'+c.iceberg[k].fg.d+';'});
  const s=document.createElement('style');
  s.textContent=':root{'+l+'}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){'+d+'}}:root[data-theme="dark"]{'+d+'}';document.head.appendChild(s);})();
-const sitOf=id=>fw.situations.find(s=>s.id===id),fOf=id=>F.find(x=>x.id===id),selOf=id=>SEL.find(x=>x.id===id);
+const sitOf=id=>id==='custom'&&S.custom?S.custom:fw.situations.find(s=>s.id===id),fOf=id=>F.find(x=>x.id===id),selOf=id=>SEL.find(x=>x.id===id);
 const iceBg=id=>'background:var(--i-'+id+');color:var(--if-'+id+')';
 const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
 const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
@@ -32,7 +32,10 @@ function ice(title,ic){const band=(i,cls)=>'<div class="band '+cls+'" style="'+i
  return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},role:'parent',picks:{},resp:[],proj:false,agree:null,when:'明天'};
+const S={view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+(function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
+function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
+function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
 const ST=[
  {id:'open',n:'開場',tag:'為什麼是這個情境'},
  {id:'ido',n:'I do',tag:'冰山・先看自己'},
@@ -40,14 +43,14 @@ const ST=[
  {id:'wedo',n:'We do',tag:'4F・一起對話'},
  {id:'close',n:'約定',tag:'明天就能做的事'}];
 const stageDef=id=>fw.core.stages.find(x=>x.id===id);
-function plan(){return PF.buildPlan(fw,{situation:S.sit,audience:S.aud,resultsDisplay:'projector'});}
+function plan(){return PF.buildPlan(fwx(),{situation:S.sit,audience:S.aud,resultsDisplay:'projector'});}
 function setStage(i){S.stage=Math.max(0,Math.min(ST.length-1,i));draw();window.scrollTo({top:0});}
 function topbar(extra){return '<div class="topbar"><button data-act="flow">← 回講師主線</button><span class="mut">'+(extra||'')+'</span></div>';}
 
 function ctl(){
- return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+fw.situations.map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+DOMAIN[x.domain]+'・'+esc(x.title)+'</option>').join('')+'</select></div>'
+ return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+fw.situations.map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+DOMAIN[x.domain]+'・'+esc(x.title)+'</option>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
- +'<div class="ctlbtns"><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button></div></div>';}
+ +'<div class="ctlbtns"><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
 function stepper(){return '<nav class="stepper" aria-label="講師主線">'+ST.map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
 function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+ST[S.stage-1].n+'</button>':'')+(S.stage<ST.length-1?'<button class="primary" data-act="next">'+ST[S.stage+1].n+' →</button>':'')+'</div>';}
 const bridge=t=>'<div class="bridge"><span>承接語</span>'+esc(t)+'</div>';
@@ -78,7 +81,7 @@ function vFlow(){
   const d=stageDef('youdo');
   h+='<div class="card"><p class="kicker">You do　看見孩子</p><h2>'+esc(au.example)+'</h2>'+leader(d)+'</div>'
   +'<div class="card"><p class="kicker">孩子的冰山</p>'+ice('',au.childIceberg)+'<div class="note">'+esc(fw.core.iceberg.interplay)+'</div><h3>可以這樣問孩子（'+esc(a.label)+'）</h3>'+ul(au.youDoQuestions)+ask('swap','孩子心裡可能在說…','先猜他的感受與需要，不評論對錯')+'</div>'
-  +'<div class="card"><p class="kicker">SEL 五大核心：這個情境需要哪些能力</p><div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p>'+esc(s.selMap[c.id])+'</p></div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">SEL 五大核心：這個情境需要哪些能力</p><div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div></div>'
   +'<div class="card"><p class="kicker">看見系統：不只看個人</p><div class="legend">'+fw.core.systemLayers.map(x=>'<span class="tag">'+esc(x)+'</span>').join('')+'</div><p><b>'+esc((p.extras.system&&p.extras.system.question)||fw.core.systemQuestion)+'</b></p></div>'
   +'<div class="card"><p class="kicker">'+esc(a.label)+'的對話重點</p><p class="mut">'+esc(a.developmental)+'</p><p><b>家長角色：</b>'+esc(a.parentRole)+'</p>'+ul(a.language)+'</div>'
   +bridge('理解了兩座冰山，我們需要一個不傷人的順序來開口：4F。');
@@ -88,20 +91,73 @@ function vFlow(){
   h+='<div class="card"><p class="kicker">We do　一起對話</p><h2>Facts → Feelings → Findings → Future</h2>'+leader(d)+'</div>'
   +'<div class="card"><p class="kicker">4F 如何對應冰山與 SEL</p><div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div><details><summary>提問與要避免的話</summary>'+ul(f.questions||[])+'<p class="mut">避免：'+esc(f.avoid)+'</p><p class="mut">'+esc(a.label)+'句型：'+esc(a.fourFStyle[f.id])+'</p></details></div></div>').join('')+'</div></div>'
   +'<div class="card"><p class="kicker">為什麼是這個順序</p><p>先還原事實，對方才不會防衛；先說自己的感受，才輪到對方；一起找到需要，約定才會有人遵守；最後才訂下一步。</p><div class="note">'+esc(fw.core.coherenceRules[1])+'</div></div>'
+  +'<div class="card"><p class="kicker">輔導者的立場：用提問引出孩子自己的答案</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>'
+  +(s.counselorQuestions?'<div class="card"><p class="kicker">四種啟發式提問（針對這個情境）</p><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div></div>':'')
   +bridge('對話之後要有一件事真的改變。把它訂成明天就能做的約定。');
  }
  if(id==='close'){
-  const opts=[{k:'a',t:au.future,tag:'本年段建議'},{k:'b',t:s.chain.agreement,tag:'重點：'+s.chain.skill}];
-  h+='<div class="card"><p class="kicker">約定與收束</p><h2>把理解變成明天的一個小行動</h2><p class="mut">'+esc(a.contractStyle)+'</p><div class="choices">'
-  +opts.map(o=>'<button class="choice '+(S.agree===o.k?'right':'')+'" data-agree="'+o.k+'"><small>'+esc(o.tag)+'</small>'+esc(o.t)+'</button>').join('')
-  +'<button class="choice '+(S.agree==='c'?'right':'')+'" data-agree="c"><small>用自己的話寫</small>'+(S.agree==='c'?'<textarea id="mineag" rows="2" onclick="event.stopPropagation()" placeholder="時間、地點、誰、做什麼，何時檢討">'+esc(S.mine.mineag||'')+'</textarea>':'點這裡自己寫')+'</button></div>'
+  const ag=S.mine.mineag!=null?S.mine.mineag:au.future;
+  h+='<div class="card"><p class="kicker">約定與收束</p><h2>把理解變成明天的一個小行動</h2><p class="mut">'+esc(a.contractStyle)+'</p>'
+  +'<h3>先問孩子：你想用哪一個方法？（可複選，也可以自己想）</h3><div class="choices">'
+  +au.options.map((o,k)=>'<button class="choice '+(S.opts.indexOf(k)>-1?'right':'')+'" data-opt="'+k+'" aria-pressed="'+(S.opts.indexOf(k)>-1)+'">'+esc(o)+'</button>').join('')+'</div>'
+  +'<label for="mineag">我們的約定（可以直接修改成你們的話）</label><textarea id="mineag" rows="4">'+esc(ag)+'</textarea>'
   +'<label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select></div>'
   +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
-  +(S.agree?'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>':'');
+  +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';
  }
  return h+pager();}
-function summary(s,au,a){const ag=S.agree==='a'?au.future:S.agree==='b'?s.chain.agreement:(S.mine.mineag||'（自己寫）');
- return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+s.referralNote;}
+function summary(s,au,a){const ag=S.mine.mineag!=null?S.mine.mineag:au.future;const ch=S.opts.map(k=>au.options[k]).filter(Boolean);
+ return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+s.referralNote;}
+
+
+// ── 我的問題：內建情境比對＋AI 產生 ──
+function grams(t){t=String(t).replace(/[\s，。、？！「」：；（）()\-]/g,'');const o={};for(let i=0;i<t.length-1;i++)o[t.substr(i,2)]=1;return o;}
+function sitBlob(x){return [x.title,x.title,x.storyline,x.chain.surface,x.chain.below,x.chain.deep,x.triggerForParent].concat(Object.keys(x.surveyLink).map(k=>x.surveyLink[k].join(' '))).concat(AUD.map(a=>x.byAudience[a].example)).join(' ');}
+function doMatch(){const q=S.ask.q.trim();if(!q){S.ask.err='請先寫下你的問題。';S.ask.match=null;return draw();}
+ const g=grams(q),hs=fw.situations.map(x=>grams(sitBlob(x))),df={};
+ hs.forEach(h=>Object.keys(h).forEach(k=>{df[k]=(df[k]||0)+1;}));
+ const w=k=>Math.log(1+fw.situations.length/(df[k]||0.5));
+ let tot=0;Object.keys(g).forEach(k=>{tot+=w(k);});
+ let best=null;fw.situations.forEach((x,i)=>{let n=0;Object.keys(g).forEach(k=>{if(hs[i][k])n+=w(k);});const sc=tot?n/tot:0;if(!best||sc>best.sc)best={x,sc};});
+ S.ask.err='';S.ask.match=best&&best.sc>=0.3?best:{x:null,sc:best?best.sc:0};draw();}
+function aiSystem(){const c=fw.core;
+ return '你是一位專業的親職教育輔導講師，使用繁體中文（台灣用語）。你要依下列架構，為家長的提問產生一個完整情境，並只輸出 JSON。\n'
+ +'架構：冰山三層（行為表層、感受與需求、價值信念）；SEL 五大核心（自我覺察、自我管理、社會覺察、關係技巧、負責任決定）；4F 對話順序（Facts→Feelings→Findings→Future）；I do / You do / We do。\n'
+ +'輔導立場：'+c.counselorStance.map(x=>x.label+'：'+x.text).join('；')+'\n'
+ +'規則：1.先看家長自己的冰山，再看孩子的。2.答案要有啟發性：用開放式提問與孩子可選的做法，不要直接給命令或診斷。3.約定要由孩子參與決定，大人也承擔。4.不做醫療或心理診斷。5.若內容涉及自傷、虐待、暴力、嚴重霸凌或安全疑慮，referralNote 必須明確建議尋求學校輔導室、專業人員或相關專線（例如 113 保護專線、1925 安心專線），不可自行處理。6.句子要具體、簡短、可以直接對孩子說。\n'
+ +'JSON 欄位（全部必填）：{"title":"情境名稱(12字內)","domain":"emotion|behavior|interpersonal","storyline":"一句話主線","triggerForParent":"讓家長想一想自己的問句","parentIceberg":{"behavior":"","feeling":"","belief":""},"idoModel":"家長先處理自己的示範句","chain":{"surface":"","below":"","deep":"","skill":"用到的SEL能力","agreement":"約定摘要"},"example":"一個具體例子(貫穿全場)","childIceberg":{"behavior":"","feeling":"","belief":""},"youDoQuestions":["",""],"options":["","",""],"future":"共同訂定的約定(含孩子參與與檢討時間)","wedoScript":{"facts":"","feelings":"","findings":"","future":""},"selMap":{"self_awareness":"","self_management":"","social_awareness":"","relationship_skills":"","responsible_decision":""},"selQuestions":{"self_awareness":"","self_management":"","social_awareness":"","relationship_skills":"","responsible_decision":""},"counselorQuestions":{"exception":"","scale":"","hope":"","resource":""},"referralNote":""}';}
+async function doGen(){const q=S.ask.q.trim();
+ if(!q){S.ask.err='請先寫下你的問題。';return draw();}
+ if(!S.ai.key){S.ask.pending=true;S.view='settings';return draw();}
+ S.ask.busy=true;S.ask.err='';draw();
+ const a=fw.audiences[S.aud];
+ try{
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':S.ai.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+   body:JSON.stringify({model:S.ai.model||'claude-sonnet-5-5',max_tokens:3500,system:aiSystem(),messages:[{role:'user',content:'孩子年段：'+a.label+'（'+a.grades+'）。這個年段的特性：'+a.developmental+'　家長角色：'+a.parentRole+'\n家長的問題：'+q}]})});
+  if(!r.ok){let m='';try{m=(await r.json()).error.message;}catch(e){}throw new Error(r.status===401?'API key 不正確或已失效（401）':r.status===429?'請求太頻繁或額度不足（429）':'呼叫失敗（'+r.status+'）'+(m?'：'+m:''));}
+  const j=await r.json();let t=(j.content||[]).map(x=>x.text||'').join('');t=t.replace(/^[\s\S]*?(\{)/,'$1').replace(/\}[^}]*$/,'}');
+  const o=JSON.parse(t);
+  ['title','storyline','chain','childIceberg','parentIceberg','wedoScript','selMap','selQuestions','counselorQuestions','options','future','example'].forEach(k=>{if(o[k]==null)throw new Error('AI 回傳的格式不完整（缺少 '+k+'），請再試一次');});
+  const ba={};AUD.forEach(x=>{ba[x]={example:o.example,childIceberg:o.childIceberg,youDoQuestions:o.youDoQuestions||[],options:o.options,future:o.future};});
+  S.custom={id:'custom',domain:['emotion','behavior','interpersonal'].indexOf(o.domain)>-1?o.domain:'emotion',title:o.title,storyline:o.storyline,surveyLink:{},chain:o.chain,triggerForParent:o.triggerForParent||'',parentIceberg:o.parentIceberg,idoModel:o.idoModel||'',lecturerExperience:null,byAudience:ba,wedoScript:o.wedoScript,selMap:o.selMap,selQuestions:o.selQuestions,counselorQuestions:o.counselorQuestions,referralNote:o.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。',aiGenerated:true,question:q,audience:S.aud};
+  S.ask.busy=false;draw();
+ }catch(e){S.ask.busy=false;S.ask.err=(e&&e.message)||'發生錯誤';if(/Failed to fetch|NetworkError/i.test(S.ask.err))S.ask.err='連不上 Anthropic（請確認網路連線）。';draw();}}
+function vAsk(){const k=S.ask,m=k.match;
+ let h=topbar('輔導者的提問')+'<div class="card"><p class="kicker">我的問題</p><h2>內建 8 個情境以外的問題，可以交給 AI 依同一套架構產生</h2><p class="mut">先比對內建情境；沒有符合，再用 AI 依冰山、SEL、4F 與輔導立場產生一個新情境，之後的每一頁都會直接使用它。目前年段：<b>'+esc(fw.audiences[S.aud].label)+'</b>（在主線頁切換）。</p>'
+ +'<label for="qtext">請描述孩子的狀況（不要寫真實姓名）</label><textarea id="qtext" rows="4" placeholder="例如：孩子最近很不想參加社團，回家就關在房間，問他也只說沒事。">'+esc(k.q)+'</textarea>'
+ +'<div class="row2"><button data-act="match">先比對內建情境</button><button class="primary" data-act="gen" '+(k.busy?'disabled':'')+'>'+(k.busy?'產生中，約需 20～40 秒…':'用 AI 產生')+'</button><button data-act="settings">⚙ API key 設定'+(S.ai.key?'（已設定）':'')+'</button></div>'
+ +(k.err?'<div class="note bad">'+esc(k.err)+'</div>':'')+'</div>';
+ if(m){h+='<div class="card"><p class="kicker">比對結果</p>'+(m.x?'<p>最接近的內建情境是：<b>'+esc(DOMAIN[m.x.domain])+'・'+esc(m.x.title)+'</b></p><div class="row2"><button class="primary" data-act="usematch" data-s="'+m.x.id+'">使用這個情境</button></div><p class="mut">如果不太像，請用 AI 產生。</p>':'<p>沒有明顯接近的內建情境，建議用 AI 產生。'+(S.ai.key?'':'需要先到「API key 設定」輸入你自己的 key。')+'</p>')+'</div>';}
+ if(S.custom){h+='<div class="card"><p class="kicker">已產生的情境</p><p><b>'+esc(S.custom.title)+'</b>（'+esc(fw.audiences[S.custom.audience].label)+'）</p><p class="mut">'+esc(S.custom.storyline)+'</p><div class="note">這是 AI 依架構產生的草稿，請用輔導專業判斷後再使用。</div><div class="row2"><button class="primary" data-act="usecustom">進入講師主線</button></div></div>';}
+ return h;}
+function vSettings(){
+ return topbar('API key 設定')+'<div class="card"><p class="kicker">API key 設定</p><h2>讓「我的問題」能呼叫 Claude</h2>'
+ +'<div class="note"><b>請先看：</b>key 只存在這台裝置的瀏覽器，呼叫時只會送到 api.anthropic.com，不會上傳到這個網站。但任何能使用這個瀏覽器的人都看得到它，所以：不要在公用電腦或投影用電腦記住 key、建議使用有額度上限的專用 key、不用時按「清除」。這個頁面是公開網站，請不要把 key 貼到任何人看得到的地方。</div>'
+ +'<label for="aikey">Anthropic API key</label><input type="password" id="aikey" autocomplete="off" spellcheck="false" placeholder="sk-ant-…" value="'+esc(S.ai.key)+'">'
+ +'<label for="aimodel">模型</label><input type="text" id="aimodel" value="'+esc(S.ai.model)+'">'
+ +'<label class="chk"><input type="checkbox" id="airemember" '+(S.ai.remember?'checked':'')+'>記住在這台裝置（沒勾選時，關閉分頁就會清除）</label>'
+ +'<div class="row2"><button class="primary" data-act="savekey">儲存</button><button data-act="clearkey">清除 key</button></div>'
+ +'<p class="mut">沒有 key 時，內建的 8 個情境、問卷統計與約定卡都能正常使用，只有「用 AI 產生」需要 key。</p></div>';}
 
 // 問卷
 function ensurePicks(){fw.survey.groups.forEach(g=>{if(!S.picks[g.key])S.picks[g.key]=[];});}
@@ -123,22 +179,31 @@ function vSurvey(){
  return h;}
 
 
-function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():vSurvey();}
-A.addEventListener('input',e=>{const t=e.target;if(t.tagName==='TEXTAREA')S.mine[t.id]=t.value;});
+function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();}
+A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&ST[S.stage].id==='close'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
- if(t.id==='sit'){S.sit=t.value;S.agree=null;return draw();}
+ if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
+ if(t.id==='airemember'){S.ai.remember=t.checked;return;}
  if(t.id==='when'){S.when=t.value;return draw();}
  if(t.dataset&&t.dataset.g){const arr=S.picks[t.dataset.g];const i=arr.indexOf(t.dataset.v);if(t.checked&&i<0)arr.push(t.dataset.v);if(!t.checked&&i>-1)arr.splice(i,1);}});
 A.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;
- if(d.aud){S.aud=d.aud;S.agree=null;return draw();}
+ if(d.aud){S.aud=d.aud;S.mine.mineag=undefined;S.opts=[];return draw();}
  if(d.stage!=null&&d.stage!==''){return setStage(+d.stage);}
- if(d.agree){S.agree=d.agree;return draw();}
+ if(d.opt!=null&&d.opt!==''){const k=+d.opt,i=S.opts.indexOf(k);if(i>-1)S.opts.splice(i,1);else S.opts.push(k);const sx=sitOf(S.sit);if(S.mine.mineag==null||true){}return draw();}
  switch(d.act){
   case 'flow':S.view='flow';return draw();
   case 'prev':return setStage(S.stage-1);
   case 'next':return setStage(S.stage+1);
   case 'proj':S.proj=!S.proj;return draw();
+  case 'ask':S.view='ask';draw();return window.scrollTo({top:0});
+  case 'settings':S.view='settings';draw();return window.scrollTo({top:0});
+  case 'savekey':saveAI();S.view=S.ask.pending?'ask':'flow';return draw();
+  case 'clearkey':S.ai.key='';saveAI();return draw();
+  case 'match':return doMatch();
+  case 'usematch':S.sit=d.s;S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
+  case 'gen':return doGen();
+  case 'usecustom':S.sit='custom';S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'survey':S.view='survey';draw();return window.scrollTo({top:0});
   case 'copy':{const t=$('sumtxt').textContent,ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
@@ -147,7 +212,7 @@ A.addEventListener('click',e=>{
   case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}
   case 'demo':S.resp=PF.demoResponses(fw,20,20);return draw();
   case 'clear':S.resp=[];fw.survey.groups.forEach(g=>S.picks[g.key]=[]);return draw();
-  case 'sitgo':S.sit=d.s;S.agree=null;S.stage=0;S.view='flow';draw();return window.scrollTo({top:0});
+  case 'sitgo':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.stage=0;S.view='flow';draw();return window.scrollTo({top:0});
  }
 });
 draw();

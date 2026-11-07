@@ -48,3 +48,9 @@
 
 每一階段結尾有「承接語」，把上一段留下的問題交給下一段。頂端可切換情境、年段，並有「投影大字」模式與「問卷統計」。
 `full.html` 是完整六層次總覽。重新產生：`node build-home.js`（來源 `src/home.src.html`、`src/home.css`）。
+
+## 輔導式內容與「我的問題」（v2.1）
+
+- 每個情境新增：`counselorQuestions`（例外／量尺／期待／資源四種啟發式提問）、`selQuestions`（SEL 五核心各一個提問）、每個年段的 `options`（孩子可選的做法）；`future` 與 `chain.agreement` 改寫成「孩子參與決定、大人也承擔」；`wedoScript` 四個 F 都補齊。`core.counselorStance` 是六項輔導立場。
+- 首頁頂端「✨ 我的問題」：內建 8 個情境以外的問題，可先比對內建情境，沒有符合再用 AI 依同一套架構產生新情境（需要自己的 Anthropic API key，在「⚙ API key 設定」輸入）。key 只存在使用者的瀏覽器（預設關閉分頁即清除，可勾選記住），呼叫只送到 api.anthropic.com，不會進入程式碼或 repo。
+- AI 產生的內容是草稿，需由輔導專業判斷後使用；涉及自傷、虐待、暴力或霸凌時，會要求附上轉介建議。
