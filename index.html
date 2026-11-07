@@ -231,6 +231,44 @@ input[type=password],input[type=text]{width:100%}
 .iyw{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:10px}.iyw .iy{flex:1 1 200px;border:1px solid var(--line);border-top:6px solid var(--c);border-radius:12px;padding:12px 14px;background:var(--bg)}.iyw .iy b{font-size:16px}.iyw .iy p{margin:6px 0;font-size:13px;line-height:1.8}.iyw .iy small{color:var(--mut)}.iyw .ar{align-self:center;color:var(--mut)}
 .steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}.st3{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.st3 .sn{display:inline-grid;width:22px;height:22px;border-radius:50%;background:var(--teal);color:var(--chipfg);place-items:center;font-size:12px;margin-right:6px}.st3 small{color:var(--mut);margin-left:6px}.st3 p{margin:6px 0 0;font-size:13px;line-height:1.8}
 @media(max-width:800px){.grid2{grid-template-columns:1fr}.tl{flex-wrap:wrap}.tlseg{flex:1 1 45%!important}.iyw .ar{display:none}}
+/* ── 插圖與色塊 ── */
+.icewrap h3{margin:0 0 8px}
+.icefig{display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:16px;align-items:stretch}
+.iceart{width:100%;height:auto;display:block;border-radius:20px;box-shadow:var(--shadow)}
+.icelayers{display:grid;gap:10px;align-content:stretch}
+.icelayer{display:flex;gap:12px;align-items:center;border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.75;border:1px solid var(--line);position:relative}
+.icelayer small{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;opacity:.85}
+.icelayer .lico{flex:0 0 40px;height:40px;border-radius:50%;background:rgba(255,255,255,.35);display:grid;place-items:center}
+.selart{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}
+.figrow{display:flex;justify-content:center;margin:8px 0 14px;padding:14px;border-radius:20px;background:radial-gradient(circle at 50% 50%,var(--soft),transparent 70%)}
+.f4art{margin:8px 0 14px;padding:10px 12px 6px;border-radius:20px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line)}
+.f4art svg{width:100%;height:auto;display:block}
+.f4lab{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;margin-top:-6px}
+.f4lab b{display:block;font-size:15px}.f4lab small{font-size:12px;opacity:.85}
+.tools3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px;align-items:end}
+.tools3 figure{margin:0;display:flex;flex-direction:column;gap:8px;align-items:center;padding:14px;border-radius:20px;background:var(--bg);border:1px solid var(--line)}
+.tools3 figure svg{width:100%;max-width:230px;height:auto}.tools3 figure:nth-child(3) svg{max-width:100%}
+.tools3 figcaption{font-size:13px;color:var(--mut);text-align:center}.tools3 figcaption b{display:block;color:var(--ink);font-size:15px}
+.hero2{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--soft),var(--card))}
+.hero2::before,.hero2::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero2::before{width:220px;height:220px;right:-60px;top:-70px;background:var(--i-feeling);opacity:.22}
+.hero2::after{width:140px;height:140px;right:70px;bottom:-60px;background:var(--f-feelings);opacity:.2}
+.hero2>*{position:relative;z-index:1}
+.card{position:relative}
+.sc2{position:relative;overflow:hidden}
+.sc2::after{content:"";position:absolute;right:-18px;bottom:-18px;width:60px;height:60px;border-radius:50%;background:currentColor;opacity:.05}
+.sechead{background:linear-gradient(90deg,var(--soft),transparent);padding:8px 10px;border-radius:12px}
+.stepper .on{background:linear-gradient(135deg,var(--soft),var(--card))}
+.f4r{box-shadow:var(--shadow)}
+.f4h{background:linear-gradient(135deg,var(--c),transparent 170%);}
+.f4h b{color:var(--chipfg)}
+.f4r .f4h .n{background:var(--card);color:var(--ink)}
+.chain5 .cl{box-shadow:var(--shadow)}
+@media(max-width:700px){.icefig{grid-template-columns:1fr}.iceart{max-width:240px;margin:0 auto}.tools3{grid-template-columns:1fr}.tools3 figure svg{max-width:240px}.tools3 figure:nth-child(3) svg{max-width:100%}}
+
+.diagres{border-left:6px solid var(--f-future)}
+.ice3{display:grid;gap:8px;margin:10px 0}.ice3>div{border-radius:14px;padding:10px 14px;line-height:1.7}.ice3 small{display:block;font-size:11px;font-weight:700;opacity:.85}
+.row2.wrap{flex-wrap:wrap}.warnbox{margin-top:12px}
 
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
@@ -4319,19 +4357,25 @@ input[type=password],input[type=text]{width:100%}
       {
         "id": "t_sel",
         "n": "理論二：SEL 五核心",
-        "min": 7,
+        "min": 6,
         "tag": "培養什麼能力"
       },
       {
         "id": "t_4f",
         "n": "方法：4F 對話",
-        "min": 12,
+        "min": 10,
         "tag": "把理論變成句子"
+      },
+      {
+        "id": "t_diag",
+        "n": "問卷診斷",
+        "min": 6,
+        "tag": "從數字往水面下問一層"
       },
       {
         "id": "t_ido",
         "n": "操作①：I do",
-        "min": 15,
+        "min": 13,
         "tag": "講者先做給你看"
       },
       {
@@ -4343,7 +4387,7 @@ input[type=password],input[type=text]{width:100%}
       {
         "id": "t_we",
         "n": "操作③：We do",
-        "min": 13,
+        "min": 12,
         "tag": "我們一起做"
       },
       {
@@ -4521,7 +4565,168 @@ input[type=password],input[type=text]{width:100%}
       "Feelings 有沒有先說自己的？",
       "Findings 有沒有用開放式問句？",
       "Future 有沒有一起決定，大人也承擔？"
-    ]
+    ],
+    "diagnosis": {
+      "title": "問卷診斷：從「勾了什麼」問到「為什麼一再發生」",
+      "source": "內容取自講座 deck 的冰山分析頁（情緒／行為／人際）、You do 頁與 4F 頁；請講者確認措辭。",
+      "intro": "問卷只告訴我們水面上的行為（第一層）。診斷的下一步，是邀請現場往下問兩層：一再重演的情境（結構層）、心裡相信的話（價值信念層）。先看見，再談策略。",
+      "steps": [
+        {
+          "id": "d1",
+          "label": "① 水面上",
+          "ask": "問卷裡，大家最常勾的是什麼？"
+        },
+        {
+          "id": "d2",
+          "label": "② 結構層",
+          "ask": "什麼情境一再重演？（舉手或請小組勾選）"
+        },
+        {
+          "id": "d3",
+          "label": "③ 價值信念",
+          "ask": "這對你為什麼重要？心裡相信的是哪一句？"
+        },
+        {
+          "id": "d4",
+          "label": "④ 診斷與下一步",
+          "ask": "所以今天我們先練習哪一個情境？"
+        }
+      ],
+      "domains": {
+        "emotion": {
+          "label": "情緒調適與心理需求",
+          "structure": [
+            "一進門就被問成績",
+            "吵完就冷戰",
+            "考前睡不夠",
+            "家裡沒有談感受的時間"
+          ],
+          "beliefs": [
+            "「成績不好就是我不夠好」",
+            "「表現出情緒是軟弱」"
+          ],
+          "youDo": [
+            {
+              "see": "一回家就大吼、摔書包",
+              "feel": "學校受挫、被誤解",
+              "ask": "今天學校發生什麼事？"
+            },
+            {
+              "see": "考前整晚睡不著",
+              "feel": "擔心成績、怕被比較",
+              "ask": "你最擔心的是哪一部分？"
+            },
+            {
+              "see": "不肯說話、把門關上",
+              "feel": "覺得沒有人聽他說",
+              "ask": "我想聽你說，你願意說多少都可以"
+            }
+          ],
+          "f4": [
+            "Facts：「剛剛你把門關得很大聲。」不加評論。",
+            "Feelings：「我現在很擔心…」取代「你怎麼又…」",
+            "Findings：這個情緒在提醒我們什麼？深呼吸三次，再開口。",
+            "Future：家庭共同約定情緒來時去哪裡、做什麼。"
+          ]
+        },
+        "behavior": {
+          "label": "行為表現與自我管理",
+          "structure": [
+            "規則由大人單方決定",
+            "手機放在房間",
+            "獎懲前後不一致",
+            "家與學校要求不同"
+          ],
+          "beliefs": [
+            "「聽話才是好孩子」",
+            "「現在放鬆就會輸」",
+            "「反正我做不好」"
+          ],
+          "youDo": [
+            {
+              "see": "拖延作業",
+              "feel": "挫折感：不會做、缺乏方法",
+              "ask": "是不會做，還是不想開始？"
+            },
+            {
+              "see": "拖延作業",
+              "feel": "親子衝突後的抗拒",
+              "ask": "我們剛剛的對話，是不是讓你不想做？"
+            },
+            {
+              "see": "拖延作業",
+              "feel": "對課業失去動機",
+              "ask": "你覺得這件事對你有什麼用？"
+            }
+          ],
+          "f4": [
+            "Facts：這週有幾天超過 9 點還在玩？手機放在哪裡？",
+            "Feelings：家長擔心作息，孩子在意被限制。",
+            "Findings：約定卡在哪裡？是時段、誘惑，還是沒有檢討？",
+            "Future：一起約定時段、手機放哪裡、違反怎麼辦、每週 15 分鐘檢討。"
+          ]
+        },
+        "social": {
+          "label": "人際互動與關係經營",
+          "structure": [
+            "溝通常是責備多於傾聽",
+            "少有談心時間",
+            "班上小團體",
+            "親師溝通管道不順"
+          ],
+          "beliefs": [
+            "「表達意見會被討厭」",
+            "「不要給別人添麻煩」",
+            "「大人的話不能質疑」"
+          ],
+          "youDo": [
+            {
+              "see": "孩子",
+              "feel": "覺得不被了解、被管太多",
+              "ask": "你希望我怎麼做，你會覺得被尊重？"
+            },
+            {
+              "see": "家長",
+              "feel": "擔心、著急、怕孩子走偏",
+              "ask": "我最擔心的是…"
+            },
+            {
+              "see": "教師",
+              "feel": "班上管理壓力",
+              "ask": "家校可以一起支持孩子的哪一件事？"
+            }
+          ],
+          "f4": [
+            "Facts：只說具體發生的事：「剛剛我們說到一半，你就走開了。」",
+            "Feelings：「我擔心…」「我很失望…」「我很好奇…你覺得呢？」先聽完再回應。",
+            "Findings：誤會在哪裡？各自需要什麼？",
+            "Future：今天能做的一件小事是什麼？"
+          ]
+        }
+      },
+      "cautions": [
+        {
+          "when": [
+            "曾遭遇言語嘲諷、排擠、欺負或網路霸凌"
+          ],
+          "text": "有人勾選霸凌：這不是一般溝通練習能處理的題目。請轉介學校輔導室／校安流程，講座中不公開追問個案。"
+        },
+        {
+          "when": [
+            "難過、低落",
+            "焦慮、緊張"
+          ],
+          "text": "情緒題偏高：提醒現場，持續低落或影響睡眠、上學，請與學校輔導或專業人員聯繫。"
+        },
+        {
+          "when": [
+            "拖延、要一直催"
+          ],
+          "text": "若懷疑注意力或學習困難，請轉介學校輔導（deck 行為 You do 頁）。"
+        }
+      ],
+      "closing": "診斷不是貼標籤，是決定今天往哪裡練習。最後一句仍回到：先理解，再管理。"
+    }
   }
 };</script>
 <script>// 親子教育架構 v2：依「情境 × 年段」產生六個層次的內容，並處理家長／學生問卷統計
@@ -4765,6 +4970,33 @@ input[type=password],input[type=text]{width:100%}
     return opts.topN ? list.slice(0, opts.topN) : list;
   }
 
+  // 問卷診斷：由問卷統計排出領域與水面上的行為，並依現場勾選的結構層／信念層產生診斷結論。
+  function diagnose(fw, t, ticks) {
+    const D = fw.theory && fw.theory.diagnosis; if (!D) return null;
+    ticks = ticks || {};
+    const cmp = compare(fw, t), hasData = (t.parent.total + t.student.total) > 0;
+    const doms = cmp.map(g => {
+      const items = g.items.filter(i => !i.none).map(i => ({ item: i.item, parentPct: i.parentPct, studentPct: i.studentPct, score: (i.parentPct || 0) + (i.studentPct || 0) })).sort((a, b) => b.score - a.score);
+      const top = items.slice(0, 2), score = top.length ? top.reduce((a, x) => a + x.score, 0) / top.length : 0;
+      return { key: g.key, name: g.name, score, top: items.filter(x => x.score > 0).slice(0, 3) };
+    }).sort((a, b) => b.score - a.score);
+    const picked = {}; cmp.forEach(g => g.items.forEach(i => { if (!i.none && ((i.parentPct || 0) + (i.studentPct || 0)) > 0) picked[i.item] = true; }));
+    const cautions = (D.cautions || []).filter(c => c.when.some(w => picked[w])).map(c => c.text);
+    const dom = ticks.domain || (hasData ? doms[0].key : null);
+    const d = dom && D.domains[dom];
+    const st = (ticks.structure || []).filter(x => d && d.structure.indexOf(x) > -1);
+    const bl = (ticks.beliefs || []).filter(x => d && d.beliefs.indexOf(x) > -1);
+    let conclusion = null;
+    if (d) {
+      const ds = doms.find(x => x.key === dom);
+      const top = ds && ds.top.length ? ds.top.map(x => x.item).slice(0, 2).join('、') : '（尚無問卷資料）';
+      conclusion = { domain: dom, label: d.label, top,
+        level: st.length && bl.length ? 'full' : st.length ? 'structure' : 'surface',
+        structure: st, beliefs: bl, f4: d.f4,
+        situations: hasData ? recommendFromSurvey(fw, t).filter(r => r.domain === (dom === 'social' ? 'interpersonal' : dom)).slice(0, 2).map(r => ({ id: r.situation, title: r.title })) : [] };
+    }
+    return { hasData, ranked: doms, cautions, conclusion };
+  }
   function toPayload(role, picks) {
     return { role, emotion: picks.emotion || [], behavior: picks.behavior || [], social: picks.social || [] };
   }
@@ -4809,6 +5041,7 @@ input[type=password],input[type=text]{width:100%}
     if (fw.theory) {
       ['iceberg', 'sel', 'f4'].forEach(k => { const m = fw.theory.modules && fw.theory.modules[k]; if (!m) return E('theory 缺少模組：' + k); ['name', 'oneLine', 'why', 'question', 'interaction'].forEach(f => { if (!m[f]) E('theory.' + k + ' 缺少 ' + f); }); if (!m.notes || !m.notes.length) E('theory.' + k + ' 缺少講者備忘'); });
       const pr = fw.theory.procedure; if (!pr || !pr.steps || pr.steps.length !== 3) E('theory.procedure 需有 I do / You do / We do 三個步驟'); else pr.steps.forEach(st => { ['leader', 'learner', 'output', 'timing'].forEach(f => { if (!st[f] || !st[f].length) E('theory.procedure.' + st.id + ' 缺少 ' + f); }); });
+      const dg = fw.theory.diagnosis; if (!dg) E('theory 缺少 diagnosis'); else { ['emotion', 'behavior', 'social'].forEach(k => { const d = dg.domains && dg.domains[k]; if (!d) return E('diagnosis 缺少領域：' + k); ['structure', 'beliefs', 'youDo'].forEach(f => { if (!d[f] || !d[f].length) E('diagnosis.' + k + ' 缺少 ' + f); }); if (!d.f4 || d.f4.length !== 4) E('diagnosis.' + k + ' 的 4F 需有 4 項'); }); if (!dg.steps || dg.steps.length !== 4) E('diagnosis 需有 4 個步驟'); }
       const total = (fw.theory.timeline || []).reduce((a, x) => a + x.min, 0);
       if (total !== 80) E('theory 時間軸總和應為 80 分鐘，目前 ' + total);
     }
@@ -4889,7 +5122,7 @@ input[type=password],input[type=text]{width:100%}
     return { errors, warns };
   }
 
-  return { buildPlan, buildInteractions, getSituation, surveySpec, tally, compare, insights, recommendFromSurvey, toPayload, demoResponses, checkCoherence, AUDIENCES };
+  return { buildPlan, buildInteractions, getSituation, surveySpec, tally, compare, insights, recommendFromSurvey, diagnose, toPayload, demoResponses, checkCoherence, AUDIENCES };
 });
 </script>
 <script>
@@ -4910,11 +5143,63 @@ const iceBg=id=>'background:var(--i-'+id+');color:var(--if-'+id+')';
 const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
 const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
 const chipS=(id,t)=>'<span class="chip" style="--c:var(--s-'+id+')">'+esc(t)+'</span>';
-function ice(title,ic){const band=(i,cls)=>'<div class="band '+cls+'" style="'+iceBg(ICE[i].id)+'"><small>'+esc(ICE[i].label)+'</small>'+esc(ic[ICE[i].id])+'</div>';
- return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
+// ── 插圖（SVG）：冰山、SEL 五核心、4F 路徑 ──
+const GLYPH={
+ eye:'<path d="M-9 0Q0 -8 9 0Q0 8 -9 0Z"/><circle r="2.8"/>',
+ heart:'<path d="M0 8C-12 -1 -8 -10 0 -4C8 -10 12 -1 0 8Z"/>',
+ anchor:'<circle cy="-7" r="2.6"/><path d="M0 -4V9M-6 2Q0 12 6 2M-4 -1H4"/>',
+ wave:'<path d="M-9 0Q-5 -6 0 0T9 0M-9 5Q-5 -1 0 5T9 5"/>',
+ ears:'<path d="M-4 -8Q-9 -8 -9 -2Q-9 3 -5 6Q-3 8 -3 10M-4 -8Q2 -8 2 -2Q2 2 -2 4"/><path d="M5 -3Q9 0 5 5"/>',
+ link:'<circle cx="-4" r="5.5"/><circle cx="4" r="5.5"/>',
+ flag:'<path d="M-5 -9V9M-5 -9H7L4 -4L7 1H-5"/>',
+ camera:'<rect x="-9" y="-6" width="18" height="12" rx="3"/><circle r="3.4"/>',
+ bulb:'<circle cy="-2" r="6"/><path d="M-3 6H3M-2 9H2"/>',
+ pers:'<circle cy="-5" r="3.2"/><path d="M-7 8Q-7 0 0 0Q7 0 7 8"/>'};
+const glyph=(k,sz,col)=>'<g class="gl" style="stroke:'+(col||'var(--chipfg)')+';fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" transform="scale('+(sz||1)+')">'+GLYPH[k]+'</g>';
+const SELG={self_awareness:'eye',self_management:'wave',social_awareness:'ears',relationship_skills:'link',responsible_decision:'flag'};
+const ICEG=['eye','heart','anchor'];
+function iceArt(){
+ return '<svg class="iceart" viewBox="0 0 240 320" role="img" aria-label="冰山：水面上是行為，水面下是感受與需求，最深處是價值信念"><defs>'
+ +'<linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--i-behavior)"/><stop offset="1" style="stop-color:var(--card)"/></linearGradient>'
+ +'<linearGradient id="gSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--i-feeling)"/><stop offset="1" style="stop-color:var(--i-belief)"/></linearGradient>'
+ +'<linearGradient id="gBerg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--card);stop-opacity:.6"/><stop offset="1" style="stop-color:var(--card);stop-opacity:.12"/></linearGradient>'
+ +'<clipPath id="gClip"><rect width="240" height="320" rx="20"/></clipPath></defs><g clip-path="url(#gClip)">'
+ +'<rect width="240" height="320" fill="url(#gSky)"/>'
+ +'<circle cx="200" cy="42" r="17" style="fill:var(--amber)" opacity=".9"/><circle cx="200" cy="42" r="25" style="fill:var(--amber)" opacity=".18"/>'
+ +'<g style="fill:var(--card)" opacity=".95"><ellipse cx="46" cy="46" rx="26" ry="9"/><ellipse cx="66" cy="39" rx="17" ry="9"/><ellipse cx="170" cy="82" rx="20" ry="6" opacity=".7"/></g>'
+ +'<rect y="112" width="240" height="208" fill="url(#gSea)"/>'
+ +'<polygon points="62,112 178,112 210,166 196,232 152,286 98,278 56,224 42,164" fill="url(#gBerg)"/>'
+ +'<g fill="none" style="stroke:var(--card)" stroke-width="1.2" opacity=".55"><path d="M62 112 L98 168 L56 224M178 112 L150 170 L196 232M98 168 H150M98 278 L112 226 L152 286M112 226 L150 170"/></g>'
+ +'<path d="M50 196H198" fill="none" style="stroke:var(--card)" stroke-width="1.5" stroke-dasharray="4 5" opacity=".7"/>'
+ +'<polygon points="94,112 118,54 134,78 146,62 166,112" style="fill:var(--card)"/><polygon points="118,54 134,78 124,112 104,112" style="fill:var(--i-behavior)" opacity=".8"/><polygon points="146,62 166,112 150,112" style="fill:var(--i-behavior)" opacity=".5"/>'
+ +'<path d="M-4 112Q12 105 28 112T60 112T92 112T124 112T156 112T188 112T220 112T252 112" fill="none" style="stroke:var(--card)" stroke-width="3.2" stroke-linecap="round"/>'
+ +'<path d="M-4 120Q12 114 28 120T60 120T92 120T124 120T156 120T188 120T220 120T252 120" fill="none" style="stroke:var(--card)" stroke-width="1.3" opacity=".5"/>'
+ +'<g transform="translate(122 97)">'+glyph('eye',.95,'var(--if-behavior)')+'</g>'
+ +'<g transform="translate(120 152)" style="fill:var(--card)">'+'<path d="M0 12C-17 -1 -12 -15 0 -6C12 -15 17 -1 0 12Z"/></g>'
+ +'<g transform="translate(122 240)">'+glyph('anchor',1.5,'var(--card)')+'</g>'
+ +'<g style="fill:var(--card)" opacity=".5"><circle cx="30" cy="150" r="3"/><circle cx="38" cy="166" r="2"/><circle cx="208" cy="214" r="3"/><circle cx="200" cy="232" r="2"/><path d="M26 262q10 -8 20 0q-10 8 -20 0zM46 262l8 -5v10z"/></g>'
+ +'</g></svg>';}
+function ice(title,ic){
+ const row=(i)=>'<div class="icelayer" style="'+iceBg(ICE[i].id)+'"><span class="lico"><svg viewBox="-12 -12 24 24" width="26" height="26" style="stroke:var(--if-'+ICE[i].id+');fill:none;stroke-width:1.8;stroke-linecap:round">'+GLYPH[ICEG[i]]+'</svg></span><div><small>'+esc(ICE[i].label)+'</small>'+esc(ic[ICE[i].id])+'</div></div>';
+ return '<div class="icewrap">'+(title?'<h3>'+title+'</h3>':'')+'<div class="icefig">'+iceArt()+'<div class="icelayers">'+row(0)+row(1)+row(2)+'</div></div></div>';}
+function selFlower(){
+ const cx=130,cy=130,R=70,ang=[-90,-18,54,126,198],lab=[['自我','覺察'],['自我','管理'],['社會','覺察'],['關係','技巧'],['負責任','決定']];
+ let petals='',txt='';
+ SEL.forEach((c,i)=>{const a=ang[i]*Math.PI/180,px=cx+R*Math.cos(a),py=cy+R*Math.sin(a);
+  petals+='<ellipse cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" rx="40" ry="40" style="fill:var(--s-'+c.id+')" opacity=".92"/>';
+  txt+='<g transform="translate('+px.toFixed(1)+' '+py.toFixed(1)+')"><g transform="translate(0 -17)">'+glyph(SELG[c.id],.9)+'</g><text y="6" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:var(--chipfg)">'+lab[i][0]+'</text><text y="21" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:var(--chipfg)">'+lab[i][1]+'</text></g>';});
+ return '<svg class="selart" viewBox="0 0 260 260" role="img" aria-label="SEL 五大核心：自我覺察、自我管理、社會覺察、關係技巧、負責任決定">'+petals+'<circle cx="130" cy="130" r="27" style="fill:var(--card);stroke:var(--line)" stroke-width="2"/><g transform="translate(130 128)" style="fill:var(--red)"><path d="M0 11C-15 -1 -11 -13 0 -5C11 -13 15 -1 0 11Z"/></g><text x="130" y="147" text-anchor="middle" font-size="9" font-weight="700" style="fill:var(--mut)">SEL</text>'+txt+'</svg>';}
+function f4Path(){
+ const xs=[80,240,400,560],ys=[96,50,96,50],ids=['facts','feelings','findings','future'],g=['camera','heart','bulb','flag'];
+ let d='M0 74 C40 74 40 96 80 96 S200 50 240 50 S360 96 400 96 S520 50 560 50 S620 60 640 60';
+ let nodes='';ids.forEach((id,i)=>{nodes+='<g transform="translate('+xs[i]+' '+ys[i]+')"><circle r="33" style="fill:var(--f-'+id+')" opacity=".2"/><circle r="26" style="fill:var(--f-'+id+')"/><g>'+(id==='feelings'?'<path d="M0 9C-13 -1 -9 -11 0 -4C9 -11 13 -1 0 9Z" style="fill:var(--chipfg)"/>':glyph(g[i],1.15))+'</g><circle cx="-24" cy="-24" r="10" style="fill:var(--card);stroke:var(--f-'+id+')" stroke-width="2"/><text x="-24" y="-20" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--ink)">'+(i+1)+'</text></g>';});
+ const lab=F.map((f,i)=>'<div style="color:var(--f-'+f.id+')"><b>'+esc(f.label.split(' ')[0])+'</b><small>'+esc(f.label.split(' ')[1]||'')+'</small></div>').join('');
+ return '<div class="f4art"><svg viewBox="0 0 640 140" role="img" aria-label="4F 對話路徑：Facts、Feelings、Findings、Future"><path d="'+d+'" fill="none" style="stroke:var(--line)" stroke-width="10" stroke-linecap="round"/><path d="'+d+'" fill="none" style="stroke:var(--card)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>'+nodes+'</svg><div class="f4lab">'+lab+'</div></div>';}
+function toolsOverview(){
+ return '<div class="card tools"><p class="kicker">三個工具，一眼看</p><div class="tools3"><figure>'+iceArt()+'<figcaption><b>冰山</b>看見水面下</figcaption></figure><figure>'+selFlower()+'<figcaption><b>SEL 五核心</b>要培養的能力</figcaption></figure><figure>'+f4Path()+'<figcaption><b>4F</b>說得出口的順序</figcaption></figure></div></div>';}
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
 (function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
@@ -4951,7 +5236,7 @@ function stageHTML(id){
   +'<div class="card"><p class="kicker">這一場的邏輯主線</p><p class="mut">同一個例子，從行為一路走到約定。每個階段回答上一個階段留下的問題。</p><div class="chain5">'
   +ch.map((c,i)=>'<div class="cl" style="'+(i<3?iceBg(col[i])+';border:1px solid var(--line)':i===3?'background:var(--s-self_management);color:var(--chipfg)':'background:var(--f-future);color:var(--chipfg)')+'"><small>'+esc(c.label)+'</small>'+esc(c.text)+'</div>').join('<span class="ar">→</span>')+'</div>'
   +'<div class="legend"><b>顏色</b>'+ICE.map(l=>chipI(l.id,l.label.split('（')[0])).join('')+chipS('self_management','SEL 能力')+chipF('future','約定')+'</div></div>'
-  +'<div class="card"><p class="kicker">這個例子（貫穿全場）</p><div class="q">'+esc(au.example)+'</div>'+(p.extras.leadIn?'<p class="mut">'+esc(p.extras.leadIn)+'</p>':'')+'</div>'
+  +toolsOverview()+'<div class="card"><p class="kicker">這個例子（貫穿全場）</p><div class="q">'+esc(au.example)+'</div>'+(p.extras.leadIn?'<p class="mut">'+esc(p.extras.leadIn)+'</p>':'')+'</div>'
   +'<div class="card"><p class="kicker">開場互動：先看全場的現況</p><p>請家長就孩子最近一個月的情況勾選。這個情境對應的題目：</p><div>'+Object.keys(s.surveyLink).map(g=>s.surveyLink[g].map(i=>'<span class="tag">'+esc(i)+'</span>').join('')).join('')+'</div><div class="row2"><button data-act="survey">看問卷統計與落差</button></div></div>'
   +bridge('先不急著處理孩子。我們從最容易被忽略的人開始：我們自己。');
  }
@@ -4966,7 +5251,7 @@ function stageHTML(id){
   const d=stageDef('youdo');
   h+='<div class="card"><p class="kicker">You do　看見孩子</p><h2>'+esc(au.example)+'</h2>'+leader(d)+'</div>'
   +'<div class="card"><p class="kicker">孩子的冰山</p>'+ice('',au.childIceberg)+'<div class="note">'+esc(fw.core.iceberg.interplay)+'</div><h3>可以這樣問孩子（'+esc(a.label)+'）</h3>'+ul(au.youDoQuestions)+ask('swap','孩子心裡可能在說…','先猜他的感受與需要，不評論對錯')+'</div>'
-  +'<div class="card"><p class="kicker">SEL 五大核心：這個情境需要哪些能力</p><div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">SEL 五大核心：這個情境需要哪些能力</p><div class="figrow">'+selFlower()+'</div><div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div></div>'
   +'<div class="card"><p class="kicker">看見系統：不只看個人</p><div class="legend">'+fw.core.systemLayers.map(x=>'<span class="tag">'+esc(x)+'</span>').join('')+'</div><p><b>'+esc((p.extras.system&&p.extras.system.question)||fw.core.systemQuestion)+'</b></p></div>'
   +'<div class="card"><p class="kicker">'+esc(a.label)+'的對話重點</p><p class="mut">'+esc(a.developmental)+'</p><p><b>家長角色：</b>'+esc(a.parentRole)+'</p>'+ul(a.language)+'</div>'
   +bridge('理解了兩座冰山，我們需要一個不傷人的順序來開口：4F。');
@@ -4974,7 +5259,7 @@ function stageHTML(id){
  if(id==='wedo'){
   const d=stageDef('wedo');
   h+='<div class="card"><p class="kicker">We do　一起對話</p><h2>Facts → Feelings → Findings → Future</h2>'+leader(d)+'</div>'
-  +'<div class="card"><p class="kicker">4F 如何對應冰山與 SEL</p><div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div><details><summary>提問與要避免的話</summary>'+ul(f.questions||[])+'<p class="mut">避免：'+esc(f.avoid)+'</p><p class="mut">'+esc(a.label)+'句型：'+esc(a.fourFStyle[f.id])+'</p></details></div></div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">4F 如何對應冰山與 SEL</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div><details><summary>提問與要避免的話</summary>'+ul(f.questions||[])+'<p class="mut">避免：'+esc(f.avoid)+'</p><p class="mut">'+esc(a.label)+'句型：'+esc(a.fourFStyle[f.id])+'</p></details></div></div>').join('')+'</div></div>'
   +'<div class="card"><p class="kicker">為什麼是這個順序</p><p>先還原事實，對方才不會防衛；先說自己的感受，才輪到對方；一起找到需要，約定才會有人遵守；最後才訂下一步。</p><div class="note">'+esc(fw.core.coherenceRules[1])+'</div></div>'
   +'<div class="card"><p class="kicker">輔導者的立場：用提問引出孩子自己的答案</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>'
   +(s.counselorQuestions?'<div class="card"><p class="kicker">四種啟發式提問（針對這個情境）</p><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div></div>':'')
@@ -5010,19 +5295,42 @@ function theoryHTML(id){
   return '<div class="card hero2"><p class="kicker">'+esc(T.title)+'</p><h2>'+esc(T.hook.question)+'</h2>'+T.hook.lines.map(l=>'<p class="big2">'+esc(l)+'</p>').join('')+'</div>'
   +'<div class="card"><p class="kicker">今天的地圖（'+tot+' 分鐘）</p><div class="tl">'+T.timeline.map((x,i)=>'<div class="tlseg" style="flex:'+x.min+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+x.min+' 分</small></div>').join('')+'</div><div class="note">'+esc(T.hook.promise)+'</div>'
   +'<div class="row2"><button data-act="survey">開場：看全場問卷現況</button></div></div>'
-  +'<div class="card"><p class="kicker">兩個理論、一個方法、一個操作程序</p><div class="sel5b">'+['iceberg','sel','f4'].map((k,i)=>'<div class="sc2" style="border-top:5px solid var(--'+(['i-feeling','s-self_awareness','f-feelings'][i])+')"><b>'+(['理論一｜','理論二｜','方法｜'][i])+esc(T.modules[k].name)+'</b><p>'+esc(T.modules[k].oneLine)+'</p></div>').join('')+'<div class="sc2" style="border-top:5px solid var(--f-future)"><b>操作程序｜I do → You do → We do</b><p>'+esc(T.procedure.intro)+'</p></div></div></div>'
+  +toolsOverview()+'<div class="card"><p class="kicker">兩個理論、一個方法、一個操作程序</p><div class="sel5b">'+['iceberg','sel','f4'].map((k,i)=>'<div class="sc2" style="border-top:5px solid var(--'+(['i-feeling','s-self_awareness','f-feelings'][i])+')"><b>'+(['理論一｜','理論二｜','方法｜'][i])+esc(T.modules[k].name)+'</b><p>'+esc(T.modules[k].oneLine)+'</p></div>').join('')+'<div class="sc2" style="border-top:5px solid var(--f-future)"><b>操作程序｜I do → You do → We do</b><p>'+esc(T.procedure.intro)+'</p></div></div></div>'
   +bridge('先從最底下的一層開始：我們看不見的那一層。');}
  if(id==='t_ice'){
   return theoryCard('iceberg','理論一',where('<div class="grid2">'+ice('家長的冰山',s.parentIceberg)+ice('孩子的冰山',au.childIceberg)+'</div><p class="mut">同一件事，兩座冰山：水面上是「行為」，水面下是感受、需求與信念。</p>'))
    +bridge('看見水面下之後，孩子需要的是哪一些能力？');}
  if(id==='t_sel'){
-  return theoryCard('sel','理論二',where('<div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p class="mut">'+esc(c.desc)+'</p><p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div>'))
+  return theoryCard('sel','理論二',where('<div class="figrow">'+selFlower()+'</div><div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p class="mut">'+esc(c.desc)+'</p><p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div>'))
    +bridge('有了看見，也知道要培養什麼能力。我們需要一個說得出口的順序。');}
  if(id==='t_4f'){
   const m=T.modules.f4;
-  return theoryCard('f4','方法','<div class="card"><p class="kicker">4F 如何串起冰山、SEL 與 I/You/We do</p><div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">誰先說：'+esc(m.speakers[f.id])+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div></div></div>').join('')+'</div></div>'
+  return theoryCard('f4','方法','<div class="card"><p class="kicker">4F 如何串起冰山、SEL 與 I/You/We do</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">誰先說：'+esc(m.speakers[f.id])+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div></div></div>').join('')+'</div></div>'
    +'<div class="card"><p class="kicker">輔導者的立場</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>')
    +bridge('方法有了。接下來用一個操作程序做一遍：先看我做，再換你做，最後一起做。');}
+ if(id==='t_diag'){
+  const D=T.diagnosis,tl=PF.tally(fw,S.resp),has=(tl.parent.total+tl.student.total)>0;
+  const dg=PF.diagnose(fw,tl,{domain:S.diag.dom,structure:S.diag.st,beliefs:S.diag.bl}),dk=dg.conclusion&&dg.conclusion.domain,dd=dk&&D.domains[dk];
+  const pc=v=>v==null?'—':Math.round(v*100)+'%';
+  const stepbar='<div class="iyw">'+D.steps.map((x,k)=>'<div class="iy" style="--c:var(--'+['f-facts','f-feelings','f-findings','f-future'][k]+')"><b>'+esc(x.label)+'</b><p>'+esc(x.ask)+'</p></div>').join('<span class="ar">→</span>')+'</div>';
+  let h2='<div class="card hero2"><p class="kicker">理論到實務・問卷診斷</p><h2>'+esc(D.title)+'</h2><p class="big2">'+esc(D.intro)+'</p>'+stepbar+'</div>';
+  if(!has){
+   return h2+'<div class="card"><p class="kicker">還沒有問卷資料</p><p>診斷要從問卷開始。請先到問卷頁收集（或載入示範資料），再回到這一步。</p><div class="row2"><button class="primary" data-act="survey">去填問卷／看結果</button><button data-act="demo">載入示範資料</button></div></div>'+bridge('先有水面上的數字，再往下問。');}
+  h2+='<div class="card"><p class="kicker">① 水面上：問卷顯示的領域（由高到低）</p>'+dg.ranked.map((r,i)=>'<div class="rk"><span class="n">'+(i+1)+'</span><div><b>'+esc(r.name)+'</b>'+(r.top.length?'<div class="mut">'+r.top.map(x=>esc(x.item)+'（家長 '+pc(x.parentPct)+'／學生 '+pc(x.studentPct)+'）').join('；')+'</div>':'<div class="mut">沒有人勾選</div>')+'<button data-act="dgdom" data-v="'+r.key+'" class="'+(dk===r.key?'primary':'')+'" style="margin-top:6px">'+(dk===r.key?'目前診斷這一區':'改診斷這一區')+'</button></div></div>').join('')+'</div>';
+  if(dd){
+   const sel=(arr,mine,act)=>'<div class="row2 wrap">'+arr.map((x,i)=>'<button data-act="'+act+'" data-v="'+i+'" class="'+(mine.indexOf(x)>-1?'primary':'')+'">'+(mine.indexOf(x)>-1?'✓ ':'')+esc(x)+'</button>').join('')+'</div>';
+   h2+='<div class="card"><p class="kicker">② 結構層：什麼情境一再重演？（'+esc(dd.label)+'）</p><p class="mut">請現場舉手，或請小組討論後，點選最常見的情境。</p>'+sel(dd.structure,S.diag.st,'dgst')+'</div>'
+    +'<div class="card"><p class="kicker">③ 價值信念：這對你為什麼重要？</p><p class="mut">不評對錯。只是讓大家聽見自己心裡的那一句。</p>'+sel(dd.beliefs,S.diag.bl,'dgbl')+'</div>'
+    +'<div class="card"><p class="kicker">You do 的入口：同一個行為，不同的背後</p><div class="steps3">'+dd.youDo.map(y=>'<div><b>'+esc(y.see)+'</b><p class="mut">可能的背後：'+esc(y.feel)+'</p><p>可以問：「'+esc(y.ask)+'」</p></div>').join('')+'</div></div>';
+   const c=dg.conclusion,lv={surface:'目前只有水面上的資料。請再往下問一層。',structure:'已看見重演的情境，還沒聽見心裡的那一句。',full:'三層都看見了：行為 → 結構 → 信念。'}[c.level];
+   h2+='<div class="card diagres"><p class="kicker">④ 診斷與下一步</p><div class="q">'+esc(c.label)+'</div><p class="mut">'+lv+'</p>'
+    +'<div class="ice3"><div style="'+iceBg('behavior')+'"><small>水面上</small>'+esc(c.top)+'</div><div style="'+iceBg('feeling')+'"><small>結構層</small>'+(c.structure.length?c.structure.map(esc).join('；'):'（待現場補充）')+'</div><div style="'+iceBg('belief')+'"><small>價值信念</small>'+(c.beliefs.length?c.beliefs.map(esc).join('　'):'（待現場補充）')+'</div></div>'
+    +'<p class="kicker" style="margin-top:12px">下一步：4F 起手式（取自講座 deck）</p><ul>'+c.f4.map(esc).map(x=>'<li>'+x+'</li>').join('')+'</ul>'
+    +(c.situations.length?'<p class="kicker">建議用哪個情境進入 I do</p><div class="row2 wrap">'+c.situations.map(x=>'<button class="primary" data-act="dgsit" data-s="'+x.id+'">'+esc(x.title)+' →</button>').join('')+'</div>':'')
+    +(dg.cautions.length?'<div class="note warnbox"><b>提醒</b><ul>'+dg.cautions.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>':'')
+    +'<p class="mut">'+esc(D.closing)+'</p></div>';
+  }
+  return h2+'<p class="mut">'+esc(D.source)+'</p>'+bridge('看見了水面下的原因，接下來用操作程序練習：先看我做，再換你做，最後一起做。');}
  if(id==='t_ido'||id==='t_you'||id==='t_we'){
   const pr=T.procedure,i=pr.steps.findIndex(x=>x.id===id),st=pr.steps[i];
   const colr=['f-facts','f-findings','f-future'];
@@ -5035,7 +5343,7 @@ function theoryHTML(id){
   if(id==='t_you'){
    h2+=where('<p class="big2">'+esc(au.example)+'</p><div class="grid2">'+ice('孩子的冰山（參考答案）',au.childIceberg)+'<div><h3>家長角色可以這樣問（'+esc(a.label)+'）</h3>'+ul(au.youDoQuestions)+'<h3>SEL 輔導提問</h3>'+ul(SEL.map(c=>s.selQuestions&&s.selQuestions[c.id]).filter(Boolean).slice(0,3))+'</div></div>')+ask('swap','孩子心裡可能在說…','先猜他的感受與需要，不評論對錯');
    return h2+bridge('你們看見了孩子的冰山。接下來，我們一起把它走成一個約定。');}
-  h2+=where('<div class="f4t">'+F.map((f,k)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(k+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p><p class="mut">誰先說：'+esc(T.modules.f4.speakers[f.id])+'</p></div></div>').join('')+'</div>'
+  h2+=where(f4Path()+'<div class="f4t">'+F.map((f,k)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(k+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p><p class="mut">誰先說：'+esc(T.modules.f4.speakers[f.id])+'</p></div></div>').join('')+'</div>'
    +(s.counselorQuestions?'<h3>四種啟發式提問</h3><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div>':''))
    +'<div class="card"><p class="kicker">觀察者檢核表</p>'+ul(T.observer)+'<div class="note">'+esc(p.extras.referral)+'</div></div>';
   return h2+bridge('練習過後，帶一個約定回家。');}
@@ -5156,6 +5464,9 @@ A.addEventListener('click',e=>{
   case 'copy':{const t=$('sumtxt').textContent,ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
   case 'print':return window.print();
+  case 'dgdom':S.diag={dom:d.v,st:[],bl:[]};return draw();
+  case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,PF.tally(fw,S.resp),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
+  case 'dgsit':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.view='flow';return setStage(Math.max(0,STL().findIndex(x=>x.id==='t_ido')));
   case 'role':S.role=d.r;return draw();
   case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}
   case 'demo':S.resp=PF.demoResponses(fw,20,20);return draw();

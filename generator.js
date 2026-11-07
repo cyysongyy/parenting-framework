@@ -239,6 +239,33 @@
     return opts.topN ? list.slice(0, opts.topN) : list;
   }
 
+  // 問卷診斷：由問卷統計排出領域與水面上的行為，並依現場勾選的結構層／信念層產生診斷結論。
+  function diagnose(fw, t, ticks) {
+    const D = fw.theory && fw.theory.diagnosis; if (!D) return null;
+    ticks = ticks || {};
+    const cmp = compare(fw, t), hasData = (t.parent.total + t.student.total) > 0;
+    const doms = cmp.map(g => {
+      const items = g.items.filter(i => !i.none).map(i => ({ item: i.item, parentPct: i.parentPct, studentPct: i.studentPct, score: (i.parentPct || 0) + (i.studentPct || 0) })).sort((a, b) => b.score - a.score);
+      const top = items.slice(0, 2), score = top.length ? top.reduce((a, x) => a + x.score, 0) / top.length : 0;
+      return { key: g.key, name: g.name, score, top: items.filter(x => x.score > 0).slice(0, 3) };
+    }).sort((a, b) => b.score - a.score);
+    const picked = {}; cmp.forEach(g => g.items.forEach(i => { if (!i.none && ((i.parentPct || 0) + (i.studentPct || 0)) > 0) picked[i.item] = true; }));
+    const cautions = (D.cautions || []).filter(c => c.when.some(w => picked[w])).map(c => c.text);
+    const dom = ticks.domain || (hasData ? doms[0].key : null);
+    const d = dom && D.domains[dom];
+    const st = (ticks.structure || []).filter(x => d && d.structure.indexOf(x) > -1);
+    const bl = (ticks.beliefs || []).filter(x => d && d.beliefs.indexOf(x) > -1);
+    let conclusion = null;
+    if (d) {
+      const ds = doms.find(x => x.key === dom);
+      const top = ds && ds.top.length ? ds.top.map(x => x.item).slice(0, 2).join('、') : '（尚無問卷資料）';
+      conclusion = { domain: dom, label: d.label, top,
+        level: st.length && bl.length ? 'full' : st.length ? 'structure' : 'surface',
+        structure: st, beliefs: bl, f4: d.f4,
+        situations: hasData ? recommendFromSurvey(fw, t).filter(r => r.domain === (dom === 'social' ? 'interpersonal' : dom)).slice(0, 2).map(r => ({ id: r.situation, title: r.title })) : [] };
+    }
+    return { hasData, ranked: doms, cautions, conclusion };
+  }
   function toPayload(role, picks) {
     return { role, emotion: picks.emotion || [], behavior: picks.behavior || [], social: picks.social || [] };
   }
@@ -283,6 +310,7 @@
     if (fw.theory) {
       ['iceberg', 'sel', 'f4'].forEach(k => { const m = fw.theory.modules && fw.theory.modules[k]; if (!m) return E('theory 缺少模組：' + k); ['name', 'oneLine', 'why', 'question', 'interaction'].forEach(f => { if (!m[f]) E('theory.' + k + ' 缺少 ' + f); }); if (!m.notes || !m.notes.length) E('theory.' + k + ' 缺少講者備忘'); });
       const pr = fw.theory.procedure; if (!pr || !pr.steps || pr.steps.length !== 3) E('theory.procedure 需有 I do / You do / We do 三個步驟'); else pr.steps.forEach(st => { ['leader', 'learner', 'output', 'timing'].forEach(f => { if (!st[f] || !st[f].length) E('theory.procedure.' + st.id + ' 缺少 ' + f); }); });
+      const dg = fw.theory.diagnosis; if (!dg) E('theory 缺少 diagnosis'); else { ['emotion', 'behavior', 'social'].forEach(k => { const d = dg.domains && dg.domains[k]; if (!d) return E('diagnosis 缺少領域：' + k); ['structure', 'beliefs', 'youDo'].forEach(f => { if (!d[f] || !d[f].length) E('diagnosis.' + k + ' 缺少 ' + f); }); if (!d.f4 || d.f4.length !== 4) E('diagnosis.' + k + ' 的 4F 需有 4 項'); }); if (!dg.steps || dg.steps.length !== 4) E('diagnosis 需有 4 個步驟'); }
       const total = (fw.theory.timeline || []).reduce((a, x) => a + x.min, 0);
       if (total !== 80) E('theory 時間軸總和應為 80 分鐘，目前 ' + total);
     }
@@ -363,5 +391,5 @@
     return { errors, warns };
   }
 
-  return { buildPlan, buildInteractions, getSituation, surveySpec, tally, compare, insights, recommendFromSurvey, toPayload, demoResponses, checkCoherence, AUDIENCES };
+  return { buildPlan, buildInteractions, getSituation, surveySpec, tally, compare, insights, recommendFromSurvey, diagnose, toPayload, demoResponses, checkCoherence, AUDIENCES };
 });
