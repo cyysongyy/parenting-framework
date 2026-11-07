@@ -311,6 +311,12 @@ input[type=password],input[type=text]{width:100%}
 .tools3 figure{padding:10px;max-width:100%}
 }
 
+.livegrid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:16px;align-items:start}
+.liveqr{text-align:center}.qrimg{width:100%;max-width:320px;border-radius:16px;background:#fff;padding:8px;border:1px solid var(--line)}
+.livecount{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:8px 0}.livecount b{font-size:56px;line-height:1;color:var(--teal)}.livecount span{font-size:18px;color:var(--mut)}
+.proj .livecount b{font-size:96px}
+@media(max-width:800px){.livegrid{grid-template-columns:1fr}}
+
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
@@ -941,7 +947,13 @@ input[type=password],input[type=text]{width:100%}
       "近期沒有明顯的人際互動困擾"
     ],
     "gapThreshold": 0.15,
-    "payloadNote": "送到 Apps Script 時需在 Code.gs 新增 role 欄（parent/student）；本模組不修改 sihu-parent-survey。"
+    "payloadNote": "送到 Apps Script 時需在 Code.gs 新增 role 欄（parent/student）；本模組不修改 sihu-parent-survey。",
+    "live": {
+      "page": "https://cyysongyy.github.io/sihu-parent-survey/",
+      "api": "https://script.google.com/macros/s/AKfycbwasPYD2QEGbmexkp91rSts8Z8Dqw2tZLlA__W0qZEPV_aFVeGQKQtcxsJ3LsiD6p6f/exec",
+      "pollSec": 5,
+      "note": "即時統計讀取 sihu-parent-survey 的 Apps Script（只讀 GET）；該後端目前只收家長答案，不分角色。"
+    }
   },
   "situations": [
     {
@@ -4773,7 +4785,7 @@ input[type=password],input[type=text]{width:100%}
       "closing": "診斷不是貼標籤，是決定今天往哪裡練習。最後一句仍回到：先理解，再管理。"
     }
   }
-};</script>
+};window.QR_PNG='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3gAAAN4CAIAAAAeDN0ZAAAVw0lEQVR4nO3Yy20jQRJAwdWChvBOE2g/TeCdnvSeNYcGFpNPXVOKMKCQ9aH00F/HcfwHAACm/ffqAQAA2JPQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASNyuHuBP98fz6hG4wOf9unqEb6be4Wr74txq9+7v4bnVznm137v38zut9g590QQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAErerB6h83q+rR/gV7o/n1SMkVns/q52z8/m37HpfU+usdj6rcT4/Y9e/Y75oAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAACJ29UDrO7+eF49QuLzfl09QmK1+9r1nKdM3deu57zavlb7fU3xDn/Gru/HvZ/zRRMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASNyuHgB2dn88R9b5vF8j60zNM2W1fU3NM2W1fe16PlNWuy9YgS+aAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEDidvUAsKLP+zWyzv3xXGqd1fa1mtX2NXVfU1Z7h6vZdV/wN3zRBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASt6sHWN3n/bp6BC5wfzxH1tn1/ey6r9VMvcMpu9771L783Ti3674454smAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJC4XT1A5f54Xj0C/7DP+zWyztQ7NM+5XeeZ4nz4G/6f8jd80QQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAErerB/jT5/26egT4z/3xHFlntfe82jz8jKn3PGW139dq80xZbR5+J180AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAIDE7eoB/nR/PEfW+bxfI+tMzcO5qfuaWmeK9/w7ufdzq+3LPPyN1f7vrMYXTQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgcbt6gNV93q+rR/jm/niOrLPavlaz2jlPzbMa75C/sdrvy3s+t9p9TVltntXeoS+aAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEDi6ziOq2dI3B/Pq0f45vN+jawzta9d55liX6zA+zm32vlM8ffn3Gr/v6asdl9TfNEEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJfx3FcPUPi/nhePcI3n/fr6hG+mTof+zq32jtcza7vZzXO+d+y2n1Nce/ndr13XzQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgMTt6gH+dH88rx7hV/i8XyPr7HpfU/va9ZxX29fUPFNWm2fX9wN/Y7W/Y7v+PfRFEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBIfB3HcfUMS7s/niPrfN6vkXV2NXXOU6bua7X345zPrfY7ta9z3s+5Xfc1ZbW/h1NWuy9fNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAxNdxHFfP8M398RxZ5/N+jazDuan7mrLave96Pqv9Tnc959Xseu+rzcO5Xe9r178bvmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAImv4ziunuGb++N59QjffN6vkXV23deuVruv1fhd8DdWu3fO7fp7n+LvxjlfNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAxO3qASqf92tknfvjObLOavNMrTNltfOZmmfKrvvalfs65/d+brV97fr/YjWr3fsUXzQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgMTt6gF+i/vjefUI33zer6tH+BWm7n21+/Kez03Ns9o5T1ntvlb7ne76fuzrd/JFEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBI3K4eYHWf92tknfvjObLOlNXmmeK+/i273tfUvqbses5TVruvXc95al+7vufV3uEUXzQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBICE0AABJCEwCAhNAEACAhNAEASAhNAAASQhMAgMTt6gF+i8/7dfUIS7s/nlePkJi6913PZ8qu57zrvlabZ8pq+/J+fsbUPLt2gi+aAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEDidvUAlfvjefUI33zer6tHSKx2zvyMXd/zavua+n3Z17ld5+Gc+/oZvmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAAmhCQBAQmgCAJAQmgAAJIQmAAAJoQkAQEJoAgCQEJoAACSEJgAACaEJAEBCaAIAkBCaAAAkhCYAAInb1QNUPu/XyDr3x3NknSlT80ydz67nPLWv1ey6r13fz2r3tdrfH865r3Ornc9q80zxRRMAgITQBAAgITQBAEgITQAAEkITAICE0AQAICE0AQBI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';</script>
 <script>// 親子教育架構 v2：依「情境 × 年段」產生六個層次的內容，並處理家長／學生問卷統計
 // 用法：const plan = ParentingFramework.buildPlan(fw, { situation: 'procrastination', audience: 'junior' });
 (function (root, factory) {
@@ -5292,7 +5304,7 @@ function decorate(){
 }
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,live:{on:false,data:null,ts:0,err:'',sig:''},diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
 (function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
@@ -5312,7 +5324,7 @@ function topbar(extra){return '<div class="topbar"><button data-act="flow">← �
 function ctl(){
  return (fw.theory?'<div class="modebar" role="tablist"><button data-mode="problem" class="'+(S.mode==='problem'?'primary':'')+'">問題導引<small>從情境出發</small></button><button data-mode="theory" class="'+(S.mode==='theory'?'primary':'')+'">理論到實務<small>從為什麼出發</small></button></div>':'')+'<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
- +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
+ +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="live">現場問卷</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
 function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+STL().map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+STL().map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
 function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+STL()[S.stage-1].n+'</button>':'')+(S.stage<STL().length-1?'<button class="primary" data-act="next">'+STL()[S.stage+1].n+' →</button>':'')+'</div>';}
 const bridge=t=>'<div class="bridge"><span>承接語</span>'+esc(t)+'</div>';
@@ -5402,7 +5414,7 @@ function theoryHTML(id){
    +'<div class="card"><p class="kicker">輔導者的立場</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>')
    +bridge('方法有了。接下來用一個操作程序做一遍：先看我做，再換你做，最後一起做。');}
  if(id==='t_diag'){
-  const D=T.diagnosis,tl=PF.tally(fw,S.resp),has=(tl.parent.total+tl.student.total)>0;
+  const D=T.diagnosis,tl=curTally(),has=(tl.parent.total+tl.student.total)>0;
   const dg=PF.diagnose(fw,tl,{domain:S.diag.dom,structure:S.diag.st,beliefs:S.diag.bl}),dk=dg.conclusion&&dg.conclusion.domain,dd=dk&&D.domains[dk];
   const pc=v=>v==null?'—':Math.round(v*100)+'%';
   const stepbar='<div class="iyw">'+D.steps.map((x,k)=>'<div class="iy" style="--c:var(--'+['f-facts','f-feelings','f-findings','f-future'][k]+')"><b>'+esc(x.label)+'</b><p>'+esc(x.ask)+'</p></div>').join('<span class="ar">→</span>')+'</div>';
@@ -5506,8 +5518,41 @@ function vSettings(){
 // 問卷
 function ensurePicks(){fw.survey.groups.forEach(g=>{if(!S.picks[g.key])S.picks[g.key]=[];});}
 function bar(col,label,p){const w=p==null?0:Math.round(p*100);return '<div class="bar2"><span class="t">'+label+'</span><span class="tr"><span class="fl" style="width:'+w+'%;background:'+col+'"></span></span><span class="v">'+(p==null?'—':w+'%')+'</span></div>';}
+// ── 現場 QR 問卷：即時讀取後端統計 ──
+function liveCfg(){return (fw.survey&&fw.survey.live)||null;}
+function curTally(){
+ const t=PF.tally(fw,S.resp),d=S.live.data;
+ if(d&&typeof d.total==='number'){t.parent.total+=d.total;
+  fw.survey.groups.forEach(g=>{const m=d[g.key]||{};g.items.forEach(i=>{const n=+m[i]||0;if(n)t.parent.counts[g.key+'|'+i]=(t.parent.counts[g.key+'|'+i]||0)+n;});});}
+ return t;}
+let liveTimer=null;
+function liveRelevant(){return S.view==='live'||S.view==='survey'||(S.view==='flow'&&S.mode==='theory'&&STL()[S.stage]&&STL()[S.stage].id==='t_diag');}
+async function livePoll(){
+ const c=liveCfg();if(!c||!S.live.on)return;
+ try{const r=await fetch(c.api+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
+  if(typeof j.total!=='number')throw new Error('格式不符');
+  const sig=JSON.stringify(j);S.live.err='';S.live.ts=Date.now();const changed=sig!==S.live.sig;S.live.sig=sig;S.live.data=j;
+  if((changed||true)&&liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}
+ }catch(e){S.live.err='讀不到問卷後端（'+(e.message||e)+'）。請確認網路，或先用「載入示範資料」。';if(liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}}
+}
+function liveStart(){const c=liveCfg();if(!c)return;S.live.on=true;clearInterval(liveTimer);livePoll();liveTimer=setInterval(livePoll,Math.max(3,c.pollSec||5)*1000);}
+function liveStop(){S.live.on=false;clearInterval(liveTimer);liveTimer=null;}
+function vLive(){
+ const c=liveCfg(),L=S.live,t=curTally(),n=t.parent.total+t.student.total;
+ let h=topbar('投影用：請現場家長掃描 QR Code')+'<div class="card hero2"><p class="kicker">現場問卷・即時統計</p><h2>請掃描 QR Code，填完後這裡會立刻出現</h2><p class="big2">不記名，約 1 分鐘；只用來決定今天先聊哪個情境。</p></div>';
+ h+='<div class="livegrid"><div class="card liveqr"><img class="qrimg" src="'+window.QR_PNG+'" alt="問卷 QR Code"><p class="mut" style="word-break:break-all">'+esc(c.page)+'</p>'
+  +'<div class="livecount"><b>'+n+'</b><span>份已填</span></div>'
+  +'<p class="mut">'+(L.on?(L.ts?'● 即時更新中（每 '+(c.pollSec||5)+' 秒）・上次 '+new Date(L.ts).toLocaleTimeString('zh-TW',{hour12:false}):'● 連線中…'):'○ 已暫停')+'</p>'
+  +(L.err?'<div class="note warnbox">'+esc(L.err)+'</div>':'')
+  +'<div class="row2">'+(L.on?'<button data-act="livestop">暫停更新</button>':'<button class="primary" data-act="livego">開始即時更新</button>')+'<button data-act="demo">載入示範資料</button></div></div>';
+ const cmp=PF.compare(fw,t);
+ const flat=[];cmp.forEach(g=>g.items.forEach(i=>{if(!i.none)flat.push(i);}));flat.sort((a,b)=>((b.parentPct||0)+(b.studentPct||0))-((a.parentPct||0)+(a.studentPct||0)));
+ h+='<div class="card"><p class="kicker">最常被勾選的項目</p>'+(n?flat.slice(0,6).map(i=>'<div style="margin:12px 0"><div>'+esc(i.item)+'</div>'+bar('var(--teal)','家長',i.parentPct)+(t.student.total?bar('var(--amber)','學生',i.studentPct):'')+'</div>').join(''):'<p class="mut">還沒有人填。掃描左邊的 QR Code 就會出現。</p>')+'</div></div>';
+ if(n){const rec=PF.recommendFromSurvey(fw,t).slice(0,3);
+  h+='<div class="card"><p class="kicker">今天先聊這三個情境</p>'+rec.map((r,i)=>'<div class="rk"><span class="n">'+(i+1)+'</span><div><b>'+esc(DOMAIN[r.domain])+'・'+esc(r.title)+'</b><button data-act="sitgo" data-s="'+r.situation+'" style="margin-top:6px">練習這個情境 →</button></div></div>').join('')+'<div class="row2"><button class="primary" data-act="livediag">用這份資料做問卷診斷 →</button></div></div>';}
+ return h+'<p class="mut">'+esc(c.note)+'</p>';}
 function vSurvey(){
- ensurePicks();const spec=PF.surveySpec(fw,S.role),t=PF.tally(fw,S.resp);
+ ensurePicks();const spec=PF.surveySpec(fw,S.role),t=curTally();
  let h=topbar('不記名，只存在這個頁面')+'<div class="card"><p class="kicker">1 / 2　我是…</p><div class="row2">'+fw.survey.respondents.map(r=>'<button data-act="role" data-r="'+r.id+'" class="'+(S.role===r.id?'primary':'')+'">'+esc(r.label)+'</button>').join('')+'</div><p class="mut">'+esc(spec.stem)+'</p>';
  spec.groups.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<label class="chk"><input type="checkbox" data-g="'+g.key+'" data-v="'+esc(i.value)+'" '+(S.picks[g.key].indexOf(i.value)>-1?'checked':'')+'>'+esc(i.text)+'</label>').join('');});
  h+='<div class="row2"><button class="primary" data-act="submit">送出這一份</button><button data-act="demo">載入示範資料</button><button data-act="clear">清除全部</button></div><p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份</p></div>';
@@ -5523,7 +5568,7 @@ function vSurvey(){
  return h;}
 
 
-function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();decorate();}
+function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():S.view==='live'?vLive():vSurvey();decorate();}
 A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
@@ -5553,12 +5598,16 @@ A.addEventListener('click',e=>{
   case 'usematch':S.sit=d.s;S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'gen':return doGen();
   case 'usecustom':S.sit='custom';S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
+  case 'live':S.view='live';liveStart();draw();return window.scrollTo({top:0});
+  case 'livego':liveStart();return draw();
+  case 'livestop':liveStop();return draw();
+  case 'livediag':S.mode='theory';S.view='flow';S.all=false;S.stage=Math.max(0,STL().findIndex(x=>x.id==='t_diag'));draw();return window.scrollTo({top:0});
   case 'survey':S.view='survey';draw();return window.scrollTo({top:0});
   case 'copy':{const t=$('sumtxt').textContent,ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
   case 'print':return window.print();
   case 'dgdom':S.diag={dom:d.v,st:[],bl:[]};return draw();
-  case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,PF.tally(fw,S.resp),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
+  case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,curTally(),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
   case 'dgsit':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.view='flow';return setStage(Math.max(0,STL().findIndex(x=>x.id==='t_ido')));
   case 'role':S.role=d.r;return draw();
   case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}

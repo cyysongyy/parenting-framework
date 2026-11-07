@@ -623,7 +623,13 @@
       "近期沒有明顯的人際互動困擾"
     ],
     "gapThreshold": 0.15,
-    "payloadNote": "送到 Apps Script 時需在 Code.gs 新增 role 欄（parent/student）；本模組不修改 sihu-parent-survey。"
+    "payloadNote": "送到 Apps Script 時需在 Code.gs 新增 role 欄（parent/student）；本模組不修改 sihu-parent-survey。",
+    "live": {
+      "page": "https://cyysongyy.github.io/sihu-parent-survey/",
+      "api": "https://script.google.com/macros/s/AKfycbwasPYD2QEGbmexkp91rSts8Z8Dqw2tZLlA__W0qZEPV_aFVeGQKQtcxsJ3LsiD6p6f/exec",
+      "pollSec": 5,
+      "note": "即時統計讀取 sihu-parent-survey 的 Apps Script（只讀 GET）；該後端目前只收家長答案，不分角色。"
+    }
   },
   "situations": [
     {

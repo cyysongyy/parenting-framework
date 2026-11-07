@@ -8,7 +8,7 @@
 <!--MASTHEAD-->
 <main id="app" class="app" tabindex="-1"></main>
 <footer class="page-footer"><span>親子教育架構 · 陪伴比完美更重要</span><span>每一步都是互動，不需要登入，資料只留在這個頁面</span></footer></div>
-<script>window.FW_EMBED=/*FW*/;</script>
+<script>window.FW_EMBED=/*FW*/;window.QR_PNG='/*QR*/';</script>
 <script>/*GEN*/</script>
 <script>
 (function(){
@@ -132,7 +132,7 @@ function decorate(){
 }
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,live:{on:false,data:null,ts:0,err:'',sig:''},diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
 (function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
@@ -152,7 +152,7 @@ function topbar(extra){return '<div class="topbar"><button data-act="flow">← �
 function ctl(){
  return (fw.theory?'<div class="modebar" role="tablist"><button data-mode="problem" class="'+(S.mode==='problem'?'primary':'')+'">問題導引<small>從情境出發</small></button><button data-mode="theory" class="'+(S.mode==='theory'?'primary':'')+'">理論到實務<small>從為什麼出發</small></button></div>':'')+'<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
- +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
+ +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="live">現場問卷</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
 function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+STL().map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+STL().map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
 function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+STL()[S.stage-1].n+'</button>':'')+(S.stage<STL().length-1?'<button class="primary" data-act="next">'+STL()[S.stage+1].n+' →</button>':'')+'</div>';}
 const bridge=t=>'<div class="bridge"><span>承接語</span>'+esc(t)+'</div>';
@@ -242,7 +242,7 @@ function theoryHTML(id){
    +'<div class="card"><p class="kicker">輔導者的立場</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>')
    +bridge('方法有了。接下來用一個操作程序做一遍：先看我做，再換你做，最後一起做。');}
  if(id==='t_diag'){
-  const D=T.diagnosis,tl=PF.tally(fw,S.resp),has=(tl.parent.total+tl.student.total)>0;
+  const D=T.diagnosis,tl=curTally(),has=(tl.parent.total+tl.student.total)>0;
   const dg=PF.diagnose(fw,tl,{domain:S.diag.dom,structure:S.diag.st,beliefs:S.diag.bl}),dk=dg.conclusion&&dg.conclusion.domain,dd=dk&&D.domains[dk];
   const pc=v=>v==null?'—':Math.round(v*100)+'%';
   const stepbar='<div class="iyw">'+D.steps.map((x,k)=>'<div class="iy" style="--c:var(--'+['f-facts','f-feelings','f-findings','f-future'][k]+')"><b>'+esc(x.label)+'</b><p>'+esc(x.ask)+'</p></div>').join('<span class="ar">→</span>')+'</div>';
@@ -346,8 +346,41 @@ function vSettings(){
 // 問卷
 function ensurePicks(){fw.survey.groups.forEach(g=>{if(!S.picks[g.key])S.picks[g.key]=[];});}
 function bar(col,label,p){const w=p==null?0:Math.round(p*100);return '<div class="bar2"><span class="t">'+label+'</span><span class="tr"><span class="fl" style="width:'+w+'%;background:'+col+'"></span></span><span class="v">'+(p==null?'—':w+'%')+'</span></div>';}
+// ── 現場 QR 問卷：即時讀取後端統計 ──
+function liveCfg(){return (fw.survey&&fw.survey.live)||null;}
+function curTally(){
+ const t=PF.tally(fw,S.resp),d=S.live.data;
+ if(d&&typeof d.total==='number'){t.parent.total+=d.total;
+  fw.survey.groups.forEach(g=>{const m=d[g.key]||{};g.items.forEach(i=>{const n=+m[i]||0;if(n)t.parent.counts[g.key+'|'+i]=(t.parent.counts[g.key+'|'+i]||0)+n;});});}
+ return t;}
+let liveTimer=null;
+function liveRelevant(){return S.view==='live'||S.view==='survey'||(S.view==='flow'&&S.mode==='theory'&&STL()[S.stage]&&STL()[S.stage].id==='t_diag');}
+async function livePoll(){
+ const c=liveCfg();if(!c||!S.live.on)return;
+ try{const r=await fetch(c.api+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
+  if(typeof j.total!=='number')throw new Error('格式不符');
+  const sig=JSON.stringify(j);S.live.err='';S.live.ts=Date.now();const changed=sig!==S.live.sig;S.live.sig=sig;S.live.data=j;
+  if((changed||true)&&liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}
+ }catch(e){S.live.err='讀不到問卷後端（'+(e.message||e)+'）。請確認網路，或先用「載入示範資料」。';if(liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}}
+}
+function liveStart(){const c=liveCfg();if(!c)return;S.live.on=true;clearInterval(liveTimer);livePoll();liveTimer=setInterval(livePoll,Math.max(3,c.pollSec||5)*1000);}
+function liveStop(){S.live.on=false;clearInterval(liveTimer);liveTimer=null;}
+function vLive(){
+ const c=liveCfg(),L=S.live,t=curTally(),n=t.parent.total+t.student.total;
+ let h=topbar('投影用：請現場家長掃描 QR Code')+'<div class="card hero2"><p class="kicker">現場問卷・即時統計</p><h2>請掃描 QR Code，填完後這裡會立刻出現</h2><p class="big2">不記名，約 1 分鐘；只用來決定今天先聊哪個情境。</p></div>';
+ h+='<div class="livegrid"><div class="card liveqr"><img class="qrimg" src="'+window.QR_PNG+'" alt="問卷 QR Code"><p class="mut" style="word-break:break-all">'+esc(c.page)+'</p>'
+  +'<div class="livecount"><b>'+n+'</b><span>份已填</span></div>'
+  +'<p class="mut">'+(L.on?(L.ts?'● 即時更新中（每 '+(c.pollSec||5)+' 秒）・上次 '+new Date(L.ts).toLocaleTimeString('zh-TW',{hour12:false}):'● 連線中…'):'○ 已暫停')+'</p>'
+  +(L.err?'<div class="note warnbox">'+esc(L.err)+'</div>':'')
+  +'<div class="row2">'+(L.on?'<button data-act="livestop">暫停更新</button>':'<button class="primary" data-act="livego">開始即時更新</button>')+'<button data-act="demo">載入示範資料</button></div></div>';
+ const cmp=PF.compare(fw,t);
+ const flat=[];cmp.forEach(g=>g.items.forEach(i=>{if(!i.none)flat.push(i);}));flat.sort((a,b)=>((b.parentPct||0)+(b.studentPct||0))-((a.parentPct||0)+(a.studentPct||0)));
+ h+='<div class="card"><p class="kicker">最常被勾選的項目</p>'+(n?flat.slice(0,6).map(i=>'<div style="margin:12px 0"><div>'+esc(i.item)+'</div>'+bar('var(--teal)','家長',i.parentPct)+(t.student.total?bar('var(--amber)','學生',i.studentPct):'')+'</div>').join(''):'<p class="mut">還沒有人填。掃描左邊的 QR Code 就會出現。</p>')+'</div></div>';
+ if(n){const rec=PF.recommendFromSurvey(fw,t).slice(0,3);
+  h+='<div class="card"><p class="kicker">今天先聊這三個情境</p>'+rec.map((r,i)=>'<div class="rk"><span class="n">'+(i+1)+'</span><div><b>'+esc(DOMAIN[r.domain])+'・'+esc(r.title)+'</b><button data-act="sitgo" data-s="'+r.situation+'" style="margin-top:6px">練習這個情境 →</button></div></div>').join('')+'<div class="row2"><button class="primary" data-act="livediag">用這份資料做問卷診斷 →</button></div></div>';}
+ return h+'<p class="mut">'+esc(c.note)+'</p>';}
 function vSurvey(){
- ensurePicks();const spec=PF.surveySpec(fw,S.role),t=PF.tally(fw,S.resp);
+ ensurePicks();const spec=PF.surveySpec(fw,S.role),t=curTally();
  let h=topbar('不記名，只存在這個頁面')+'<div class="card"><p class="kicker">1 / 2　我是…</p><div class="row2">'+fw.survey.respondents.map(r=>'<button data-act="role" data-r="'+r.id+'" class="'+(S.role===r.id?'primary':'')+'">'+esc(r.label)+'</button>').join('')+'</div><p class="mut">'+esc(spec.stem)+'</p>';
  spec.groups.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<label class="chk"><input type="checkbox" data-g="'+g.key+'" data-v="'+esc(i.value)+'" '+(S.picks[g.key].indexOf(i.value)>-1?'checked':'')+'>'+esc(i.text)+'</label>').join('');});
  h+='<div class="row2"><button class="primary" data-act="submit">送出這一份</button><button data-act="demo">載入示範資料</button><button data-act="clear">清除全部</button></div><p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份</p></div>';
@@ -363,7 +396,7 @@ function vSurvey(){
  return h;}
 
 
-function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();decorate();}
+function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():S.view==='live'?vLive():vSurvey();decorate();}
 A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
@@ -393,12 +426,16 @@ A.addEventListener('click',e=>{
   case 'usematch':S.sit=d.s;S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'gen':return doGen();
   case 'usecustom':S.sit='custom';S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
+  case 'live':S.view='live';liveStart();draw();return window.scrollTo({top:0});
+  case 'livego':liveStart();return draw();
+  case 'livestop':liveStop();return draw();
+  case 'livediag':S.mode='theory';S.view='flow';S.all=false;S.stage=Math.max(0,STL().findIndex(x=>x.id==='t_diag'));draw();return window.scrollTo({top:0});
   case 'survey':S.view='survey';draw();return window.scrollTo({top:0});
   case 'copy':{const t=$('sumtxt').textContent,ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
   case 'print':return window.print();
   case 'dgdom':S.diag={dom:d.v,st:[],bl:[]};return draw();
-  case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,PF.tally(fw,S.resp),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
+  case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,curTally(),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
   case 'dgsit':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.view='flow';return setStage(Math.max(0,STL().findIndex(x=>x.id==='t_ido')));
   case 'role':S.role=d.r;return draw();
   case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}

@@ -197,3 +197,9 @@ input[type=password],input[type=text]{width:100%}
 .f4h{flex-wrap:wrap;padding:10px}
 .tools3 figure{padding:10px;max-width:100%}
 }
+
+.livegrid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:16px;align-items:start}
+.liveqr{text-align:center}.qrimg{width:100%;max-width:320px;border-radius:16px;background:#fff;padding:8px;border:1px solid var(--line)}
+.livecount{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:8px 0}.livecount b{font-size:56px;line-height:1;color:var(--teal)}.livecount span{font-size:18px;color:var(--mut)}
+.proj .livecount b{font-size:96px}
+@media(max-width:800px){.livegrid{grid-template-columns:1fr}}

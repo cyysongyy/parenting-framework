@@ -67,3 +67,9 @@
 - 問卷結果 → 往水面下問兩層（結構層、價值信念層）→ 診斷結論（水面上／結構層／信念）、4F 起手式、建議進入 I do 的情境、轉介提醒。
 - 資料在 `framework.json` 的 `theory.diagnosis`，內容取自講座 deck 的冰山分析、You do、4F 頁；邏輯在 `generator.js` 的 `diagnose()`。
 - 理論模式時間軸改為 9 階段（仍為 80 分鐘）。
+
+## 現場 QR 問卷（即時統計）
+- 首頁「現場問卷」：投影 QR Code（指向 sihu-parent-survey 問卷）＋已填人數＋最常勾選項目，每 5 秒讀取一次後端。
+- 後端沿用 `sihu-parent-survey` 的 Apps Script（`framework.json` → `survey.live.api`，只讀 GET，不修改該專案）。該後端只收家長答案、不分角色。
+- 即時資料會合併進「問卷統計」與理論模式的「問卷診斷」；可一鍵從現場資料進入診斷。
+- QR 圖檔：`assets/survey-qr.png`（內嵌進 index.html，離線也能顯示）。
