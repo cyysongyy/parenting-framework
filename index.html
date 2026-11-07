@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>親子教育架構</title>
+<style>
+:root{--ink:#1F2A3A;--mut:#4A5568;--line:#DDE3E1;--bg:#FBFBF8;--card:#fff;--teal:#2A7F7A;--red:#B5473A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--red:#F08A7E}}
+:root[data-theme="dark"]{--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--red:#F08A7E}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',Arial,sans-serif;padding:16px}
+h1{font-size:24px;margin:8px 0}
+select,button{font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);width:100%;box-sizing:border-box;margin:6px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.card h2{font-size:18px;color:var(--teal);margin:0 0 8px}
+.todo{color:var(--red);font-weight:700}
+ol,ul{padding-left:20px;margin:6px 0}
+</style></head>
+<body>
+<h1>親子教育架構</h1>
+<label>選擇情境<select id="sit"></select></label>
+<label>結果顯示<select id="rd"><option value="">依設定</option><option value="projector">講師投影</option><option value="phone">家長看手機</option></select></label>
+<div id="out"></div>
+<script src="generator.js"></script>
+<script>
+(async function(){
+  const fw = await fetch('framework.json').then(r=>r.json()).catch(()=>null)
+   ;
+  if(!fw){document.getElementById('out').textContent='請用 GitHub Pages 或本機伺服器開啟（直接開檔案時無法讀取 framework.json）';return;}
+  const sit=document.getElementById('sit'), rd=document.getElementById('rd'), out=document.getElementById('out');
+  fw.situations.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.title;sit.appendChild(o)});
+  function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+  function render(){
+    const plan=ParentingFramework.buildPlan(fw,{situation:sit.value,resultsDisplay:rd.value||undefined});
+    let h='';
+    plan.sections.forEach(sec=>{
+      h+='<div class="card"><h2>'+esc(sec.title||sec.type)+'</h2>';
+      if(sec.type==='example'||sec.type==='leadIn') h+='<p>'+esc(sec.text)+'</p>';
+      if(sec.type==='ido'){ if(sec.prompt) h+='<p>'+esc(sec.prompt)+'</p>'; h+='<p class="'+(sec.experience.status==='TODO'?'todo':'')+'">'+esc(sec.experience.text)+'</p>'; }
+      if(sec.type==='youdo'){ h+=sec.child?'<p><b>孩子：</b>'+esc(sec.child.behavior)+' ／ '+esc(sec.child.feeling)+' ／ '+esc(sec.child.belief)+'</p>':''; h+=sec.parent?'<p><b>父母：</b>'+esc(sec.parent.behavior)+' ／ '+esc(sec.parent.feeling)+' ／ '+esc(sec.parent.belief)+'</p>':''; }
+      if(sec.type==='reasons'){ h+='<ul>'+sec.items.map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul>'; if(sec.referral) h+='<p>'+esc(sec.referral)+'</p>'; }
+      if(sec.type==='questions'){ h+='<ul>'+sec.items.map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul>'; }
+      if(sec.type==='wedo'){ h+='<ol>'+sec.steps.map(s=>'<li><b>'+esc(s.label)+'：</b>'+esc(s.text)+'</li>').join('')+'</ol>'; }
+      if(sec.type==='system'){ h+='<p>'+esc(sec.question)+'</p>'; }
+      if(sec.type==='sel'){ h+='<p>'+esc(sec.items.join('、'))+'</p>'; }
+      if(sec.type==='closing'){ h+='<ol>'+sec.steps.map(i=>'<li>'+esc(i)+'</li>').join('')+'</ol>'; }
+      if(sec.type==='results'){ h+='<p>'+esc(sec.text)+'</p>'; }
+      h+='</div>';
+    });
+    if(plan.todos.length) h+='<div class="card"><h2>待確認</h2><ul>'+plan.todos.map(t=>'<li class="todo">'+esc(t)+'</li>').join('')+'</ul></div>';
+    out.innerHTML=h;
+  }
+  sit.onchange=render; rd.onchange=render; render();
+})();
+</script>
+</body></html>
