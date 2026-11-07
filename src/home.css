@@ -66,3 +66,33 @@
 .chk{display:flex;gap:6px;align-items:flex-start;font-size:14px;margin:6px 0;color:var(--ink)}
 /* 系統為深色、但沒按切換鈕時，補上改版色票（原改版只在手動切換時才套用深色） */
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--ink:#e3ece3;--mut:#acbcb1;--line:#354b40;--bg:#16251e;--card:#203329;--teal:#9fc9ab;--amber:#e3b46d;--red:#f1a393;--blue:#9fc7d9;--track:#2d4336;--chipfg:#17271e;--sky:#243d43;--sea:#2b4c55;--soft:#2c4435;--shadow:none}}
+/* ── 講師主線 ── */
+.app{max-width:980px}
+.ctlbar{display:grid;grid-template-columns:minmax(0,2fr) auto auto;gap:14px;align-items:end;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:14px 0}
+.ctlbar label{margin:0 0 4px;font-size:12px;color:var(--mut);font-weight:600}.ctlbar select{width:100%}
+.seg2{display:flex;gap:6px}.ctlbtns{display:flex;gap:6px}
+.stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 18px}
+.stepper button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);min-height:76px;position:relative}
+.stepper button b{font-size:14px}.stepper button small{font-size:11px;color:var(--mut);line-height:1.5;font-weight:400}
+.stepper .sn{width:22px;height:22px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-size:11px;font-weight:700}
+.stepper .on{border-color:var(--teal);background:var(--soft);box-shadow:inset 0 -3px 0 var(--teal)}.stepper .on .sn{background:var(--teal);color:var(--chipfg)}
+.stepper .past .sn{background:var(--teal);color:var(--chipfg)}
+.hero2{background:var(--soft);border-color:transparent}.hero2 h2{font-size:26px;margin:4px 0 10px}
+.big2{font-size:17px;line-height:1.9;font-weight:600;margin:0}
+.chain5{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:14px 0}
+.chain5 .cl{flex:1 1 140px;border-radius:12px;padding:12px 13px;font-size:14px;line-height:1.7}.chain5 .cl small{display:block;font-size:11px;opacity:.85;margin-bottom:2px}
+.chain5 .ar{align-self:center;color:var(--mut)}
+.bridge{margin:18px 0;padding:14px 18px;border-left:5px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;font-size:16px;font-weight:600;line-height:1.8}
+.bridge span{display:block;font-size:11px;color:var(--amber);letter-spacing:.12em;margin-bottom:2px}
+.lead{background:var(--soft);border-radius:12px;padding:10px 16px;margin-top:10px}.lead summary{font-weight:700;color:var(--teal)}
+.audience{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}.audience label{font-weight:700;color:var(--ink);margin:0 0 6px}
+.todo{border:1px dashed var(--amber);border-radius:10px;padding:8px 12px;color:var(--mut);font-size:13px}
+.sel5b{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:10px}
+.sc2{background:var(--bg);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;border:1px solid var(--line)}.sc2 p{margin:6px 0 0}
+.f4t{display:grid;gap:12px;margin-top:10px}
+.f4r{display:grid;grid-template-columns:150px minmax(0,1fr);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:14px;overflow:hidden;background:var(--bg)}
+.f4h{padding:14px;display:flex;align-items:flex-start;gap:8px;background:var(--soft)}.f4h .n{width:26px;height:26px;border-radius:50%;background:var(--c);color:var(--chipfg);display:grid;place-items:center;font-size:13px;font-weight:700;flex-shrink:0}
+.f4b{padding:12px 16px}.f4b .say{font-size:16px;font-weight:600;margin:0 0 4px;line-height:1.8}.f4b p{margin:0 0 6px}
+.proj{font-size:19px}.proj .card{padding:32px 36px}.proj .big2{font-size:24px}.proj .q,.proj .f4b .say{font-size:22px}.proj .band{font-size:18px}.proj .band small{font-size:14px}.proj .chain5 .cl{font-size:17px}.proj .bridge{font-size:21px}
+@media(max-width:800px){.ctlbar{grid-template-columns:1fr}.stepper{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.stepper button{padding:8px 6px;min-height:0;align-items:center;text-align:center}.stepper button small{display:none}.f4r{grid-template-columns:1fr}.chain5 .ar{display:none}.hero2 h2{font-size:22px}}
+@media print{.ctlbar,.stepper,.bridge,.lead{display:none}}
