@@ -73,3 +73,6 @@
 - 後端沿用 `sihu-parent-survey` 的 Apps Script（`framework.json` → `survey.live.api`，只讀 GET，不修改該專案）。該後端只收家長答案、不分角色。
 - 即時資料會合併進「問卷統計」與理論模式的「問卷診斷」；可一鍵從現場資料進入診斷。
 - QR 圖檔：`assets/survey-qr.png`（內嵌進 index.html，離線也能顯示）。
+
+## 第三個模式：簡化版（冰山＋4F）
+只用兩個工具：開場（情境）→ 冰山（兩座冰山、往下問三次）→ 4F（含 What/How/Why/When 與句型）→ 約定卡。不含 SEL 與 I/You/We do。與其他兩個模式共用同一組 30 情境與三個年段。

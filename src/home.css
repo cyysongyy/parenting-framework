@@ -203,3 +203,9 @@ input[type=password],input[type=text]{width:100%}
 .livecount{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:8px 0}.livecount b{font-size:56px;line-height:1;color:var(--teal)}.livecount span{font-size:18px;color:var(--mut)}
 .proj .livecount b{font-size:96px}
 @media(max-width:800px){.livegrid{grid-template-columns:1fr}}
+
+.modebar{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.tools2{grid-template-columns:1fr 1.5fr}
+@media(max-width:900px){.tools2{grid-template-columns:1fr}}
+.stepper:has(button:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
+.tools2 figure:nth-child(2) svg{max-width:100%}.tools2 .f4lab b{font-size:14px}

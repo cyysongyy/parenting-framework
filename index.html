@@ -317,6 +317,12 @@ input[type=password],input[type=text]{width:100%}
 .proj .livecount b{font-size:96px}
 @media(max-width:800px){.livegrid{grid-template-columns:1fr}}
 
+.modebar{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.tools2{grid-template-columns:1fr 1.5fr}
+@media(max-width:900px){.tools2{grid-template-columns:1fr}}
+.stepper:has(button:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
+.tools2 figure:nth-child(2) svg{max-width:100%}.tools2 .f4lab b{font-size:14px}
+
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
@@ -5285,7 +5291,7 @@ Object.assign(GLYPH,{
 });
 const ico=(k,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'" viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(GLYPH[k]||GLYPH.sparkle)+'</svg>';
 const KICK=[[/冰山|水面/,'iceberg'],[/診斷|結構層|價值信念/,'magnifier'],[/SEL|五大核心|能力/,'sprout'],[/4F/,'chat'],[/問卷|統計|結果|比對/,'chart'],[/地圖|主線|順序|邏輯|三個工具|兩個理論/,'map'],[/帶回家|一週|收束/,'home'],[/約定|行動/,'flag'],[/觀察/,'eye'],[/輔導者|提問|問題|我的問題/,'question'],[/講師|講者|示範/,'pencil'],[/學員|聽眾|You do/,'ears'],[/I do|家長的冰山/,'eye'],[/We do|一起/,'people'],[/API|設定/,'key'],[/情境|例子|這一場|開場|破題|為什麼/,'book'],[/系統/,'link2'],[/孩子/,'heart']];
-const STIC={open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
+const STIC={s_open:'door',s_ice:'iceberg',s_4f:'chat',s_go:'flag',open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
 const HERO='<svg class="herodeco" viewBox="0 0 220 150" aria-hidden="true"><path d="M0 150V118Q40 96 80 112T160 104T220 112V150Z" style="fill:var(--s-self_management)" opacity=".22"/><path d="M0 150V132Q50 116 100 128T220 126V150Z" style="fill:var(--f-findings)" opacity=".28"/><circle cx="178" cy="34" r="14" style="fill:var(--amber)" opacity=".85"/><g style="fill:var(--card)" opacity=".9"><ellipse cx="60" cy="30" rx="22" ry="7"/><ellipse cx="76" cy="25" rx="13" ry="7"/></g><g transform="translate(96 78)"><circle cx="0" cy="-22" r="8" style="fill:var(--i-feeling)"/><path d="M-10 18V-8Q0 -14 10 -8V18Z" style="fill:var(--i-feeling)"/><circle cx="26" cy="-6" r="6" style="fill:var(--f-feelings)"/><path d="M19 18V4Q26 0 33 4V18Z" style="fill:var(--f-feelings)"/><path d="M10 2L19 6" style="stroke:var(--i-feeling)" stroke-width="3" stroke-linecap="round"/><path d="M13 -34C8 -40 0 -36 5 -30L13 -22L21 -30C26 -36 18 -40 13 -34Z" style="fill:var(--red)" opacity=".85"/></g></svg>';
 function decorate(){
  if(!A)return;
@@ -5315,14 +5321,19 @@ const STP=[
  {id:'wedo',n:'We do',tag:'4F・一起對話'},
  {id:'close',n:'約定',tag:'明天就能做的事'}];
 const STT=(fw.theory?fw.theory.timeline:[]).map(x=>({id:x.id,n:x.n,tag:x.min+' 分・'+x.tag}));
-function STL(){return S.mode==='theory'&&STT.length?STT:STP;}
+const STS=[
+ {id:'s_open',n:'開場',tag:'一個情境'},
+ {id:'s_ice',n:'冰山',tag:'看見水面下'},
+ {id:'s_4f',n:'4F',tag:'說得出口'},
+ {id:'s_go',n:'約定',tag:'明天就做'}];
+function STL(){return S.mode==='simple'?STS:S.mode==='theory'&&STT.length?STT:STP;}
 const stageDef=id=>fw.core.stages.find(x=>x.id===id);
 function plan(){return PF.buildPlan(fwx(),{situation:S.sit,audience:S.aud,resultsDisplay:'projector'});}
 function setStage(i){S.stage=Math.max(0,Math.min(STL().length-1,i));draw();window.scrollTo({top:0});}
 function topbar(extra){return '<div class="topbar"><button data-act="flow">← 回講師主線</button><span class="mut">'+(extra||'')+'</span></div>';}
 
 function ctl(){
- return (fw.theory?'<div class="modebar" role="tablist"><button data-mode="problem" class="'+(S.mode==='problem'?'primary':'')+'">問題導引<small>從情境出發</small></button><button data-mode="theory" class="'+(S.mode==='theory'?'primary':'')+'">理論到實務<small>從為什麼出發</small></button></div>':'')+'<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
+ return (fw.theory?'<div class="modebar" role="tablist"><button data-mode="problem" class="'+(S.mode==='problem'?'primary':'')+'">問題導引<small>從情境出發</small></button><button data-mode="theory" class="'+(S.mode==='theory'?'primary':'')+'">理論到實務<small>從為什麼出發</small></button><button data-mode="simple" class="'+(S.mode==='simple'?'primary':'')+'">簡化版<small>冰山＋4F</small></button></div>':'')+'<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
  +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="live">現場問卷</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
 function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+STL().map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+STL().map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
@@ -5333,6 +5344,7 @@ function ask(key,label,ph){return '<div class="audience"><label for="'+key+'">�
 
 function stageHTML(id){
  if(id.indexOf('t_')===0)return theoryHTML(id);
+ if(id.indexOf('s_')===0)return simpleHTML(id);
  const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];
  let h='';
  if(id==='open'){
@@ -5380,6 +5392,30 @@ function stageHTML(id){
   +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';
  }
+ return h;}
+function simpleHTML(id){
+ const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];let h='';
+ const lay=['behavior','feeling','belief'];
+ if(id==='s_open'){
+  return '<div class="card hero2"><p class="kicker">簡化版・兩個工具</p><h2>'+esc(s.title)+'</h2><p class="big2">'+esc(au.example)+'</p></div>'
+  +'<div class="card"><p class="kicker">今天只用兩個工具</p><div class="tools3 tools2"><figure>'+iceArt()+'<figcaption><b>冰山</b>先看見：水面下是什麼</figcaption></figure><figure>'+f4Path()+'<figcaption><b>4F</b>再開口：事實、感受、發現、未來</figcaption></figure></div></div>'
+  +bridge('冰山讓我們看見，4F 讓我們說得出口。先看見，再開口。');}
+ if(id==='s_ice'){
+  return '<div class="card"><p class="kicker">冰山：同一件事，兩座冰山</p><div class="grid2">'+ice('家長的冰山',s.parentIceberg)+ice('孩子的冰山',au.childIceberg)+'</div><p class="mut">水面上是行為；水面下是感受、需求與信念。先看自己的冰山，才聽得見孩子的。</p></div>'
+  +'<div class="card"><p class="kicker">往下問三次</p><div class="steps3">'+ICE.map((l,i)=>'<div style="'+iceBg(l.id)+';border-radius:14px;padding:12px 14px"><small>'+esc(l.label)+'</small><p>'+esc(['發生什麼事？','這時候心裡的感覺和需要是什麼？','這件事對你為什麼重要？'][i])+'</p></div>').join('')+'</div>'
+  +'<div class="q" style="margin-top:12px">'+(au.youDoQuestions||[]).map(esc).join('<br>')+'</div></div>'
+  +bridge('看見了水面下。接下來，要怎麼開口？');}
+ if(id==='s_4f'){
+  const map={facts:'behavior',feelings:'feeling',findings:'belief',future:'behavior'};
+  return '<div class="card"><p class="kicker">4F：把看見變成一句話</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b>'+wq(f)+'</div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(map[f.id],['看事實＝水面上','感受與需求＝水面下','信念與需要＝最深處','新的做法＝回到水面'][i])+'</div><p class="mut">避免：'+esc(f.avoid)+'</p></div></div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">冰山與 4F 怎麼對在一起</p><ul><li>Facts 只說水面上看得到的。</li><li>Feelings 說自己的感受，再邀請對方說。</li><li>Findings 一起往水面下找原因與需要。</li><li>Future 把新做法帶回水面：時間、地點、誰、做什麼。</li></ul></div>'
+  +bridge('說得出口之後，留下一個明天就能做的小約定。');}
+ if(id==='s_go'){
+  const ag=S.mine.mineag!=null?S.mine.mineag:au.future;
+  return '<div class="card"><p class="kicker">約定</p><h2>把理解變成明天的一個小行動</h2><p class="mut">'+esc(a.contractStyle)+'</p>'
+  +'<label for="mineag">我們的約定（可以直接修改成你們的話）</label><textarea id="mineag" rows="4">'+esc(ag)+'</textarea>'
+  +'<label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select></div>'
+  +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';}
  return h;}
 function vFlow(){
  if(!S.all)return ctl()+stepper()+stageHTML(STL()[S.stage].id)+pager();
