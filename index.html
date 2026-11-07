@@ -345,6 +345,24 @@ input[type=password],input[type=text]{width:100%}
 .modebar button[data-mode].primary{background:var(--mc);border-color:var(--mc);color:var(--chipfg)}
 .modebar button[data-mode].primary .mic{color:var(--chipfg)}
 .modebar button[data-mode].primary small{opacity:.9}
+/* 四個模式：整塊塗滿，靠顏色辨識；選中的有外框與勾 */
+.modebar button[data-mode]{background:var(--mc);border:2px solid var(--mc);color:var(--chipfg);opacity:.78;box-shadow:none;transition:opacity .15s,transform .15s}
+.modebar button[data-mode] .mic{color:var(--chipfg)}
+.modebar button[data-mode] small{opacity:.92}
+.modebar button[data-mode]:hover{opacity:.92}
+.modebar button[data-mode].primary{opacity:1;transform:translateY(-2px);box-shadow:0 0 0 3px var(--card),0 0 0 6px var(--mc),var(--shadow)}
+.modebar button[data-mode].primary::after{content:"✓";position:absolute;top:6px;right:10px;font-size:15px}
+.modebar button[data-mode]{position:relative}
+@media(prefers-reduced-motion:reduce){.modebar button[data-mode]{transition:none}}
+/* 四個模式：一律以色塊塗滿；目前選中的加外框與小標記 */
+.modebar button[data-mode]{background:var(--mc);border:2px solid var(--mc);color:var(--chipfg);position:relative;box-shadow:none}
+.modebar button[data-mode] .mic,.modebar button[data-mode] small{color:var(--chipfg)}
+.modebar button[data-mode] small{opacity:.92}
+.modebar button[data-mode]:not(.primary){filter:saturate(.8);opacity:.86}
+.modebar button[data-mode].primary{opacity:1;filter:none;box-shadow:0 0 0 3px var(--bg,#fff),0 0 0 6px var(--mc);transform:translateY(-1px)}
+.modebar button[data-mode].primary::after{content:"✓";position:absolute;right:10px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--chipfg);color:var(--mc);display:grid;place-items:center;font-size:13px;font-weight:800}
+.modebar button[data-mode]:not(.primary){filter:none;opacity:.92}
+@media(max-width:700px){.modebar{grid-template-columns:1fr 1fr}.modebar button[data-mode]{padding:10px 6px}}
 
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
