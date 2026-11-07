@@ -119,7 +119,7 @@ function decorate(){
  if(!A)return;
  A.querySelectorAll('.kicker').forEach(k=>{if(k.querySelector('.kic'))return;const t=k.textContent;let n='sparkle';for(const [re,g] of KICK){if(re.test(t)){n=g;break;}}k.insertAdjacentHTML('afterbegin','<span class="kic">'+ico(n)+'</span>');});
  const sl=STL();A.querySelectorAll('.stepper button').forEach((b,i)=>{const x=sl[i];if(x&&!b.querySelector('.sic'))b.insertAdjacentHTML('afterbegin','<span class="sic">'+ico(STIC[x.id]||'sparkle')+'</span>');});
- A.querySelectorAll('.modebar button').forEach(b=>{if(!b.querySelector('.ic'))b.insertAdjacentHTML('afterbegin',ico(b.dataset.mode==='theory'?'book':'question','mic'));});
+ A.querySelectorAll('.modebar button').forEach(b=>{if(!b.querySelector('.ic'))b.insertAdjacentHTML('afterbegin',ico({problem:'question',theory:'book',simple:'iceberg',sel4:'sprout'}[b.dataset.mode]||'sparkle','mic'));});
  const AI={one:'book',proj:'sun',survey:'chart',ask:'sparkle',demo:'chart',submit:'check',print:'print',copy:'check',prev:null,next:null};
  A.querySelectorAll('.ctlbtns button').forEach(b=>{const g=AI[b.dataset.act];if(g&&!b.querySelector('.ic')){b.innerHTML=b.innerHTML.replace(/^📄\s*|^✨\s*/,'');b.insertAdjacentHTML('afterbegin',ico(g,'bic'));}});
  A.querySelectorAll('.iyw .iy').forEach(d=>{const b=d.querySelector('b');if(!b||b.querySelector('.ic'))return;const g=/I do/.test(b.textContent)?'eye':/You/.test(b.textContent)?'ears':'people';b.insertAdjacentHTML('afterbegin',ico(g,'bic'));});

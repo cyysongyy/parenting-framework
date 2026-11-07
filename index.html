@@ -335,6 +335,17 @@ input[type=password],input[type=text]{width:100%}
 @media(prefers-reduced-motion:reduce){.twbad{animation:none}}
 .stepper:has(button:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))}
 
+/* 四個模式：各自的色塊 */
+.modebar button[data-mode=problem]{--mc:var(--teal)}
+.modebar button[data-mode=theory]{--mc:var(--s-self_management)}
+.modebar button[data-mode=simple]{--mc:var(--f-future)}
+.modebar button[data-mode=sel4]{--mc:var(--s-relationship_skills)}
+.modebar button[data-mode]{background:color-mix(in srgb,var(--mc) 13%,var(--card));border:2px solid color-mix(in srgb,var(--mc) 35%,var(--line));color:var(--ink)}
+.modebar button[data-mode] .mic{color:var(--mc)}
+.modebar button[data-mode].primary{background:var(--mc);border-color:var(--mc);color:var(--chipfg)}
+.modebar button[data-mode].primary .mic{color:var(--chipfg)}
+.modebar button[data-mode].primary small{opacity:.9}
+
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
@@ -5506,7 +5517,7 @@ function decorate(){
  if(!A)return;
  A.querySelectorAll('.kicker').forEach(k=>{if(k.querySelector('.kic'))return;const t=k.textContent;let n='sparkle';for(const [re,g] of KICK){if(re.test(t)){n=g;break;}}k.insertAdjacentHTML('afterbegin','<span class="kic">'+ico(n)+'</span>');});
  const sl=STL();A.querySelectorAll('.stepper button').forEach((b,i)=>{const x=sl[i];if(x&&!b.querySelector('.sic'))b.insertAdjacentHTML('afterbegin','<span class="sic">'+ico(STIC[x.id]||'sparkle')+'</span>');});
- A.querySelectorAll('.modebar button').forEach(b=>{if(!b.querySelector('.ic'))b.insertAdjacentHTML('afterbegin',ico(b.dataset.mode==='theory'?'book':'question','mic'));});
+ A.querySelectorAll('.modebar button').forEach(b=>{if(!b.querySelector('.ic'))b.insertAdjacentHTML('afterbegin',ico({problem:'question',theory:'book',simple:'iceberg',sel4:'sprout'}[b.dataset.mode]||'sparkle','mic'));});
  const AI={one:'book',proj:'sun',survey:'chart',ask:'sparkle',demo:'chart',submit:'check',print:'print',copy:'check',prev:null,next:null};
  A.querySelectorAll('.ctlbtns button').forEach(b=>{const g=AI[b.dataset.act];if(g&&!b.querySelector('.ic')){b.innerHTML=b.innerHTML.replace(/^📄\s*|^✨\s*/,'');b.insertAdjacentHTML('afterbegin',ico(g,'bic'));}});
  A.querySelectorAll('.iyw .iy').forEach(d=>{const b=d.querySelector('b');if(!b||b.querySelector('.ic'))return;const g=/I do/.test(b.textContent)?'eye':/You/.test(b.textContent)?'ears':'people';b.insertAdjacentHTML('afterbegin',ico(g,'bic'));});

@@ -221,3 +221,14 @@ input[type=password],input[type=text]{width:100%}
 @media(max-width:560px){.twgrid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.twbad{animation:none}}
 .stepper:has(button:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))}
+
+/* 四個模式：各自的色塊 */
+.modebar button[data-mode=problem]{--mc:var(--teal)}
+.modebar button[data-mode=theory]{--mc:var(--s-self_management)}
+.modebar button[data-mode=simple]{--mc:var(--f-future)}
+.modebar button[data-mode=sel4]{--mc:var(--s-relationship_skills)}
+.modebar button[data-mode]{background:color-mix(in srgb,var(--mc) 13%,var(--card));border:2px solid color-mix(in srgb,var(--mc) 35%,var(--line));color:var(--ink)}
+.modebar button[data-mode] .mic{color:var(--mc)}
+.modebar button[data-mode].primary{background:var(--mc);border-color:var(--mc);color:var(--chipfg)}
+.modebar button[data-mode].primary .mic{color:var(--chipfg)}
+.modebar button[data-mode].primary small{opacity:.9}
