@@ -22,8 +22,10 @@
 ## 檔案
 - `framework.json`：架構資料。
 - `generator.js`：`buildPlan`、`buildInteractions`、`surveySpec`、`tally`、`compare`、`insights`、`recommendFromSurvey`、`checkCoherence`。
-- `index.html`：檢視頁（需 GitHub Pages 或本機伺服器）。
-- `demo-offline.html`：單一檔案離線版，由 `node build-offline.js` 產生。
+- `index.html`：GitHub Pages 的入口頁，是視覺改版後的單一檔案版本（內嵌資料，雙擊即可開啟）。
+- `src/index.src.html`：檢視頁原始碼（讀取 framework.json，需 GitHub Pages 或本機伺服器）。
+- `demo-offline.html`：由原始碼產生的單一檔案離線版，`node build-offline.js`。
+- 若修改了 framework.json 或 generator.js，`index.html` 內嵌的資料不會自動更新，需要重新產生。
 - `validate.js`：`node validate.js` 檢查所有情境與年段是否完整一致。
 
 ## 待確認（TODO）

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>親子教育架構</title>
 <style>
 :root{--ink:#1F2A3A;--mut:#4A5568;--line:#DDE3E1;--bg:#FBFBF8;--card:#fff;--teal:#2A7F7A;--amber:#B7791F;--red:#B5473A;--blue:#2A5C8A;--track:#E9EEF2;--chipfg:#FFFFFF;--sky:#E4EDF4;--sea:#BFD9EE}
@@ -64,22 +64,1700 @@ ul,ol{padding-left:20px;margin:6px 0}
 .hidden{display:none}
 .rank{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
 .rank .n{flex:0 0 28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;text-align:center;line-height:28px;font-weight:700}
+</style><style>
+/* Visual refresh — all assets remain self-contained. */
+:root,:root[data-theme="light"]{color-scheme:light;--ink:#253c35;--mut:#66766e;--line:#e1e7df;--bg:#f6f7f1;--card:#fffefa;--teal:#32634f;--amber:#af762e;--red:#a74337;--blue:#427a92;--track:#edf1e9;--chipfg:#fff;--sky:#edf4f5;--sea:#d3e5e8;--soft:#eaf0e5;--shadow:0 5px 24px #263d3305}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#e3ece3;--mut:#acbcb1;--line:#354b40;--bg:#16251e;--card:#203329;--teal:#9fc9ab;--amber:#e3b46d;--red:#f1a393;--blue:#9fc7d9;--track:#2d4336;--chipfg:#17271e;--sky:#243d43;--sea:#2b4c55;--soft:#2c4435;--shadow:none}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{padding:0;font-family:"Microsoft JhengHei","PingFang TC",system-ui,sans-serif;font-size:15px;line-height:1.85;background:var(--bg);letter-spacing:.02em}
+button,select,input,textarea{font:inherit}
+button,select,input[type=text],textarea{min-height:44px;border-radius:12px;transition:background .18s,border-color .18s,box-shadow .18s}
+button{font-size:13px;font-weight:600;padding:10px 16px}
+button:hover{border-color:var(--teal);background:var(--soft)}
+button.primary{background:var(--teal);border-color:var(--teal);color:var(--card)}
+button.primary:hover{filter:brightness(.94)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+select,textarea,input[type=text]{padding:11px 12px;background:var(--card)}
+textarea{resize:vertical;line-height:1.8}
+input[type=checkbox],input[type=radio]{accent-color:var(--teal);width:18px;height:18px;vertical-align:middle;margin:0 8px 0 0;flex-shrink:0}
+input[type=range]{accent-color:var(--teal);width:min(100%,360px);min-height:36px;vertical-align:middle}
+.wrap{max-width:1240px;padding:0 40px;margin:auto}
+.masthead{display:flex;justify-content:space-between;align-items:center;padding:25px 0;border-bottom:1px solid var(--line);gap:16px}
+.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:40px;height:40px;color:var(--teal);background:var(--soft);border-radius:13px;display:grid;place-items:center}
+.brand-name{font-size:17px;font-weight:750;letter-spacing:.08em}.brand small{display:block;font-size:10px;letter-spacing:.2em;color:var(--mut);line-height:1.5}
+.header-right{display:flex;gap:14px;align-items:center}.offline{font-size:11px;color:var(--mut);white-space:nowrap}.offline:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#7c9b63;margin-right:7px}
+.theme-button{background:transparent;font-size:12px;min-height:36px;padding:5px 11px;border-radius:20px}
+.hero{display:flex;justify-content:space-between;align-items:center;padding:42px 4px 40px;gap:20px}
+.eyebrow{color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.2em;display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:23px;height:1px;background:var(--teal)}
+h1{font-size:clamp(28px,3.2vw,40px);line-height:1.5;letter-spacing:.06em;margin:13px 0 13px;font-weight:750}.hero p{font-size:13px;color:var(--mut);margin:0;line-height:1.9}.hero-art{width:290px;height:175px;flex-shrink:0}
+.workspace{display:grid;grid-template-columns:252px minmax(0,1fr);gap:28px;align-items:start;padding-bottom:40px}
+.settings{position:sticky;top:22px;border:1px solid var(--line);border-radius:19px;background:var(--card);padding:23px 20px;box-shadow:var(--shadow)}
+.panel-eyebrow{font-size:10px;letter-spacing:.17em;color:var(--mut);margin:0 0 4px}.settings h2{font-size:17px;color:var(--ink);margin:0 0 20px}.settings label{font-size:12px;font-weight:600;margin:16px 0 7px;color:var(--mut)}.settings .row{display:block}.settings .row>div{margin-bottom:18px}.settings select{font-size:13px;padding:11px 8px}.settings .seg{display:grid;grid-template-columns:1fr;gap:7px}.settings .seg button{text-align:left;border-radius:10px;font-size:13px;min-height:42px;padding:8px 12px;background:transparent}.settings .seg button.on{background:var(--soft);border-color:var(--soft);color:var(--teal)}.settings .seg button.on:after{content:"✓";float:right}
+.side-note{border-top:1px solid var(--line);margin-top:24px;padding-top:19px;font-size:12px;color:var(--mut)}.side-note strong{display:block;font-size:12px;color:var(--teal);margin-bottom:5px}.side-note p{margin:0}
+.main-content{min-width:0}.tabs{margin:0 0 21px;gap:6px;background:var(--soft);padding:5px;border-radius:13px;display:grid;grid-template-columns:repeat(3,1fr)}.tabs button{border:0;border-radius:9px;background:transparent;color:var(--mut);min-height:43px;padding:9px 6px;font-size:13px;white-space:nowrap}.tabs button.on{background:var(--card);color:var(--teal);box-shadow:0 2px 7px #243e3210}.tab-number{font-size:10px;opacity:.6;margin-right:7px;font-variant-numeric:tabular-nums}
+.card{border-radius:18px;padding:26px 28px;margin:0 0 18px;box-shadow:var(--shadow);overflow-wrap:anywhere}.card h2{font-size:18px;letter-spacing:.035em;color:var(--ink);line-height:1.6;margin:0 0 15px}.card h3{font-size:14px;margin:19px 0 8px}.card p{margin:9px 0 14px}.card p:last-child{margin-bottom:0}.mut{font-size:13px;line-height:1.85}
+#view>.card:first-child{background:var(--soft);border-color:transparent;padding:28px 30px;position:relative}#view>.card:first-child h2{font-size:12px;font-weight:600;color:var(--teal);letter-spacing:.1em}#view>.card:first-child>p>b{font-size:19px;line-height:1.85;font-weight:650}#view>.card:first-child>p:last-child{font-size:13px}
+.legend{gap:7px;margin:11px 0}.legend b{font-size:11px;min-width:78px}.chip{font-size:11px;line-height:1.65;font-weight:600;padding:4px 10px;margin:2px 2px 2px 0;letter-spacing:0}.legend-card{padding:18px 25px}.legend-card h2{font-size:13px;color:var(--mut);margin-bottom:10px}.legend-card .mut{font-size:11px;margin-top:12px}
+.chain{gap:8px;margin:18px 0 23px}.chain div{flex-basis:120px;border-radius:12px;padding:14px 13px;font-size:13px;line-height:1.9}.chain b{font-size:11px;letter-spacing:.05em;margin-bottom:5px}.map{grid-template-columns:auto 14px auto 14px minmax(0,1fr);gap:10px 5px;margin:18px 0}.map .box{font-size:12px;font-weight:600;padding:8px}.map .chip{font-size:10px;padding:3px 7px}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}summary{cursor:pointer;min-height:32px;padding:4px 0}.grid{gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}.grid>div>h3{margin-top:3px}.sky{padding-top:15px}.band{font-size:13px;line-height:1.9}.band small{font-size:11px}.wl{border-top-width:2px}.wl span{background:var(--sky);border-radius:6px;padding:0 5px;top:-25px}.sea{padding-bottom:16px}
+.f4{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}.fc,.sc{border-top-width:4px;padding:19px 17px;border-radius:12px;font-size:13px;line-height:1.9}.fc .fb{font-size:11px;padding:2px 9px}.fc .mut{font-size:12px}.sel5{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}.sc .num{width:26px;height:26px;font-size:11px}.sc small{font-size:12px;margin:10px 0}.layerrow{padding:13px 15px;margin:11px 0;border-radius:12px;font-size:14px}.layerrow small{font-size:11px;margin-bottom:4px}
+.card[data-i]>h2{display:flex;align-items:center;gap:10px}.card[data-i]>h2:before{content:"↗";display:grid;place-items:center;border-radius:10px;width:29px;height:29px;flex-shrink:0;background:var(--soft);color:var(--teal);font-size:16px}.card label:has(input[type=checkbox]),.card label:has(input[type=radio]){background:var(--bg);border:1px solid transparent;border-radius:10px;padding:11px 13px;margin:7px 0;font-size:14px;cursor:pointer}.card label:has(input:checked){background:var(--soft);border-color:var(--teal)}.card label:hover{border-color:var(--line)}.item{padding-bottom:16px;margin:16px 0}.bar{margin:7px 0}.bar .track{height:9px}.bar .v{font-size:11px;color:var(--mut)}.rank{gap:13px;padding:14px 0;border-bottom:1px solid var(--line)}.rank:last-child{border:0}.rank .n{flex-basis:25px;height:25px;line-height:25px;font-size:12px}.rank button{margin:6px;font-size:11px;padding:5px 10px;min-height:34px}
+.page-footer{border-top:1px solid var(--line);padding:22px 0 28px;display:flex;justify-content:space-between;color:var(--mut);font-size:11px;gap:16px}.skip-link{position:absolute;left:20px;top:-70px;background:var(--card);padding:10px;z-index:10;color:var(--teal)}.skip-link:focus{top:10px}
+@media(min-width:1100px){.chain{flex-wrap:nowrap}.chain div{flex-basis:0}.hero-art{margin-right:34px}}
+@media(max-width:900px){.wrap{padding:0 24px}.workspace{grid-template-columns:210px minmax(0,1fr);gap:19px}.settings{padding:20px 15px}.card{padding:23px 20px}.hero-art{width:230px}.map{grid-template-columns:auto 12px auto 12px minmax(0,1fr)}}
+@media(max-width:700px){.wrap{padding:0 18px}.masthead{padding:18px 0}.brand-name{font-size:15px}.brand small{font-size:8px}.brand-mark{width:35px;height:35px}.header-right{gap:7px}.header-right .offline{display:none}.hero{padding:28px 0 26px;gap:0;position:relative}.hero-art{width:135px;height:140px;opacity:.65;position:absolute;right:-5px;top:18px;z-index:-1}.hero-copy{max-width:100%}.hero h1{font-size:29px}.hero p{font-size:12px;max-width:85%}.eyebrow{font-size:9px}.workspace{display:block;padding-bottom:20px}.settings{position:static;padding:18px;margin-bottom:20px}.settings h2{font-size:15px;margin-bottom:10px}.panel-eyebrow{display:none}.settings .row{display:flex;gap:12px;align-items:start}.settings .row>div{flex:1 1 150px!important;margin:0}.settings label{margin-top:8px}.settings .seg{display:flex;flex-wrap:wrap;gap:7px}.settings .seg button{flex:1 1 75px;text-align:center;font-size:12px;padding:7px;min-height:40px}.settings .seg button.on:after{display:none}.side-note{display:none}.tabs{margin-bottom:16px}.tabs button{font-size:12px;min-height:42px}.tab-number{display:none}.card{border-radius:15px;padding:22px 18px;margin-bottom:15px}.card h2{font-size:17px}#view>.card:first-child{padding:23px 20px}#view>.card:first-child>p>b{font-size:17px}.map{grid-template-columns:auto 9px auto 9px minmax(0,1fr);gap:8px 3px}.map .box{font-size:11px;padding:6px}.map .chip{font-size:10px;padding:3px 5px}.map .ar{font-size:10px}.legend b{min-width:100%;margin-top:4px}.page-footer{display:block;font-size:10px}.page-footer span{display:block;margin:4px 0}.grid,.f4,.sel5{grid-template-columns:1fr}.chain div{flex-basis:130px}.card .row>button{flex:1 1 150px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+@media print{body{background:#fff;color:#111;font-size:12px}.wrap{max-width:none;padding:0}.masthead,.hero,.settings,.tabs,.page-footer,.skip-link{display:none}.workspace{display:block}.card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}.mut{color:#444}}
 </style></head>
-<body><div class="wrap">
-<h1>親子教育架構</h1>
-<div class="row">
-  <div style="flex:2 1 260px"><label>情境<select id="sit"></select></label></div>
-  <div style="flex:1 1 200px"><label>結果顯示<select id="rd"><option value="">依設定</option><option value="projector">講師投影</option><option value="phone">家長／學生看手機</option></select></label></div>
-</div>
-<label>對象（孩子的年段）</label>
-<div class="row seg" id="aud"></div>
-<div class="tabs" id="tabs"></div>
-<div id="view"></div>
-</div>
-<script src="generator.js"></script>
+<body><a class="skip-link" href="#view">跳到教學內容</a><div class="wrap">
+<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
+<section class="hero" aria-label="歡迎"><div class="hero-copy"><div class="eyebrow">PARENTING & CONNECTION</div><h1>從理解開始，<br>讓對話更靠近。</h1><p>看見行為背後的感受，陪孩子一起找到下一步。<br>選一個生活情境，展開今天的親子對話。</p></div>
+<svg class="hero-art" viewBox="0 0 310 185" fill="none" aria-hidden="true"><ellipse cx="167" cy="165" rx="115" ry="9" fill="var(--soft)"/><circle cx="169" cy="87" r="72" fill="var(--soft)"/><path d="M40 60Q40 39 61 39H117Q137 39 137 60V78Q137 96 118 96H83L66 110V96H61Q40 96 40 78Z" fill="var(--card)" stroke="#93aa88" stroke-width="1.3"/><path d="M63 61H113M63 74H97" stroke="#93aa88" stroke-width="3" stroke-linecap="round"/><path d="M157 38Q157 19 177 19H237Q258 19 258 40V59Q258 78 238 78H219L205 92V78H177Q157 78 157 59Z" fill="#d8e4cc"/><path d="M195 45C188 31 174 46 195 59C216 46 202 31 195 45Z" fill="#5c7d57"/><path d="M90 161C87 138 95 116 117 115C139 114 148 139 147 161" fill="#a8b99b"/><circle cx="118" cy="99" r="16" fill="#e8d8bc"/><path d="M103 97C101 74 134 73 134 99C125 94 121 88 120 85C116 94 108 96 103 97Z" fill="#45654d"/><path d="M155 161C153 141 161 125 178 125C195 125 205 142 205 161" fill="#dbbc86"/><circle cx="177" cy="112" r="13" fill="#ecdcc1"/><path d="M164 109C162 92 188 88 191 111C181 110 176 102 176 102L164 109Z" fill="#557158"/><path d="M136 137Q151 151 167 140" stroke="#45654d" stroke-width="6" stroke-linecap="round"/><path d="M238 160V115M238 140C220 139 218 126 220 121C233 121 240 130 238 140ZM238 129C251 130 259 118 256 112C245 113 236 119 238 129Z" stroke="#7b9468" stroke-width="2" stroke-linejoin="round"/><path d="M227 161H248L246 145H229Z" fill="#c8d4ba"/><path d="M62 127L66 132M69 120L75 122M272 89L277 85" stroke="#bb9c65" stroke-width="2" stroke-linecap="round"/></svg></section>
+<div class="workspace"><aside class="settings" aria-label="教學情境設定"><p class="panel-eyebrow">MAKE IT YOURS</p><h2>今天，聊聊什麼？</h2><div class="row"><div style="flex:2 1 260px"><label for="sit">生活情境</label><select id="sit"></select></div><div style="flex:1 1 200px"><label for="rd">結果顯示</label><select id="rd"><option value="">依設定</option><option value="projector">講師投影</option><option value="phone">家長／學生看手機</option></select></div></div><label id="audLabel">孩子的年段</label><div class="row seg" id="aud" role="group" aria-labelledby="audLabel"></div><div class="side-note"><strong>每一次理解，都是靠近。</strong><p>先看見自己，再理解孩子，<br>最後一起練習新的可能。</p></div></aside>
+<main class="main-content"><nav class="tabs" id="tabs" aria-label="功能分頁"></nav><div id="view" tabindex="-1"></div></main></div><footer class="page-footer"><span>親子教育架構 · 陪伴比完美更重要</span><span>情境學習 ／ 冰山探索 ／ 4F 對話 ／ SEL 練習</span></footer></div>
+<script>window.FW_EMBED={
+  "name": "親子教育架構",
+  "version": "2.0.0",
+  "status": "draft（待講師確認標註為 TODO 的欄位）",
+  "layers": [
+    {
+      "id": "coherence",
+      "label": "1 邏輯一貫性",
+      "desc": "同一個情境，從行為到約定一條線走到底。"
+    },
+    {
+      "id": "iceberg",
+      "label": "2 冰山模式",
+      "desc": "先孩子、後父母；三層：行為表層、感受與需求、價值信念。"
+    },
+    {
+      "id": "stages",
+      "label": "3 I do · You do · We do",
+      "desc": "先看自己，再看對方，最後一起找解方。"
+    },
+    {
+      "id": "fourF",
+      "label": "4 4F 模式",
+      "desc": "Facts → Feelings → Findings → Future，對應冰山由上往下再回到水面。"
+    },
+    {
+      "id": "audience",
+      "label": "5 對象：國小／國中／高中",
+      "desc": "步驟不變，語氣、決策權與約定方式依年段調整。"
+    },
+    {
+      "id": "interaction",
+      "label": "6 提問與互動",
+      "desc": "提問階梯、猜一猜、配對、排序、承諾；家長／學生問卷統計，並看見兩邊的落差。"
+    }
+  ],
+  "core": {
+    "stages": [
+      {
+        "id": "ido",
+        "label": "I do",
+        "purpose": "先看見自己：說出自己的經驗、反應與信念，不急著批判他人。",
+        "leaderMoves": [
+          "講師先分享自己的做法（示範句）",
+          "邀請家長用一句話說出自己的做法"
+        ],
+        "participantMoves": [
+          "回想最近一次類似的情境",
+          "說出當下的身體訊號與反應"
+        ],
+        "output": "一句話：我通常怎麼做",
+        "icebergLink": "先看自己的冰山（父母）"
+      },
+      {
+        "id": "youdo",
+        "label": "You do",
+        "purpose": "換位思考：看見孩子、家長、教師在同一件事裡不同的感受與期待。",
+        "leaderMoves": [
+          "先看孩子的冰山，再看父母的冰山",
+          "用提問取代解釋"
+        ],
+        "participantMoves": [
+          "猜孩子的感受與需要",
+          "用不同角色各說一句話"
+        ],
+        "output": "一張雙冰山圖",
+        "icebergLink": "孩子的冰山 ⇄ 父母的冰山"
+      },
+      {
+        "id": "wedo",
+        "label": "We do",
+        "purpose": "共同找解方：用 4F 把對話走到具體約定。",
+        "leaderMoves": [
+          "帶著 4F 逐步提問",
+          "把約定寫成時間、地點、誰、做什麼"
+        ],
+        "participantMoves": [
+          "兩邊各說一次",
+          "一起決定一個小步驟"
+        ],
+        "output": "一個明天就能做的約定",
+        "icebergLink": "把新做法帶回水面"
+      }
+    ],
+    "fourF": [
+      {
+        "id": "facts",
+        "label": "Facts 事實",
+        "prompt": "發生了什麼事？只還原過程，不評論。",
+        "avoid": "「你怎麼又…」「你就是…」"
+      },
+      {
+        "id": "feelings",
+        "label": "Feelings 感受",
+        "prompt": "你當下的心情如何？哪一部分最挫折、最開心？",
+        "avoid": "「這有什麼好難過的」"
+      },
+      {
+        "id": "findings",
+        "label": "Findings 發現",
+        "prompt": "找出原因與需要：這個情緒或行為在提醒我們什麼？",
+        "avoid": "急著給答案或下結論"
+      },
+      {
+        "id": "future",
+        "label": "Future 未來",
+        "prompt": "約定具體的下一步：時間、地點、誰、做什麼。",
+        "avoid": "只說「下次不要」"
+      }
+    ],
+    "fourFOrder": [
+      "facts",
+      "feelings",
+      "findings",
+      "future"
+    ],
+    "fourFToIceberg": {
+      "facts": "behavior",
+      "feelings": "feeling",
+      "findings": "belief",
+      "future": "behavior"
+    },
+    "fourFToSEL": {
+      "facts": [
+        "self_management"
+      ],
+      "feelings": [
+        "self_awareness"
+      ],
+      "findings": [
+        "social_awareness",
+        "relationship_skills"
+      ],
+      "future": [
+        "responsible_decision"
+      ]
+    },
+    "sel": [
+      {
+        "id": "self_awareness",
+        "label": "自我覺察",
+        "desc": "知道自己的情緒、想法與價值",
+        "taiyu": "知輕重、幾兩重"
+      },
+      {
+        "id": "self_management",
+        "label": "自我管理",
+        "desc": "調整情緒與行為，不被情緒牽著走",
+        "taiyu": "知吃知穿，知分寸"
+      },
+      {
+        "id": "social_awareness",
+        "label": "社會覺察",
+        "desc": "理解他人的立場與感受",
+        "taiyu": "目色好"
+      },
+      {
+        "id": "relationship_skills",
+        "label": "關係技巧",
+        "desc": "溝通、合作與解決衝突",
+        "taiyu": "互相、人情留一線"
+      },
+      {
+        "id": "responsible_decision",
+        "label": "負責任決定",
+        "desc": "考慮後果，做出合宜的選擇",
+        "taiyu": "做人要有肩胛頭"
+      }
+    ],
+    "iceberg": {
+      "note": "冰山理論：薩提爾（Virginia Satir）",
+      "layers": [
+        {
+          "id": "behavior",
+          "label": "行為表層（水面上）",
+          "desc": "看得到的：吼叫、拖延、頂嘴、冷戰。"
+        },
+        {
+          "id": "feeling",
+          "label": "感受與需求（水面下）",
+          "desc": "委屈、焦慮、害怕、想被理解、想被認同。"
+        },
+        {
+          "id": "belief",
+          "label": "價值信念（最深處）",
+          "desc": "「我必須…」「這樣才是好孩子」。"
+        }
+      ],
+      "displayOrder": [
+        "child",
+        "parent"
+      ],
+      "interplay": "父母第三層的信念決定第一層的反應；孩子聽見的是第二層的訊息（被否定，或被接納）。兩座冰山在水面上碰撞，通常是水面下的需求沒有被看見。",
+      "rule": "先看自己的冰山，再看孩子的冰山，才不會把焦慮變成控制。"
+    },
+    "systemLayers": [
+      "家庭",
+      "親子互動",
+      "學校",
+      "社會"
+    ],
+    "systemQuestion": "別只問「孩子為什麼這麼沒自制力」，先問「是什麼環境，讓他離不開？」",
+    "coherenceRules": [
+      "同一個情境從頭到尾只用一個例子，不中途換例。",
+      "4F 與冰山對應：Facts→行為、Feelings→感受與需求、Findings→價值信念、Future→把新做法帶回水面。",
+      "每個 SEL 核心在情境中都有具體的行動，五個同時運作。",
+      "約定要包含時間、地點、誰、做什麼，並有檢討的時間。",
+      "不同年段步驟順序不變，改變的是語氣、決策權與約定方式。"
+    ],
+    "closingSteps": [
+      "先問「發生什麼事」（Facts）",
+      "再說自己的感受（Feelings）",
+      "一起找原因與需要（Findings）",
+      "訂一條明天就能做的約定（Future）"
+    ],
+    "questionBank": {
+      "elementary": {
+        "behavior": [
+          "發生了什麼事？你看到什麼？",
+          "你做了什麼？"
+        ],
+        "feeling": [
+          "你是生氣、難過，還是害怕？",
+          "你身體哪裡有感覺？"
+        ],
+        "belief": [
+          "你心裡有沒有想：我是不是…？",
+          "你最希望大人怎麼做？"
+        ],
+        "future": [
+          "我們選一個辦法試試看好嗎？",
+          "你想選哪一個？"
+        ]
+      },
+      "junior": {
+        "behavior": [
+          "剛剛發生了什麼？你想先說，還是先靜一下？",
+          "當時你做了什麼？"
+        ],
+        "feeling": [
+          "你當時最在意的是什麼？",
+          "你心裡是什麼感覺？"
+        ],
+        "belief": [
+          "你覺得哪裡最不公平？",
+          "你希望別人怎麼看你？"
+        ],
+        "future": [
+          "你覺得怎樣比較公平？",
+          "我們各退一步，你想怎麼試？"
+        ]
+      },
+      "senior": {
+        "behavior": [
+          "我想先確認事實，我理解的對嗎？",
+          "你想怎麼描述剛剛的狀況？"
+        ],
+        "feeling": [
+          "這件事讓你有什麼感覺？我擔心…，你怎麼看？",
+          "你最需要什麼？"
+        ],
+        "belief": [
+          "這件事對你重要在哪裡？",
+          "你最在意的價值是什麼？"
+        ],
+        "future": [
+          "你的提案是什麼？",
+          "我能怎麼配合？"
+        ]
+      }
+    },
+    "interactionTemplates": [
+      {
+        "id": "poll",
+        "type": "poll",
+        "stage": "opening",
+        "title": "最近有這種情況嗎？",
+        "instruction": "勾選孩子最近一個月的情況（不記名）。"
+      },
+      {
+        "id": "ido_scale",
+        "type": "scale",
+        "stage": "ido",
+        "title": "當下的強度",
+        "instruction": "遇到這種情況，我當下的情緒強度是 1–5？"
+      },
+      {
+        "id": "ido_reflect",
+        "type": "reflect",
+        "stage": "ido",
+        "title": "我通常怎麼做",
+        "instruction": "用一句話說出你的做法。"
+      },
+      {
+        "id": "youdo_guess",
+        "type": "guess",
+        "stage": "youdo",
+        "title": "猜一猜孩子的冰山",
+        "instruction": "先看行為，第二下揭曉感受與需求，第三下揭曉信念。",
+        "reveal": "click"
+      },
+      {
+        "id": "youdo_match",
+        "type": "match",
+        "stage": "youdo",
+        "title": "放進冰山三層",
+        "instruction": "把三句話分別放進冰山的三層。"
+      },
+      {
+        "id": "youdo_roleswap",
+        "type": "roleswap",
+        "stage": "youdo",
+        "title": "角色換位",
+        "instruction": "用孩子、家長各說一句話。"
+      },
+      {
+        "id": "wedo_order",
+        "type": "order",
+        "stage": "wedo",
+        "title": "4F 排排看",
+        "instruction": "把四句話排成 Facts → Feelings → Findings → Future。"
+      },
+      {
+        "id": "wedo_commit",
+        "type": "commit",
+        "stage": "wedo",
+        "title": "明天就能做的約定",
+        "instruction": "寫下：時間、地點、誰、做什麼。"
+      },
+      {
+        "id": "closing_reflect",
+        "type": "reflect",
+        "stage": "closing",
+        "title": "我要帶走的一個行動",
+        "instruction": "從今天的四個步驟中，選一個明天先做。"
+      }
+    ],
+    "colors": {
+      "note": "同一個顏色在每個畫面代表同一件事：4F 四色、SEL 五色、冰山三層。l＝淺色模式，d＝深色模式。",
+      "fourF": {
+        "facts": {
+          "l": "#C0504D",
+          "d": "#F2A5A5"
+        },
+        "feelings": {
+          "l": "#B7791F",
+          "d": "#E9B872"
+        },
+        "findings": {
+          "l": "#2F8F5B",
+          "d": "#8FD1A0"
+        },
+        "future": {
+          "l": "#2E6FB5",
+          "d": "#9CC3E8"
+        }
+      },
+      "sel": {
+        "self_awareness": {
+          "l": "#0F8B8D",
+          "d": "#4FD1D3"
+        },
+        "self_management": {
+          "l": "#3F5BA9",
+          "d": "#8FA8F0"
+        },
+        "social_awareness": {
+          "l": "#7A4FB3",
+          "d": "#B79BE0"
+        },
+        "relationship_skills": {
+          "l": "#C2417A",
+          "d": "#F08AB5"
+        },
+        "responsible_decision": {
+          "l": "#8A5A2B",
+          "d": "#D9A066"
+        }
+      },
+      "iceberg": {
+        "behavior": {
+          "bg": {
+            "l": "#EAF4FB",
+            "d": "#2C3F55"
+          },
+          "fg": {
+            "l": "#1F2A3A",
+            "d": "#E6EDF3"
+          }
+        },
+        "feeling": {
+          "bg": {
+            "l": "#7DB4E6",
+            "d": "#3E6E9E"
+          },
+          "fg": {
+            "l": "#10233A",
+            "d": "#F2F6FA"
+          }
+        },
+        "belief": {
+          "bg": {
+            "l": "#2A5C8A",
+            "d": "#1E3A5F"
+          },
+          "fg": {
+            "l": "#FFFFFF",
+            "d": "#E6EDF3"
+          }
+        }
+      }
+    }
+  },
+  "audiences": {
+    "elementary": {
+      "label": "國小",
+      "grades": "1–6 年級（約 7–12 歲）",
+      "developmental": "情緒詞彙有限，需要大人幫忙命名情緒；規則與後果要具體、可看見；對「被愛、被肯定」非常敏感。",
+      "autonomy": "低到中：大人主導，孩子在 2–3 個選項中選擇。",
+      "parentRole": "示範者與引導者：先示範怎麼說，再邀請孩子跟著說。",
+      "icebergDepth": "第三層用簡單句：「我是不是不夠好？」「爸媽是不是不喜歡我？」，不談抽象價值。",
+      "language": [
+        "短句，一次只問一件事",
+        "用情緒卡、情緒溫度計（1–5）幫孩子找詞",
+        "用「你是不是…？」給選項，少用「你為什麼…？」"
+      ],
+      "fourFStyle": {
+        "facts": "我看到／我聽到…（一句話）",
+        "feelings": "你是生氣、難過，還是害怕？",
+        "findings": "你需要我陪你，還是需要一點時間？",
+        "future": "我們從這兩個辦法選一個"
+      },
+      "interactionStyle": "圖卡、情緒溫度計、二選一",
+      "contractStyle": "家長帶領、孩子二選一，貼在家裡，每天簡單檢查。",
+      "cautions": [
+        "避免長篇說理",
+        "避免當眾糾正",
+        "先安撫身體（抱一下、深呼吸），再說道理"
+      ]
+    },
+    "junior": {
+      "label": "國中",
+      "grades": "7–9 年級（約 13–15 歲）",
+      "developmental": "青春期：同儕與面子很重要，想被當成大人；情緒起伏大，容易頂嘴或封閉。",
+      "autonomy": "中：規則要一起討論，孩子參與訂定。",
+      "parentRole": "協商者與陪伴者：少說教，多提問，先聽完再回應。",
+      "icebergDepth": "第三層談「尊重、公平、被信任」：「我不想被當小孩」「你們不相信我」。",
+      "language": [
+        "先問再說，避免「你就是…」",
+        "不在別人面前糾正",
+        "先承認孩子有道理的部分，再談規則"
+      ],
+      "fourFStyle": {
+        "facts": "我看到…，我說得對嗎？",
+        "feelings": "我有點…，你呢？",
+        "findings": "我們各自在意的是什麼？",
+        "future": "你覺得怎樣比較公平？我們各退一步"
+      },
+      "interactionStyle": "匿名投票、角色換位、情境選擇",
+      "contractStyle": "共同協商，條款可檢討、可調整，兩週後回頭看。",
+      "cautions": [
+        "避免比較、貼標籤",
+        "避免公開羞辱",
+        "尊重隱私，不追問細節"
+      ]
+    },
+    "senior": {
+      "label": "高中",
+      "grades": "10–12 年級（約 16–18 歲）",
+      "developmental": "接近成人：在意自我認同與未來（升學、人生方向）；壓力來自課業與選擇；需要被當成對等的夥伴。",
+      "autonomy": "高：孩子提案、為決定負責，家長提供資源與意見。",
+      "parentRole": "顧問與後盾：先問「你需要我做什麼？」，徵求同意後才給建議。",
+      "icebergDepth": "第三層可談價值與未來：「我的人生由誰決定？」「我必須成功才有價值嗎？」",
+      "language": [
+        "用平等的語氣：「我想跟你討論…」",
+        "先徵求同意：「我可以說說我的擔心嗎？」",
+        "決定權留給孩子，同時說明自己的底線"
+      ],
+      "fourFStyle": {
+        "facts": "我想先確認事實…",
+        "feelings": "我擔心…，你的想法是？",
+        "findings": "這件事對你重要在哪裡？",
+        "future": "你的提案是什麼？我能怎麼配合？"
+      },
+      "interactionStyle": "開放式討論、利弊分析、孩子提案",
+      "contractStyle": "孩子先提案、家長回饋，設定檢核指標與例外條款。",
+      "cautions": [
+        "避免替孩子做決定",
+        "避免用金錢或愛當條件",
+        "涉及安全或健康時，說明底線並尋求專業協助"
+      ]
+    }
+  },
+  "survey": {
+    "note": "與 sihu-parent-survey 的 config.js GROUPS 相同；選項文字必須完全一致。",
+    "groups": [
+      {
+        "key": "emotion",
+        "name": "情緒",
+        "items": [
+          "容易生氣、煩躁",
+          "焦慮、緊張",
+          "難過、低落",
+          "課業升學壓力大",
+          "不說出自己的感受",
+          "沒有明顯困擾"
+        ]
+      },
+      {
+        "key": "behavior",
+        "name": "行為",
+        "items": [
+          "衝動、頂嘴",
+          "拖延、要一直催",
+          "過度使用手機網路",
+          "不遵守規範",
+          "遇到困難就逃避",
+          "沒有明顯困擾"
+        ]
+      },
+      {
+        "key": "social",
+        "name": "人際",
+        "items": [
+          "與孩子溝通時，經常演變成責備、爭吵或冷戰",
+          "與同學容易發生爭執或意見衝突",
+          "覺得自己沒有知心朋友，或常感到被孤立",
+          "曾遭遇言語嘲諷、排擠、欺負或網路霸凌",
+          "不容易表達自己的想法，也不敢拒絕他人的要求",
+          "家長與教師對孩子的管教方式或期待不同",
+          "近期沒有明顯的人際互動困擾"
+        ]
+      }
+    ],
+    "optionalQuestions": [
+      {
+        "id": "grade",
+        "text": "孩子目前就讀",
+        "options": [
+          "國小",
+          "國中",
+          "高中"
+        ],
+        "use": "依年段切換情境內容"
+      }
+    ],
+    "respondents": [
+      {
+        "id": "parent",
+        "label": "家長",
+        "stem": "想一想孩子最近一個月的情況，有的就勾。"
+      },
+      {
+        "id": "student",
+        "label": "學生",
+        "stem": "想一想你自己最近一個月的情況，有的就勾。不記名，不會知道是誰填的。"
+      }
+    ],
+    "studentItems": {
+      "容易生氣、煩躁": "我最近容易生氣、煩躁",
+      "焦慮、緊張": "我常覺得焦慮、緊張",
+      "難過、低落": "我常覺得難過、心情低落",
+      "課業升學壓力大": "我覺得課業升學壓力很大",
+      "不說出自己的感受": "我不太會說出自己的感受",
+      "沒有明顯困擾": "我最近沒有明顯困擾",
+      "衝動、頂嘴": "我有時候會衝動、忍不住頂嘴",
+      "拖延、要一直催": "我常拖延，需要被一直催",
+      "過度使用手機網路": "我常常滑手機、上網停不下來",
+      "不遵守規範": "我常常覺得規定很難遵守",
+      "遇到困難就逃避": "遇到困難，我會想逃避",
+      "與孩子溝通時，經常演變成責備、爭吵或冷戰": "跟爸媽說話時，常常變成被罵、吵架或冷戰",
+      "與同學容易發生爭執或意見衝突": "我跟同學容易吵架或意見不合",
+      "覺得自己沒有知心朋友，或常感到被孤立": "我覺得沒有知心朋友，或常覺得被孤立",
+      "曾遭遇言語嘲諷、排擠、欺負或網路霸凌": "我曾被嘲笑、排擠、欺負或遭到網路霸凌",
+      "不容易表達自己的想法，也不敢拒絕他人的要求": "我不容易說出自己的想法，也不敢拒絕別人",
+      "家長與教師對孩子的管教方式或期待不同": "我覺得爸媽和老師對我的要求或期待不一樣",
+      "近期沒有明顯的人際互動困擾": "我最近沒有明顯的人際困擾"
+    },
+    "noneItems": [
+      "沒有明顯困擾",
+      "近期沒有明顯的人際互動困擾"
+    ],
+    "gapThreshold": 0.15,
+    "payloadNote": "送到 Apps Script 時需在 Code.gs 新增 role 欄（parent/student）；本模組不修改 sihu-parent-survey。"
+  },
+  "situations": [
+    {
+      "id": "emotion_outburst",
+      "domain": "emotion",
+      "title": "孩子憤怒到極點",
+      "storyline": "孩子的怒氣是水面上的行為，水面下是「沒被聽見」的委屈；只處理甩門，等於只處理冰山一角。",
+      "surveyLink": {
+        "emotion": [
+          "容易生氣、煩躁"
+        ],
+        "behavior": [
+          "衝動、頂嘴"
+        ]
+      },
+      "chain": {
+        "surface": "大吼、甩門",
+        "below": "委屈、沒被聽見",
+        "deep": "「我的感受不重要」",
+        "skill": "先自我管理，再自我覺察",
+        "agreement": "冷靜暗號＋冷靜後再談"
+      },
+      "triggerForParent": "孩子早上拖拖拉拉、快遲到了，我生氣地說了什麼？",
+      "parentIceberg": {
+        "behavior": "大罵：「不准甩門！」",
+        "feeling": "焦慮、生氣、無力；需要孩子守規矩、需要被尊重",
+        "belief": "「情緒要自己處理」「孩子要乖，我才是好父母」"
+      },
+      "idoModel": "我先承認自己的情緒：「我剛剛很生氣，聲音太大了。」再深呼吸三次，才回到孩子身上。",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子在學校被老師誤會，回家大哭、丟東西，說：「你們都不聽我說！」",
+          "childIceberg": {
+            "behavior": "大哭、丟東西",
+            "feeling": "委屈、害怕；需要被抱一下、被相信",
+            "belief": "「我是不是壞小孩？」「爸媽是不是不喜歡我？」"
+          },
+          "youDoQuestions": [
+            "你是生氣，還是難過？",
+            "你想先抱一下，還是先自己待一下？"
+          ],
+          "future": "一起選一個「生氣的小角落」，貼上情緒溫度計；氣到 4 分就去角落深呼吸三次。"
+        },
+        "junior": {
+          "example": "師生衝突，孩子憤怒到極點，回家甩門：「那個老師根本針對我！」",
+          "childIceberg": {
+            "behavior": "甩門、冷臉、不想說話",
+            "feeling": "被誤解、沒面子、生氣；需要被相信、被尊重",
+            "belief": "「沒人站在我這邊」「說了也沒用」"
+          },
+          "youDoQuestions": [
+            "發生了什麼事？你想先說，還是先靜一下？",
+            "你覺得哪裡最不公平？"
+          ],
+          "future": "約定「冷靜 20 分鐘」暗號：他說「我需要一點時間」，家長不追問；冷靜後再談。是否聯絡老師，先問他的意見。"
+        },
+        "senior": {
+          "example": "孩子與老師發生衝突後情緒失控，摔門離開：「你們都不懂，別管我！」",
+          "childIceberg": {
+            "behavior": "摔門、中斷對話",
+            "feeling": "被否定、無力、覺得不被當成大人；需要被信任、需要自己處理的空間",
+            "belief": "「我必須自己扛」「求助就是示弱」"
+          },
+          "youDoQuestions": [
+            "你希望我現在做什麼：陪你、聽你說，還是先不要打擾？",
+            "這件事你打算怎麼處理？需要我幫什麼？"
+          ],
+          "future": "由孩子提出處理方式（找老師談、找輔導老師、自己先冷靜），家長只在被邀請時協助，並約好三天後簡單回報。"
+        }
+      },
+      "wedoScript": {
+        "facts": "「剛剛你把門關得很大聲。」只說看到的，不加評論。",
+        "feelings": "「我現在很擔心…」取代「你怎麼又…」",
+        "findings": "這個情緒在提醒我們什麼？先深呼吸三次，再開口。"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是委屈，不是壞」",
+        "self_management": "先離開現場冷靜，再回來談",
+        "social_awareness": "家長看見孩子「沒被聽見」的感受",
+        "relationship_skills": "用我訊息表達，不翻舊帳",
+        "responsible_decision": "約好下次生氣時要做什麼"
+      },
+      "referralNote": "若暴怒頻繁，或出現傷害自己或他人的行為，請尋求學校輔導或專業協助。"
+    },
+    {
+      "id": "exam_drop",
+      "domain": "emotion",
+      "title": "考試退步",
+      "storyline": "分數是水面上的結果；水面下是「我不夠好」的羞愧。追問分數，孩子聽到的是「我讓你失望了」。",
+      "surveyLink": {
+        "emotion": [
+          "課業升學壓力大",
+          "難過、低落"
+        ]
+      },
+      "chain": {
+        "surface": "丟書包、說自己笨",
+        "below": "挫折、羞愧、怕讓人失望",
+        "deep": "「我是不是很笨？」",
+        "skill": "自我覺察＋自我管理＋負責任決定",
+        "agreement": "今晚訂正、一週後問老師、暫停追問分數"
+      },
+      "triggerForParent": "孩子段考退步，回家就把書包丟在地上。你第一句話是什麼？",
+      "parentIceberg": {
+        "behavior": "追問成績、比較、叨念「你到底有沒有用心」",
+        "feeling": "失望、著急、擔心未來；需要孩子努力、需要被看見付出",
+        "belief": "「成績代表努力」「不逼他，他就不會進步」"
+      },
+      "idoModel": "我先忍住追問分數，說：「看起來你今天很不好受。」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "小安段考數學考了 52 分，回家把書包丟在地上，大喊：「我就是笨，不想念了！」",
+          "childIceberg": {
+            "behavior": "丟書包、哭著說自己笨",
+            "feeling": "挫折、羞愧；需要被抱抱、被肯定「你有努力」",
+            "belief": "「我是不是很笨？」「考不好，媽媽會不喜歡我」"
+          },
+          "youDoQuestions": [
+            "你覺得哪一題最難？",
+            "你現在比較難過，還是比較生氣？"
+          ],
+          "future": "今晚先抱一下；隔天一起挑 3 題錯題訂正，用貼紙記錄進步，不比較分數。"
+        },
+        "junior": {
+          "example": "孩子段考成績退步，把考卷塞進書包，說：「別問了，反正我就是不行。」",
+          "childIceberg": {
+            "behavior": "藏考卷、不想談",
+            "feeling": "丟臉、挫折、怕被比較；需要被接納、需要面子被保護",
+            "belief": "「成績不好就是失敗」「大家都比我強」"
+          },
+          "youDoQuestions": [
+            "這次你自己怎麼看？",
+            "你希望我怎麼陪你面對？"
+          ],
+          "future": "一週後一起看：孩子自己列出 2 個調整方法（如問老師、整理錯題），家長不追問分數，只問「需要我做什麼？」"
+        },
+        "senior": {
+          "example": "孩子段考退步，晚上關在房裡，說：「我可能考不上想念的科系了。」",
+          "childIceberg": {
+            "behavior": "關在房裡、對話變少",
+            "feeling": "焦慮、無力、害怕讓大家失望；需要被支持、需要看見其他可能",
+            "belief": "「我必須成功才有價值」「失敗就沒有未來」"
+          },
+          "youDoQuestions": [
+            "這次成績對你的目標有什麼影響？",
+            "你想先分析原因，還是先休息一下？"
+          ],
+          "future": "孩子提出兩週調整計畫（時間、方法、求助對象），家長協助找資源（輔導老師、學長姊），每週 15 分鐘檢視一次。"
+        }
+      },
+      "wedoScript": {
+        "facts": "「我看到你回來後把書包丟在地上，也聽到你說自己很笨。」只說事實，不談分數。",
+        "feelings": "「我看到你很挫折，我也有點擔心。」先說自己的感受，再問他的感受。",
+        "findings": "這次錯在哪裡？是不會、粗心，還是害怕再次失敗？"
+      },
+      "selMap": {
+        "self_awareness": "孩子說出「我很挫折，不是我很笨」",
+        "self_management": "先離開房間冷靜，不再摔東西",
+        "social_awareness": "孩子留意到媽媽也累、弟弟會害怕",
+        "relationship_skills": "說「我現在需要一點時間，等一下再講」",
+        "responsible_decision": "決定先訂正錯題，再去問老師"
+      },
+      "referralNote": "若情緒低落持續兩週以上、對任何事失去興趣，請尋求學校輔導或專業協助。"
+    },
+    {
+      "id": "school_anxiety",
+      "domain": "emotion",
+      "title": "上學焦慮，說肚子痛",
+      "storyline": "肚子痛是水面上的訊號；水面下是「怕被笑、怕出事」的不安。先相信身體的不舒服，再找原因。",
+      "surveyLink": {
+        "emotion": [
+          "焦慮、緊張"
+        ]
+      },
+      "chain": {
+        "surface": "肚子痛、不想上學",
+        "below": "害怕、怕被笑",
+        "deep": "「去學校就會出事」",
+        "skill": "自我覺察＋社會覺察",
+        "agreement": "先和班導確認、約定不舒服時找誰"
+      },
+      "triggerForParent": "早上孩子說肚子痛，不想去學校。你會怎麼反應？",
+      "parentIceberg": {
+        "behavior": "先懷疑孩子裝病、催促、硬送去學校",
+        "feeling": "著急、擔心、煩躁；需要孩子準時上學、需要確認他平安",
+        "belief": "「不能讓他逃避」「逃避一次，以後就會更難」"
+      },
+      "idoModel": "我先說：「肚子痛一定很不舒服。」再慢慢問：「是不是有什麼事讓你擔心？」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子晚上翻來覆去，早上抱著肚子說：「今天可以請假嗎？」",
+          "childIceberg": {
+            "behavior": "肚子痛、黏著家長、哭",
+            "feeling": "害怕、不安；需要安全感、需要大人陪",
+            "belief": "「離開爸媽會出事」「沒有人會幫我」"
+          },
+          "youDoQuestions": [
+            "學校有什麼讓你不舒服的嗎？",
+            "你比較怕早上，還是怕某一節課？"
+          ],
+          "future": "建立早晨小儀式（抱一下、說再見的暗號），並請班導在到校時給孩子一個固定的小任務。"
+        },
+        "junior": {
+          "example": "孩子晚上睡不好，早上說肚子痛不想上學，不肯說原因。",
+          "childIceberg": {
+            "behavior": "拖延出門、不肯說原因",
+            "feeling": "緊張、怕被笑、怕被排擠；需要被相信、需要不被追問的空間",
+            "belief": "「說了也沒用」「去學校就會出事」"
+          },
+          "youDoQuestions": [
+            "你願意說多少都可以，我想先聽你說。",
+            "是人讓你擔心，還是事情？"
+          ],
+          "future": "家長先和班導確認校內狀況（先告知孩子），約定不舒服時可找輔導室或保健室，每週回顧一次。"
+        },
+        "senior": {
+          "example": "孩子最近常說頭痛、胃痛，週一特別不想去學校，也不太說話。",
+          "childIceberg": {
+            "behavior": "身體不適、請假或早退增加",
+            "feeling": "焦慮、倦怠、壓力大；需要被理解、需要喘息",
+            "belief": "「我撐不下去也不能說」「別人都做得到」"
+          },
+          "youDoQuestions": [
+            "最近有什麼事讓你特別累？",
+            "你希望自己先處理，還是需要有人幫忙？"
+          ],
+          "future": "孩子與家長一起決定是否尋求輔導室或專業協助，並共同擬定一週的減壓安排。"
+        }
+      },
+      "wedoScript": {
+        "facts": "「你早上說肚子痛，最近晚上也睡不好。」只說發生的事，不下結論。",
+        "feelings": "「我看到你很緊張，我也很擔心你。」先接住情緒，再談上學。",
+        "findings": "害怕的是哪一件事？是同學、課業，還是某個老師或某個地方？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是害怕，不是裝病」",
+        "self_management": "用深呼吸與暗號穩住自己",
+        "social_awareness": "家長看見孩子怕被笑、怕出事的感受",
+        "relationship_skills": "說出「我需要你陪我走到教室」",
+        "responsible_decision": "決定今天試著去學校，並約好不舒服時找誰"
+      },
+      "referralNote": "若焦慮持續超過兩週、影響睡眠或食慾，請轉介學校輔導或專業諮商。"
+    },
+    {
+      "id": "procrastination",
+      "domain": "behavior",
+      "title": "拖延作業",
+      "storyline": "拖延是行為，不是品格；水面下可能是怕做不好、不會做，或想奪回一點掌控感。先問原因，再談策略。",
+      "surveyLink": {
+        "behavior": [
+          "拖延、要一直催",
+          "遇到困難就逃避"
+        ]
+      },
+      "chain": {
+        "surface": "拖延作業、被催就生氣",
+        "below": "壓力大、怕做不好、想要一點掌控",
+        "deep": "「不做，就不會被說做不好」",
+        "skill": "自我管理＋負責任決定",
+        "agreement": "固定開始時間、家長只提醒一次、每週檢討"
+      },
+      "triggerForParent": "晚上九點，孩子還沒開始寫作業，你已經催了三次。你下一句會說什麼？",
+      "parentIceberg": {
+        "behavior": "碎念催促、責罵、威脅處罰",
+        "feeling": "焦慮、憤怒、無助",
+        "belief": "怕孩子的未來受影響；覺得他沒有自制力；想起自己小時候，感到落差"
+      },
+      "idoModel": "我先說：「我發現我一直在催你，其實是我在擔心。」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子寫作業一直玩橡皮擦、喝水、上廁所，一個小時只寫了兩行。",
+          "childIceberg": {
+            "behavior": "一直分心、寫得很慢",
+            "feeling": "不會做、怕寫錯；需要有人陪、需要被肯定「你有開始」",
+            "belief": "「寫不好會被罵」"
+          },
+          "youDoQuestions": [
+            "哪一題你不知道怎麼開始？",
+            "你想要我坐在旁邊，還是你先試試看？"
+          ],
+          "future": "用計時器分段：先寫 10 分鐘、休息 3 分鐘，完成後貼一張貼紙，每天固定同一個時間寫作業。"
+        },
+        "junior": {
+          "example": "孩子一回家就先滑手機，作業拖到晚上十點，被催就生氣：「我知道啦！」",
+          "childIceberg": {
+            "behavior": "拖延作業、被催就頂嘴",
+            "feeling": "壓力大、怕做不好、想先逃開；想要一點自己能決定的時間",
+            "belief": "「不做，就不會被說做不好」；用拖延保護自己、換回一點掌控感"
+          },
+          "youDoQuestions": [
+            "拖在哪一科、哪一段時間最明顯？",
+            "你覺得什麼時間寫比較有效率？"
+          ],
+          "future": "放學先休息 30 分鐘，晚上 7 點開始寫、手機放客廳；先寫最難的 15 分鐘，寫不完先說一聲；家長只提醒一次、不碎念；每週日晚上 15 分鐘檢討。"
+        },
+        "senior": {
+          "example": "孩子準備考試卻一直拖延，滑手機到深夜，說：「我知道要唸，但就是不想開始。」",
+          "childIceberg": {
+            "behavior": "知道該做卻拖延、熬夜",
+            "feeling": "焦慮、怕失敗、想逃開；需要有人理解壓力",
+            "belief": "「做了也不一定有用」「開始就得做到完美」"
+          },
+          "youDoQuestions": [
+            "最難開始的是哪一部分？",
+            "你想自己規劃，還是想先討論看看？"
+          ],
+          "future": "孩子自訂每週讀書計畫與檢核點，家長只問「需要我幫什麼？」；若連續兩週無法執行，再一起調整或尋求輔導資源。"
+        }
+      },
+      "reasonsToCheck": [
+        "挫折感",
+        "不會做、缺乏方法",
+        "注意力困難",
+        "親子衝突後的抗拒",
+        "對課業失去動機"
+      ],
+      "wedoScript": {
+        "facts": "這週有幾天作業拖到晚上 9 點後才開始寫？通常拖在哪一科、哪個時段？",
+        "feelings": "家長擔心孩子睡太晚、壓力大；孩子覺得一直被催、怕做不好。",
+        "findings": "拖延卡在哪裡？是不會做、太累、被手機分心，還是不知道從哪裡開始？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是怕做不好，不是懶」",
+        "self_management": "用計時器與固定時段穩住自己",
+        "social_awareness": "家長看見孩子「被催」的壓力",
+        "relationship_skills": "說「我先寫 15 分鐘，寫不完再跟你說」",
+        "responsible_decision": "決定開始時間與手機放哪裡"
+      },
+      "referralNote": "若懷疑注意力或學習困難，請轉介學校輔導。"
+    },
+    {
+      "id": "phone_conflict",
+      "domain": "behavior",
+      "title": "手機使用與親子衝突",
+      "leadIn": "行為領域的延伸：手機衝突常和拖延、睡眠與情緒有同一個根源，也要看環境。",
+      "systemView": true,
+      "storyline": "手機衝突不只是孩子的自制力：先看兩座冰山，再看系統（家庭、學校、社會）。先理解，再管理＋約定。",
+      "surveyLink": {
+        "behavior": [
+          "過度使用手機網路"
+        ]
+      },
+      "chain": {
+        "surface": "停不下來、被提醒就頂嘴",
+        "below": "無聊、壓力大、想被連結",
+        "deep": "「手機是我唯一能放鬆的地方」",
+        "skill": "自我管理＋關係技巧",
+        "agreement": "3C 約定（時間、地點、時長＋修復），父母一起遵守"
+      },
+      "triggerForParent": "晚上十一點，孩子還躲在棉被裡玩手機，一開口就大吼：「不要管我！」",
+      "parentIceberg": {
+        "behavior": "反覆提醒、沒收手機、爭吵",
+        "feeling": "焦慮、挫折、擔心；需要孩子能自我控制",
+        "belief": "「手機會毀了孩子」「不管就是放任」"
+      },
+      "idoModel": "我先檢查自己：我自己晚上也滑手機嗎？孩子看著我們學。",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子放學後一直要玩平板，時間到了不肯關，哭鬧：「再五分鐘！」",
+          "childIceberg": {
+            "behavior": "不肯關、哭鬧",
+            "feeling": "還沒玩夠、不想被打斷；需要被預告、需要好好結束",
+            "belief": "「爸媽就是不讓我開心」"
+          },
+          "youDoQuestions": [
+            "你最喜歡玩的是哪一個遊戲？",
+            "關掉之前，你需要先做什麼才會比較容易結束？"
+          ],
+          "future": "家長主導「使用前約定」：玩多久、用計時器、時間到有 2 分鐘收尾，完成後有替代活動（桌遊、戶外）；全家共用手機放置處。"
+        },
+        "junior": {
+          "example": "孩子因手機使用與父母吵架：「你們都管我，自己也一直在滑手機！」",
+          "childIceberg": {
+            "behavior": "一有空就滑手機、被提醒就頂嘴",
+            "feeling": "無聊、壓力大、需要被連結；需要一點自主與放鬆",
+            "belief": "「手機是我唯一能放鬆的地方」「大人都不懂我」"
+          },
+          "youDoQuestions": [
+            "你在手機上最想做什麼？",
+            "什麼時候最容易停不下來？"
+          ],
+          "future": "全家一起訂 3C 約定（時間、地點、時長＋修復），父母也一起遵守；兩週後一起檢討。"
+        },
+        "senior": {
+          "example": "孩子熬夜滑手機，白天精神不好，被提醒就說：「這是我的事。」",
+          "childIceberg": {
+            "behavior": "熬夜、白天疲憊、拒絕討論",
+            "feeling": "壓力大、想逃開、想要自己的空間；需要被尊重",
+            "belief": "「我有權決定自己的時間」「大人只想控制我」"
+          },
+          "youDoQuestions": [
+            "你覺得現在的手機使用對睡眠、學業有什麼影響？",
+            "如果由你設計一套規則，你會怎麼訂？"
+          ],
+          "future": "孩子提出自己的使用規則與睡眠目標，家長說明底線（睡眠與安全），雙方約定檢視指標與調整方式；必要時尋求輔導資源。"
+        }
+      },
+      "wedoScript": {
+        "facts": "每天用幾小時？什麼時候用、在哪裡用？",
+        "feelings": "用的時候、被提醒或被限制的時候，各自是什麼感覺？",
+        "findings": "什麼時候最容易停不下來？背後需要的是什麼？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是想放鬆／想被連結」",
+        "self_management": "時間到前用計時器、自己按下結束",
+        "social_awareness": "家長看見孩子需要連結與紓壓",
+        "relationship_skills": "用我訊息討論，不用沒收當威脅",
+        "responsible_decision": "共同決定使用時段與睡前放置處"
+      },
+      "referralNote": "若無法控制使用、嚴重影響睡眠或社交，請尋求學校輔導或專業協助。"
+    },
+    {
+      "id": "family_rules",
+      "domain": "behavior",
+      "title": "家庭規範被挑戰",
+      "storyline": "規範被挑戰，常是因為「規則沒有一起訂」或「大人也沒做到」。先看規則的來源，再一起修訂。",
+      "surveyLink": {
+        "behavior": [
+          "不遵守規範",
+          "衝動、頂嘴"
+        ]
+      },
+      "chain": {
+        "surface": "頂嘴、不遵守",
+        "below": "被管太多、想被尊重",
+        "deep": "「規定只針對我」",
+        "skill": "關係技巧＋負責任決定",
+        "agreement": "一起修訂規則、大人也遵守、每週檢討"
+      },
+      "triggerForParent": "家裡有規定餐桌時間不滑手機，孩子卻一直拿著手機，被提醒就頂嘴。你會怎麼處理？",
+      "parentIceberg": {
+        "behavior": "一直唸、罵人、乾脆不管了",
+        "feeling": "生氣、無力、覺得權威被挑戰；需要規矩被尊重、需要家人一起遵守",
+        "belief": "「大人說了就要算」「不管就是放縱」"
+      },
+      "idoModel": "我先檢查：這條規則是誰訂的？我自己有做到嗎？",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子吃飯時一直離開座位，被提醒就說：「我不要吃了！」",
+          "childIceberg": {
+            "behavior": "離座、拒絕吃飯",
+            "feeling": "不想被管、想玩；需要被注意、需要有趣的規則",
+            "belief": "「爸媽只會叫我」"
+          },
+          "youDoQuestions": [
+            "你覺得吃飯時最難做到哪一件事？",
+            "你想用貼紙表，還是計時器？"
+          ],
+          "future": "全家一起畫「餐桌小約定」（3 條以內），完成給貼紙，大人也要遵守。"
+        },
+        "junior": {
+          "example": "吃飯時一直滑手機，被提醒就頂嘴：「不要管我！」",
+          "childIceberg": {
+            "behavior": "頂嘴、滑手機、故意不理",
+            "feeling": "不服氣、煩、覺得被管太多；需要被尊重、需要自己能決定一些事",
+            "belief": "「規定只針對我」「反正說了也沒用」"
+          },
+          "youDoQuestions": [
+            "你覺得這條規定哪裡不合理？",
+            "如果是你，你希望大人怎麼提醒你？"
+          ],
+          "future": "全家一起修訂餐桌規則，大人也一起遵守；每週家庭會議檢討一次。"
+        },
+        "senior": {
+          "example": "孩子晚歸又不說去哪，被問就說：「我已經長大了。」",
+          "childIceberg": {
+            "behavior": "晚歸、不報備、拒絕被問",
+            "feeling": "想要自由、被管束的煩躁；需要被信任、被當成大人",
+            "belief": "「報備就是不被信任」「我能為自己負責」"
+          },
+          "youDoQuestions": [
+            "你覺得怎樣的報備方式，你比較能接受？",
+            "什麼情況下，你會希望家人知道你在哪裡？"
+          ],
+          "future": "孩子提出報備方式（訊息、定位分享或回家時間），家長說明安全底線，雙方約定異常處理流程並定期檢討。"
+        }
+      },
+      "reasonsToCheck": [
+        "規定沒有一起討論過",
+        "規定對大人和孩子不一樣",
+        "孩子用對抗來守住自主",
+        "親子衝突後的抗拒"
+      ],
+      "wedoScript": {
+        "facts": "「我看到（具體行為），我們之前約好的是（規則）。」只說事實，不評論。",
+        "feelings": "「我有點生氣，也很想跟你好好相處。」再聽他說。",
+        "findings": "規定是怎麼來的？大家都覺得公平嗎？哪一條最難做到？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我不是故意跟你對著幹，是覺得被管太多」",
+        "self_management": "被提醒時先停三秒，再回應",
+        "social_awareness": "家長看見孩子想被尊重、想有自主",
+        "relationship_skills": "用提議代替頂嘴與命令",
+        "responsible_decision": "一起訂規則、大人也一起遵守"
+      },
+      "referralNote": null
+    },
+    {
+      "id": "interpersonal_conflict",
+      "domain": "interpersonal",
+      "title": "人際衝突與不敢表達",
+      "storyline": "孩子不說，不是沒想法，常是怕被否定、怕麻煩別人；父母急著建議，孩子就更不說了。",
+      "surveyLink": {
+        "social": [
+          "與孩子溝通時，經常演變成責備、爭吵或冷戰",
+          "不容易表達自己的想法，也不敢拒絕他人的要求"
+        ]
+      },
+      "chain": {
+        "surface": "不敢表達、默默配合",
+        "below": "害怕被討厭、孤單、委屈",
+        "deep": "「表達意見會被討厭」",
+        "skill": "關係技巧＋社會覺察",
+        "agreement": "每週一次，孩子先說、家長只聽"
+      },
+      "triggerForParent": "孩子放學很生氣：「我再也不要跟小明當朋友了！他當著大家的面笑我！」你會先說什麼？",
+      "parentIceberg": {
+        "behavior": "責備多於傾聽、急著給建議",
+        "feeling": "擔心、著急、無力；需要確認孩子平安、需要被孩子信任",
+        "belief": "「大人的話不能質疑」「為孩子好，就要管」"
+      },
+      "idoModel": "我先練習只聽不建議：「然後呢？」「那時候你心裡怎麼樣？」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子放學噘著嘴：「小明今天不跟我玩了！」再問他，他說：「沒事。」",
+          "childIceberg": {
+            "behavior": "不想說、悶悶不樂",
+            "feeling": "孤單、難過；需要有人陪、需要被接納",
+            "belief": "「我是不是很討人厭？」"
+          },
+          "youDoQuestions": [
+            "今天誰跟你玩了？誰沒有？",
+            "你現在比較難過，還是比較生氣？"
+          ],
+          "future": "每天睡前五分鐘「今日三件事」：一件開心、一件不開心、一件想感謝；家長先分享自己的，再邀請孩子。"
+        },
+        "junior": {
+          "example": "孩子放學很生氣：「我再也不要跟小明當朋友了！他當著大家的面笑我！」",
+          "childIceberg": {
+            "behavior": "不敢表達意見、默默配合",
+            "feeling": "害怕被討厭、孤單、委屈；需要被接納、有歸屬感",
+            "belief": "「表達意見會被討厭」「不要給別人添麻煩」"
+          },
+          "youDoQuestions": [
+            "你想先說，還是先安靜一下？",
+            "當時你最希望別人怎麼做？"
+          ],
+          "future": "每週一次，孩子先說一件想說的事，家長只聽、不急著評論。"
+        },
+        "senior": {
+          "example": "孩子在社團被同學排擠，回家卻只說：「沒事，我自己處理。」",
+          "childIceberg": {
+            "behavior": "報喜不報憂、自己扛",
+            "feeling": "孤單、羞愧、不想讓家人擔心；需要被信任、需要有人在",
+            "belief": "「我必須自己解決」「讓家人擔心是我的錯」"
+          },
+          "youDoQuestions": [
+            "你想自己處理，還是想聽聽我的想法？",
+            "如果需要幫忙，你希望我怎麼幫？"
+          ],
+          "future": "約定兩個暗號：「需要你聽我說」「需要你給建議」；孩子選擇當下要哪一種，家長照做，每兩週簡單聊一次近況。"
+        }
+      },
+      "wedoScript": {
+        "facts": "「你最近回家都不說話，怎麼了嗎？」不評論、不猜想。",
+        "feelings": "「我擔心你覺得不能說…」「你是不是怕說了會被罵？」先聽完再回應。",
+        "findings": "是怕被否定、怕麻煩別人，還是覺得大人的話不能質疑？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是怕被討厭，不是沒意見」",
+        "self_management": "聽完再回應，不急著建議",
+        "social_awareness": "家長看見孩子怕麻煩別人的心情",
+        "relationship_skills": "用「我想…」「我擔心…」開頭",
+        "responsible_decision": "約定每週一次孩子先說"
+      },
+      "referralNote": null
+    },
+    {
+      "id": "peer_isolation",
+      "domain": "interpersonal",
+      "title": "被排擠、孤立或網路霸凌",
+      "storyline": "被排擠或霸凌的孩子常不說：怕被說「太敏感」、怕事情更糟。先讓孩子知道「不是你的錯」，再一起決定怎麼處理與通報。",
+      "surveyLink": {
+        "social": [
+          "覺得自己沒有知心朋友，或常感到被孤立",
+          "曾遭遇言語嘲諷、排擠、欺負或網路霸凌"
+        ]
+      },
+      "chain": {
+        "surface": "不想上學、怕手機響、不想談",
+        "below": "孤單、羞愧、害怕被報復",
+        "deep": "「是我不好，大家才不喜歡我」",
+        "skill": "社會覺察＋負責任決定",
+        "agreement": "保存紀錄、一起決定通報時機與對象"
+      },
+      "triggerForParent": "孩子最近不想去學校，手機一響就緊張，問他又說沒事。你會先怎麼做？",
+      "parentIceberg": {
+        "behavior": "追問是誰、急著去學校理論、叫孩子「反擊回去」",
+        "feeling": "心疼、憤怒、無力；需要保護孩子、需要事情被解決",
+        "belief": "「不能讓孩子被欺負」「我要立刻解決」"
+      },
+      "idoModel": "我先深呼吸，告訴孩子：「謝謝你讓我知道，這不是你的錯，我們一起想辦法。」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "byAudience": {
+        "elementary": {
+          "example": "孩子說：「同學都不跟我玩，還叫我的綽號。」說完又哭著說：「不要跟老師說！」",
+          "childIceberg": {
+            "behavior": "不想上學、哭、怕被告狀",
+            "feeling": "孤單、羞愧、害怕被報復；需要被保護、需要被相信",
+            "belief": "「是我不好，大家才不喜歡我」"
+          },
+          "youDoQuestions": [
+            "今天在學校，誰對你好？",
+            "你最怕的是哪一件事？"
+          ],
+          "future": "家長先與班導聯絡（先告訴孩子），約定學校可以找的大人；在家記錄事件（時間、人、事）。"
+        },
+        "junior": {
+          "example": "孩子在班級群組被嘲笑、被排除在外，手機一響就緊張。",
+          "childIceberg": {
+            "behavior": "關掉手機、拒絕談論、不想去學校",
+            "feeling": "羞愧、憤怒、孤單；需要被相信、需要保有尊嚴",
+            "belief": "「說了只會更糟」「是不是我真的有問題？」"
+          },
+          "youDoQuestions": [
+            "你想要我只是聽，還是想一起想辦法？",
+            "你覺得誰可以幫上忙？"
+          ],
+          "future": "保留截圖與紀錄；與孩子一起決定通報時機與對象（導師、輔導室），並確保孩子在過程中有發言權。"
+        },
+        "senior": {
+          "example": "孩子被同儕冷處理與網路嘲諷，變得沉默，說：「這種事很小，我可以處理。」",
+          "childIceberg": {
+            "behavior": "沉默、獨來獨往、成績下滑",
+            "feeling": "孤立、無力、被否定；需要被看見、需要有人站在他這邊",
+            "belief": "「求助就是無能」「這是我自己的問題」"
+          },
+          "youDoQuestions": [
+            "最近有人讓你不舒服嗎？",
+            "你想怎麼處理？需要我提供什麼資源？"
+          ],
+          "future": "孩子主導處理方式，家長協助保存證據並連結輔導室與專業資源；若涉及人身安全或持續霸凌，依校園霸凌規定通報。"
+        }
+      },
+      "wedoScript": {
+        "facts": "「我注意到你最近不太想去學校，也常常看著手機。」不評論、不逼問。",
+        "feelings": "「我很擔心你，也想知道你心裡怎麼樣。」先接住，再問。",
+        "findings": "是誰、什麼事、發生多久了？你最怕的是什麼？"
+      },
+      "selMap": {
+        "self_awareness": "孩子能說出「我是被排擠，不是我不好」",
+        "self_management": "先穩住情緒，不立刻回擊或刪訊息",
+        "social_awareness": "家長看見孩子的孤單與害怕",
+        "relationship_skills": "說出「我需要你站在我這邊」",
+        "responsible_decision": "一起決定保存紀錄、通報時機與對象"
+      },
+      "referralNote": "涉及霸凌、傷害或網路攻擊時，請保存證據並通報學校（導師、輔導室、學務處）；若有自傷想法，請立即尋求專業協助。"
+    }
+  ],
+  "tbdFields": {
+    "3C": {
+      "status": "TODO",
+      "proposal": "家庭 3C 約定：時間（什麼時候可以用、不能用）、地點（哪些地方不使用）、時長（用多久後休息、怎麼提醒自己結束）；沒做到時怎麼修復。",
+      "note": "3C 的定義待講師確認後再定稿。"
+    }
+  },
+  "settings": {
+    "resultsDisplay": "projector",
+    "resultsNote": "由講師投影結果（觀眾不看手機）；或設為 phone 讓家長在手機上看自己的選項。",
+    "iceExampleReplacement": "學校體育館的牆面髒亂（建議替代「鳥屎」的用語，待確認）",
+    "deckVariant": "web",
+    "defaultAudience": "junior"
+  }
+};</script>
+<script>// 親子教育架構 v2：依「情境 × 年段」產生六個層次的內容，並處理家長／學生問卷統計
+// 用法：const plan = ParentingFramework.buildPlan(fw, { situation: 'procrastination', audience: 'junior' });
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.ParentingFramework = factory();
+})(typeof self !== 'undefined' ? self : this, function () {
+
+  const AUDIENCES = ['elementary', 'junior', 'senior'];
+  const LAYER_IDS = ['behavior', 'feeling', 'belief'];
+
+  function getSituation(fw, id) {
+    const s = fw.situations.find(x => x.id === id);
+    if (!s) throw new Error('找不到情境：' + id);
+    return s;
+  }
+  function pickAudience(fw, a) { return fw.audiences[a] ? a : fw.settings.defaultAudience; }
+  function selLabel(fw, id) { const x = fw.core.sel.find(s => s.id === id); return x ? x.label : id; }
+  function icebergLabel(fw, id) { const x = fw.core.iceberg.layers.find(l => l.id === id); return x ? x.label : id; }
+
+  // ───────── 六個層次的內容 ─────────
+  function buildCoherence(fw, s, aud) {
+    const f = fw.core;
+    return {
+      storyline: s.storyline,
+      chain: [
+        { label: '水面上（行為）', text: s.chain.surface },
+        { label: '水面下（感受與需求）', text: s.chain.below },
+        { label: '最深處（價值信念）', text: s.chain.deep },
+        { label: '用到的能力', text: s.chain.skill },
+        { label: '約定', text: s.chain.agreement }
+      ],
+      fourFPath: f.fourFOrder.map(id => ({
+        id, step: f.fourF.find(x => x.id === id).label,
+        icebergId: f.fourFToIceberg[id], iceberg: icebergLabel(fw, f.fourFToIceberg[id]),
+        selIds: f.fourFToSEL[id], sel: f.fourFToSEL[id].map(x => selLabel(fw, x))
+      })),
+      rules: f.coherenceRules
+    };
+  }
+
+  function buildIceberg(fw, s, a) {
+    const v = s.byAudience[a], ic = fw.core.iceberg, qb = fw.core.questionBank[a];
+    return {
+      note: ic.note, layers: ic.layers, displayOrder: ic.displayOrder,
+      child: v.childIceberg, parent: s.parentIceberg,
+      interplay: ic.interplay, rule: ic.rule,
+      depthNote: fw.audiences[a].icebergDepth,
+      questions: { behavior: qb.behavior, feeling: qb.feeling, belief: qb.belief }
+    };
+  }
+
+  function buildFourF(fw, s, a) {
+    const f = fw.core, v = s.byAudience[a], st = fw.audiences[a].fourFStyle;
+    return f.fourFOrder.map(id => {
+      const meta = f.fourF.find(x => x.id === id);
+      return {
+        id, label: meta.label, prompt: meta.prompt, avoid: meta.avoid,
+        script: id === 'future' ? v.future : s.wedoScript[id],
+        stem: st[id],
+        iceberg: icebergLabel(fw, f.fourFToIceberg[id]), icebergId: f.fourFToIceberg[id],
+        sel: f.fourFToSEL[id].map(x => selLabel(fw, x)), selIds: f.fourFToSEL[id],
+        questions: f.questionBank[a][id === 'facts' ? 'behavior' : id === 'feelings' ? 'feeling' : id === 'findings' ? 'belief' : 'future']
+      };
+    });
+  }
+
+  function buildStages(fw, s, a) {
+    const v = s.byAudience[a];
+    return fw.core.stages.map(st => {
+      const base = Object.assign({}, st);
+      if (st.id === 'ido') base.content = { trigger: s.triggerForParent, model: s.idoModel, experience: s.lecturerExperience, parentIceberg: s.parentIceberg };
+      if (st.id === 'youdo') base.content = { example: v.example, questions: v.youDoQuestions, reasons: s.reasonsToCheck || null, referral: s.referralNote || null };
+      if (st.id === 'wedo') base.content = { future: v.future, contractStyle: fw.audiences[a].contractStyle };
+      return base;
+    });
+  }
+
+  function buildAudience(fw, a) {
+    const x = fw.audiences[a];
+    return { id: a, label: x.label, grades: x.grades, developmental: x.developmental, autonomy: x.autonomy,
+      parentRole: x.parentRole, language: x.language, contractStyle: x.contractStyle, cautions: x.cautions, interactionStyle: x.interactionStyle };
+  }
+
+  // ───────── 提問與互動 ─────────
+  function buildInteractions(fw, sid, audience) {
+    const s = getSituation(fw, sid), a = pickAudience(fw, audience), v = s.byAudience[a];
+    const T = id => fw.core.interactionTemplates.find(t => t.id === id);
+    const out = [];
+    const pollOptions = [];
+    Object.keys(s.surveyLink).forEach(g => s.surveyLink[g].forEach(item => pollOptions.push({ group: g, item })));
+    out.push(Object.assign({}, T('poll'), { data: { options: pollOptions } }));
+    out.push(Object.assign({}, T('ido_scale'), { data: { min: 1, max: 5, labels: ['很平靜', '很激動'] } }));
+    out.push(Object.assign({}, T('ido_reflect'), { data: { model: s.idoModel, experience: s.lecturerExperience } }));
+    out.push(Object.assign({}, T('youdo_guess'), { data: { example: v.example, steps: [
+      { layer: 'behavior', label: '看到的行為', text: v.childIceberg.behavior },
+      { layer: 'feeling', label: '感受與需求', text: v.childIceberg.feeling },
+      { layer: 'belief', label: '價值信念', text: v.childIceberg.belief }] } }));
+    out.push(Object.assign({}, T('youdo_match'), { data: { layers: fw.core.iceberg.layers, items: [
+      { text: v.childIceberg.behavior, answer: 'behavior' },
+      { text: v.childIceberg.feeling, answer: 'feeling' },
+      { text: v.childIceberg.belief, answer: 'belief' }] } }));
+    out.push(Object.assign({}, T('youdo_roleswap'), { data: { roles: [
+      { role: '孩子', hint: v.childIceberg.belief },
+      { role: '家長', hint: s.parentIceberg.belief }] } }));
+    out.push(Object.assign({}, T('wedo_order'), { data: { items: fw.core.fourFOrder.map((id, i) => ({
+      text: id === 'future' ? v.future : s.wedoScript[id], answer: i + 1,
+      label: fw.core.fourF.find(x => x.id === id).label })) } }));
+    out.push(Object.assign({}, T('wedo_commit'), { data: { fields: ['時間', '地點', '誰', '做什麼'], example: v.future } }));
+    out.push(Object.assign({}, T('closing_reflect'), { data: { options: fw.core.closingSteps } }));
+    // 提問階梯：由水面上往水面下，再回到水面
+    const qb = fw.core.questionBank[a];
+    out.push({ id: 'ladder', type: 'ladder', stage: 'all', title: '提問階梯（' + fw.audiences[a].label + '）',
+      instruction: '依序往水面下問，最後回到水面訂約定。',
+      data: { rungs: [
+        { layer: '行為表層', questions: qb.behavior },
+        { layer: '感受與需求', questions: qb.feeling },
+        { layer: '價值信念', questions: qb.belief },
+        { layer: '回到水面（約定）', questions: qb.future },
+        { layer: '這個情境專用', questions: v.youDoQuestions }] } });
+    return out;
+  }
+
+  // ───────── 組合：整個情境 ─────────
+  function buildPlan(fw, opts) {
+    const s = getSituation(fw, opts.situation), a = pickAudience(fw, opts.audience);
+    const rd = opts.resultsDisplay || fw.settings.resultsDisplay;
+    const layers = {
+      coherence: buildCoherence(fw, s, a),
+      iceberg: buildIceberg(fw, s, a),
+      stages: buildStages(fw, s, a),
+      fourF: buildFourF(fw, s, a),
+      audience: buildAudience(fw, a),
+      interaction: buildInteractions(fw, s.id, a)
+    };
+    const extras = {
+      leadIn: s.leadIn || null,
+      system: s.systemView ? { layers: fw.core.systemLayers, question: fw.core.systemQuestion } : null,
+      sel: fw.core.sel.map(x => ({ id: x.id, label: x.label, desc: x.desc, inThisCase: s.selMap[x.id] })),
+      closing: fw.core.closingSteps,
+      results: { display: rd, text: rd === 'phone' ? '家長（或學生）用手機掃描 QR Code，在自己的手機上看到大家的選項。' : '講師投影結果，大家看大螢幕，不需要看手機。' },
+      referral: s.referralNote || null
+    };
+    const todos = [];
+    if (s.lecturerExperience && s.lecturerExperience.status === 'TODO') todos.push('講師經驗（' + s.title + '）');
+    if (s.id === 'phone_conflict' || s.id === 'procrastination') todos.push('3C 定義');
+    return { situation: s.id, title: s.title, domain: s.domain, audience: a, audienceLabel: fw.audiences[a].label,
+      example: s.byAudience[a].example, layers, extras, todos, deck: opts.deck || fw.settings.deckVariant };
+  }
+
+  // ───────── 問卷：家長／學生 ─────────
+  function surveySpec(fw, role) {
+    const resp = fw.survey.respondents.find(r => r.id === role) || fw.survey.respondents[0];
+    return { role: resp.id, label: resp.label, stem: resp.stem,
+      groups: fw.survey.groups.map(g => ({ key: g.key, name: g.name,
+        items: g.items.map(item => ({ value: item, text: resp.id === 'student' ? fw.survey.studentItems[item] : item, none: fw.survey.noneItems.indexOf(item) > -1 })) })),
+      optionalQuestions: fw.survey.optionalQuestions };
+  }
+
+  function emptyTally(fw) {
+    const t = {};
+    fw.survey.respondents.forEach(r => { t[r.id] = { total: 0, counts: {} }; });
+    return t;
+  }
+
+  // responses: [{ role: 'parent'|'student', picks: { emotion: [...], behavior: [...], social: [...] } }]
+  function tally(fw, responses) {
+    const t = emptyTally(fw);
+    const valid = {};
+    fw.survey.groups.forEach(g => g.items.forEach(i => { valid[g.key + '|' + i] = true; }));
+    (responses || []).forEach(r => {
+      if (!t[r.role]) return;
+      t[r.role].total++;
+      fw.survey.groups.forEach(g => (r.picks && r.picks[g.key] || []).forEach(item => {
+        if (!valid[g.key + '|' + item]) return;
+        const k = g.key + '|' + item;
+        t[r.role].counts[k] = (t[r.role].counts[k] || 0) + 1;
+      }));
+    });
+    return t;
+  }
+
+  function pct(t, role, group, item) {
+    const total = t[role].total; if (!total) return null;
+    return (t[role].counts[group + '|' + item] || 0) / total;
+  }
+
+  // 家長與學生並排比較，標出落差
+  function compare(fw, t) {
+    const th = fw.survey.gapThreshold;
+    return fw.survey.groups.map(g => ({ key: g.key, name: g.name, items: g.items.map(item => {
+      const p = pct(t, 'parent', g.key, item), st = pct(t, 'student', g.key, item);
+      const none = fw.survey.noneItems.indexOf(item) > -1;
+      let gap = null, tag = 'na';
+      if (p !== null && st !== null) {
+        gap = st - p;
+        tag = none ? 'aligned' : gap >= th ? 'student_more' : gap <= -th ? 'parent_more' : 'aligned';
+      }
+      return { item, studentText: fw.survey.studentItems[item], none,
+        parentCount: t.parent.counts[g.key + '|' + item] || 0, studentCount: t.student.counts[g.key + '|' + item] || 0,
+        parentPct: p, studentPct: st, gap, tag };
+    }) }));
+  }
+
+  function fmt(x) { return Math.round(x * 100) + '%'; }
+
+  function insights(fw, t) {
+    const out = [];
+    compare(fw, t).forEach(g => g.items.forEach(i => {
+      if (i.tag === 'student_more') out.push({ tag: i.tag, group: g.name, item: i.item,
+        text: '學生勾選「' + i.studentText + '」（' + fmt(i.studentPct) + '）高於家長勾選（' + fmt(i.parentPct) + '）：孩子的感受，家長可能還沒看見。' });
+      if (i.tag === 'parent_more') out.push({ tag: i.tag, group: g.name, item: i.item,
+        text: '家長勾選「' + i.item + '」（' + fmt(i.parentPct) + '）高於學生勾選（' + fmt(i.studentPct) + '）：家長很擔心，但孩子不一定這樣覺得。' });
+    }));
+    return out.sort((a, b) => a.tag.localeCompare(b.tag));
+  }
+
+  // 依問卷結果，把八個情境排序：兩邊的勾選比例 + 落差加權
+  function recommendFromSurvey(fw, t, opts) {
+    opts = opts || {};
+    const cmp = compare(fw, t), flat = {};
+    cmp.forEach(g => g.items.forEach(i => { flat[g.key + '|' + i.item] = i; }));
+    const th = fw.survey.gapThreshold;
+    const list = fw.situations.map(s => {
+      let score = 0; const evidence = [];
+      Object.keys(s.surveyLink).forEach(g => s.surveyLink[g].forEach(item => {
+        const e = flat[g + '|' + item]; if (!e || e.none) return;
+        const p = e.parentPct || 0, st = e.studentPct || 0;
+        let w = p + st;
+        if (e.gap !== null && Math.abs(e.gap) >= th) w += Math.abs(e.gap) * 0.5;
+        score += w;
+        evidence.push({ group: g, item, parentPct: e.parentPct, studentPct: e.studentPct, gap: e.gap, tag: e.tag });
+      }));
+      return { situation: s.id, title: s.title, domain: s.domain, score: Math.round(score * 1000) / 1000, evidence };
+    });
+    list.sort((x, y) => y.score - x.score);
+    return opts.topN ? list.slice(0, opts.topN) : list;
+  }
+
+  function toPayload(role, picks) {
+    return { role, emotion: picks.emotion || [], behavior: picks.behavior || [], social: picks.social || [] };
+  }
+
+  // 示範資料（固定種子，每次產生一樣的結果）
+  function demoResponses(fw, nParent, nStudent) {
+    nParent = nParent || 20; nStudent = nStudent || 20;
+    const rates = {
+      parent: { '容易生氣、煩躁': .45, '焦慮、緊張': .35, '難過、低落': .20, '課業升學壓力大': .60, '不說出自己的感受': .50, '沒有明顯困擾': .10,
+        '衝動、頂嘴': .35, '拖延、要一直催': .65, '過度使用手機網路': .75, '不遵守規範': .35, '遇到困難就逃避': .40, '沒有明顯困擾#b': .05,
+        '與孩子溝通時，經常演變成責備、爭吵或冷戰': .55, '與同學容易發生爭執或意見衝突': .25, '覺得自己沒有知心朋友，或常感到被孤立': .15,
+        '曾遭遇言語嘲諷、排擠、欺負或網路霸凌': .10, '不容易表達自己的想法，也不敢拒絕他人的要求': .40, '家長與教師對孩子的管教方式或期待不同': .30, '近期沒有明顯的人際互動困擾': .15 },
+      student: { '容易生氣、煩躁': .30, '焦慮、緊張': .55, '難過、低落': .40, '課業升學壓力大': .70, '不說出自己的感受': .65, '沒有明顯困擾': .05,
+        '衝動、頂嘴': .20, '拖延、要一直催': .55, '過度使用手機網路': .60, '不遵守規範': .25, '遇到困難就逃避': .55, '沒有明顯困擾#b': .05,
+        '與孩子溝通時，經常演變成責備、爭吵或冷戰': .60, '與同學容易發生爭執或意見衝突': .30, '覺得自己沒有知心朋友，或常感到被孤立': .35,
+        '曾遭遇言語嘲諷、排擠、欺負或網路霸凌': .25, '不容易表達自己的想法，也不敢拒絕他人的要求': .60, '家長與教師對孩子的管教方式或期待不同': .45, '近期沒有明顯的人際互動困擾': .10 }
+    };
+    let seed = 20261107;
+    const rnd = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+    const out = [];
+    [['parent', nParent], ['student', nStudent]].forEach(([role, n]) => {
+      for (let k = 0; k < n; k++) {
+        const picks = {};
+        fw.survey.groups.forEach(g => {
+          picks[g.key] = g.items.filter((item, idx) => {
+            const key = (item === '沒有明顯困擾' && g.key === 'behavior') ? '沒有明顯困擾#b' : item;
+            return rnd() < (rates[role][key] || 0.1);
+          });
+        });
+        out.push({ role, picks });
+      }
+    });
+    return out;
+  }
+
+  // ───────── 一致性檢查 ─────────
+  function checkCoherence(fw) {
+    const errors = [], warns = [];
+    const E = m => errors.push(m);
+    const f = fw.core, selIds = f.sel.map(x => x.id);
+    // core
+    if (JSON.stringify(f.fourFOrder) !== JSON.stringify(f.fourF.map(x => x.id))) E('4F 順序與定義不一致');
+    f.fourFOrder.forEach(id => {
+      if (!f.fourFToIceberg[id] || LAYER_IDS.indexOf(f.fourFToIceberg[id]) < 0) E('4F→冰山對應缺少或不合法：' + id);
+      (f.fourFToSEL[id] || []).forEach(x => { if (selIds.indexOf(x) < 0) E('4F→SEL 未知核心：' + x); });
+      if (!(f.fourFToSEL[id] || []).length) E('4F→SEL 缺少：' + id);
+    });
+    AUDIENCES.forEach(a => {
+      const x = fw.audiences[a];
+      if (!x) return E('缺少年段：' + a);
+      ['label', 'grades', 'developmental', 'autonomy', 'parentRole', 'icebergDepth', 'language', 'fourFStyle', 'interactionStyle', 'contractStyle', 'cautions'].forEach(k => { if (!x[k]) E('年段 ' + a + ' 缺少 ' + k); });
+      f.fourFOrder.forEach(id => { if (!x.fourFStyle || !x.fourFStyle[id]) E('年段 ' + a + ' 的 4F 語氣缺 ' + id); });
+      const qb = f.questionBank[a];
+      if (!qb) return E('提問庫缺少年段：' + a);
+      ['behavior', 'feeling', 'belief', 'future'].forEach(k => { if (!qb[k] || !qb[k].length) E('提問庫 ' + a + ' 缺 ' + k); });
+    });
+    // 色彩：4F、SEL、冰山每一項都要有顏色
+    const col = f.colors || {};
+    f.fourFOrder.forEach(id => { if (!col.fourF || !col.fourF[id]) E('缺少 4F 顏色：' + id); });
+    selIds.forEach(id => { if (!col.sel || !col.sel[id]) E('缺少 SEL 顏色：' + id); });
+    LAYER_IDS.forEach(id => { if (!col.iceberg || !col.iceberg[id]) E('缺少冰山顏色：' + id); });
+    // survey
+    const items = {};
+    fw.survey.groups.forEach(g => g.items.forEach(i => { items[g.key + '|' + i] = true; if (!fw.survey.studentItems[i]) E('學生版問卷缺少：' + i); }));
+    fw.survey.noneItems.forEach(i => { if (!Object.keys(items).some(k => k.split('|')[1] === i)) E('noneItems 不在問卷中：' + i); });
+    ['parent', 'student'].forEach(r => { if (!fw.survey.respondents.some(x => x.id === r)) E('缺少問卷身分：' + r); });
+    // situations
+    const ids = {}, examples = {};
+    fw.situations.forEach(s => {
+      const p = s.id + '：';
+      if (ids[s.id]) E('重複 id：' + s.id); ids[s.id] = true;
+      ['id', 'domain', 'title', 'storyline', 'surveyLink', 'chain', 'triggerForParent', 'parentIceberg', 'idoModel', 'lecturerExperience', 'byAudience', 'wedoScript', 'selMap'].forEach(k => { if (s[k] === undefined) E(p + '缺少欄位 ' + k); });
+      if (['emotion', 'behavior', 'interpersonal'].indexOf(s.domain) < 0) E(p + 'domain 不合法');
+      ['surface', 'below', 'deep', 'skill', 'agreement'].forEach(k => { if (!s.chain || !s.chain[k]) E(p + '邏輯主線缺 ' + k); });
+      LAYER_IDS.forEach(k => { if (!s.parentIceberg || !s.parentIceberg[k]) E(p + '父母冰山缺 ' + k); });
+      ['facts', 'feelings', 'findings'].forEach(k => { if (!s.wedoScript || !s.wedoScript[k]) E(p + '4F 缺 ' + k); });
+      selIds.forEach(k => { if (!s.selMap || !s.selMap[k]) E(p + 'SEL 對應缺 ' + k); });
+      Object.keys(s.surveyLink || {}).forEach(g => (s.surveyLink[g] || []).forEach(i => { if (!items[g + '|' + i]) E(p + '問卷連結不存在：' + g + '／' + i); }));
+      if (!Object.keys(s.surveyLink || {}).length) E(p + '沒有連結任何問卷選項');
+      const seen = {};
+      AUDIENCES.forEach(a => {
+        const v = s.byAudience && s.byAudience[a];
+        if (!v) return E(p + '缺少年段內容 ' + a);
+        ['example', 'future'].forEach(k => { if (!v[k]) E(p + a + ' 缺 ' + k); });
+        LAYER_IDS.forEach(k => { if (!v.childIceberg || !v.childIceberg[k]) E(p + a + ' 孩子冰山缺 ' + k); });
+        if (!v.youDoQuestions || v.youDoQuestions.length < 2) E(p + a + ' 提問少於 2 題');
+        if (seen[v.example]) E(p + '不同年段的例子重複'); seen[v.example] = true;
+        if (examples[v.example]) warns.push(p + '例子與 ' + examples[v.example] + ' 重複'); examples[v.example] = s.id + '/' + a;
+      });
+    });
+    // 實際產生一次，確認每個情境×年段都能組出完整六層與必要互動
+    const need = ['poll', 'scale', 'reflect', 'guess', 'match', 'roleswap', 'order', 'commit', 'ladder'];
+    fw.situations.forEach(s => AUDIENCES.forEach(a => {
+      try {
+        const plan = buildPlan(fw, { situation: s.id, audience: a });
+        ['coherence', 'iceberg', 'stages', 'fourF', 'audience', 'interaction'].forEach(l => { if (!plan.layers[l]) E(s.id + '/' + a + ' 缺少層次 ' + l); });
+        const types = plan.layers.interaction.map(x => x.type);
+        need.forEach(t => { if (types.indexOf(t) < 0) E(s.id + '/' + a + ' 缺少互動 ' + t); });
+        plan.layers.fourF.forEach(x => { if (!x.script) E(s.id + '/' + a + ' 4F ' + x.id + ' 沒有內容'); });
+      } catch (e) { E(s.id + '/' + a + ' 產生失敗：' + e.message); }
+    }));
+    // 問卷統計能跑
+    try {
+      const t = tally(fw, demoResponses(fw));
+      if (t.parent.total !== 20 || t.student.total !== 20) E('示範問卷筆數不正確');
+      if (recommendFromSurvey(fw, t).length !== fw.situations.length) E('問卷推薦數量不正確');
+    } catch (e) { E('問卷統計失敗：' + e.message); }
+    return { errors, warns };
+  }
+
+  return { buildPlan, buildInteractions, getSituation, surveySpec, tally, compare, insights, recommendFromSurvey, toPayload, demoResponses, checkCoherence, AUDIENCES };
+});
+</script>
 <script>
 (async function(){
-const fw=await fetch('framework.json').then(r=>r.json()).catch(()=>null)||window.FW_EMBED;
+const fw=window.FW_EMBED;
 if(!fw){document.getElementById('view').textContent='請用 GitHub Pages 或本機伺服器開啟（直接開檔案時無法讀取 framework.json）。';return;}
 const PF=window.ParentingFramework;
 const $=id=>document.getElementById(id);
@@ -89,8 +1767,8 @@ const TABS=[['layers','六個層次'],['interact','提問與互動'],['survey','
 const DOMAIN={emotion:'情緒',behavior:'行為',interpersonal:'人際'};
 
 fw.situations.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=DOMAIN[s.domain]+'・'+s.title;$('sit').appendChild(o)});
-function drawAud(){ $('aud').innerHTML=PF.AUDIENCES.map(a=>'<button data-a="'+a+'" class="'+(state.aud===a?'on':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('');}
-function drawTabs(){ $('tabs').innerHTML=TABS.map(t=>'<button data-t="'+t[0]+'" class="'+(state.tab===t[0]?'on':'')+'">'+t[1]+'</button>').join('');}
+function drawAud(){ $('aud').innerHTML=PF.AUDIENCES.map(a=>'<button data-a="'+a+'" aria-pressed="'+(state.aud===a)+'" class="'+(state.aud===a?'on':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('');}
+function drawTabs(){ $('tabs').innerHTML=TABS.map(t=>'<button data-t="'+t[0]+'" aria-current="'+(state.tab===t[0]?'page':'false')+'" class="'+(state.tab===t[0]?'on':'')+'"><span class="tab-number" aria-hidden="true">0'+(TABS.indexOf(t)+1)+'</span>'+t[1]+'</button>').join('');}
 function plan(){return PF.buildPlan(fw,{situation:state.sit,audience:state.aud,resultsDisplay:$('rd').value||undefined});}
 function ul(a){return '<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';}
 function colorCSS(){const c=fw.core.colors;let l='',d='';
@@ -113,7 +1791,7 @@ function icebergBlock(title,ic,layers){
 
 function legendCard(){
   const c=fw.core;
-  return '<div class="card"><h2>色彩對照</h2><div class="legend"><b>4F</b>'+c.fourFOrder.map(id=>chipF(id,fOf(id).label)).join('')+'</div>'
+  return '<div class="card legend-card"><h2>色彩對照</h2><div class="legend"><b>4F</b>'+c.fourFOrder.map(id=>chipF(id,fOf(id).label)).join('')+'</div>'
    +'<div class="legend"><b>SEL 五大核心</b>'+c.sel.map(s=>chipS(s.id,s.label)).join('')+'</div>'
    +'<div class="legend"><b>冰山三層</b>'+c.iceberg.layers.map(l=>chipI(l.id,l.label)).join('')+'</div>'
    +'<p class="mut">同一個顏色在每個畫面都代表同一件事，看顏色就知道現在是哪一步、哪一層、哪一項能力。</p></div>';
@@ -184,7 +1862,7 @@ function viewSurvey(){
   let h='<div class="card"><h2>填問卷（不記名）</h2><div class="row seg" id="roleseg">'+fw.survey.respondents.map(r=>'<button data-role="'+r.id+'" class="'+(state.role===r.id?'on':'')+'">'+esc(r.label)+'</button>').join('')+'</div><p class="mut">'+esc(spec.stem)+'</p>';
   spec.groups.forEach(g=>{h+='<h3>'+esc(g.name)+'</h3>'+g.items.map(i=>'<label style="color:var(--ink)"><input type="checkbox" data-g="'+g.key+'" data-v="'+esc(i.value)+'" '+(state.picks[g.key].indexOf(i.value)>-1?'checked':'')+'> '+esc(i.text)+'</label>').join('');});
   h+='<div class="row" style="margin-top:12px"><button class="primary" id="submit">送出（只存在這個頁面）</button><button id="demo">載入示範資料（家長、學生各 20 份）</button><button id="clear">清除</button></div>'
-   +'<p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份。要送到 Apps Script 時，格式為 '+esc(JSON.stringify(PF.toPayload(state.role,{emotion:[],behavior:[],social:[]})))+'。</p></div>';
+   +'<p class="mut">目前：家長 '+t.parent.total+' 份、學生 '+t.student.total+' 份。問卷資料僅保留在目前頁面，重新整理或關閉後就會清除。</p></div>';
   if(!t.parent.total&&!t.student.total){return h+'<div class="card"><p class="mut">還沒有資料。先送出一份，或載入示範資料。</p></div>';}
   const cmp=PF.compare(fw,t);
   h+='<div class="card"><h2>統計：家長 vs 學生</h2><p class="mut"><span style="color:var(--teal)">■</span> 家長　<span style="color:var(--amber)">■</span> 學生　（百分比＝該身分填寫者中勾選的比例）</p>';
@@ -225,5 +1903,14 @@ document.addEventListener('change',e=>{
 document.addEventListener('input',e=>{const t=e.target;if(t.dataset&&t.dataset.scale!==undefined){document.getElementById('sv'+t.dataset.scale).textContent=t.value;}});
 render();
 })();
+</script>
+<script>
+document.getElementById('themeToggle').addEventListener('click',function(){
+ const dark=document.documentElement.dataset.theme!=='dark';
+ document.documentElement.dataset.theme=dark?'dark':'light';
+ this.textContent=dark?'☀ 淺色模式':'◐ 深色模式';
+ this.setAttribute('aria-pressed',String(dark));
+ this.setAttribute('aria-label',dark?'切換為淺色模式':'切換為深色模式');
+});
 </script>
 </body></html>
