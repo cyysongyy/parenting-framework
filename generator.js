@@ -30,9 +30,9 @@
         { label: '約定', text: s.chain.agreement }
       ],
       fourFPath: f.fourFOrder.map(id => ({
-        step: f.fourF.find(x => x.id === id).label,
-        iceberg: icebergLabel(fw, f.fourFToIceberg[id]),
-        sel: f.fourFToSEL[id].map(x => selLabel(fw, x))
+        id, step: f.fourF.find(x => x.id === id).label,
+        icebergId: f.fourFToIceberg[id], iceberg: icebergLabel(fw, f.fourFToIceberg[id]),
+        selIds: f.fourFToSEL[id], sel: f.fourFToSEL[id].map(x => selLabel(fw, x))
       })),
       rules: f.coherenceRules
     };
@@ -57,8 +57,8 @@
         id, label: meta.label, prompt: meta.prompt, avoid: meta.avoid,
         script: id === 'future' ? v.future : s.wedoScript[id],
         stem: st[id],
-        iceberg: icebergLabel(fw, f.fourFToIceberg[id]),
-        sel: f.fourFToSEL[id].map(x => selLabel(fw, x)),
+        iceberg: icebergLabel(fw, f.fourFToIceberg[id]), icebergId: f.fourFToIceberg[id],
+        sel: f.fourFToSEL[id].map(x => selLabel(fw, x)), selIds: f.fourFToSEL[id],
         questions: f.questionBank[a][id === 'facts' ? 'behavior' : id === 'feelings' ? 'feeling' : id === 'findings' ? 'belief' : 'future']
       };
     });
@@ -292,6 +292,11 @@
       if (!qb) return E('提問庫缺少年段：' + a);
       ['behavior', 'feeling', 'belief', 'future'].forEach(k => { if (!qb[k] || !qb[k].length) E('提問庫 ' + a + ' 缺 ' + k); });
     });
+    // 色彩：4F、SEL、冰山每一項都要有顏色
+    const col = f.colors || {};
+    f.fourFOrder.forEach(id => { if (!col.fourF || !col.fourF[id]) E('缺少 4F 顏色：' + id); });
+    selIds.forEach(id => { if (!col.sel || !col.sel[id]) E('缺少 SEL 顏色：' + id); });
+    LAYER_IDS.forEach(id => { if (!col.iceberg || !col.iceberg[id]) E('缺少冰山顏色：' + id); });
     // survey
     const items = {};
     fw.survey.groups.forEach(g => g.items.forEach(i => { items[g.key + '|' + i] = true; if (!fw.survey.studentItems[i]) E('學生版問卷缺少：' + i); }));

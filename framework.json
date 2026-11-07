@@ -334,7 +334,82 @@
         "title": "我要帶走的一個行動",
         "instruction": "從今天的四個步驟中，選一個明天先做。"
       }
-    ]
+    ],
+    "colors": {
+      "note": "同一個顏色在每個畫面代表同一件事：4F 四色、SEL 五色、冰山三層。l＝淺色模式，d＝深色模式。",
+      "fourF": {
+        "facts": {
+          "l": "#C0504D",
+          "d": "#F2A5A5"
+        },
+        "feelings": {
+          "l": "#B7791F",
+          "d": "#E9B872"
+        },
+        "findings": {
+          "l": "#2F8F5B",
+          "d": "#8FD1A0"
+        },
+        "future": {
+          "l": "#2E6FB5",
+          "d": "#9CC3E8"
+        }
+      },
+      "sel": {
+        "self_awareness": {
+          "l": "#0F8B8D",
+          "d": "#4FD1D3"
+        },
+        "self_management": {
+          "l": "#3F5BA9",
+          "d": "#8FA8F0"
+        },
+        "social_awareness": {
+          "l": "#7A4FB3",
+          "d": "#B79BE0"
+        },
+        "relationship_skills": {
+          "l": "#C2417A",
+          "d": "#F08AB5"
+        },
+        "responsible_decision": {
+          "l": "#8A5A2B",
+          "d": "#D9A066"
+        }
+      },
+      "iceberg": {
+        "behavior": {
+          "bg": {
+            "l": "#EAF4FB",
+            "d": "#2C3F55"
+          },
+          "fg": {
+            "l": "#1F2A3A",
+            "d": "#E6EDF3"
+          }
+        },
+        "feeling": {
+          "bg": {
+            "l": "#7DB4E6",
+            "d": "#3E6E9E"
+          },
+          "fg": {
+            "l": "#10233A",
+            "d": "#F2F6FA"
+          }
+        },
+        "belief": {
+          "bg": {
+            "l": "#2A5C8A",
+            "d": "#1E3A5F"
+          },
+          "fg": {
+            "l": "#FFFFFF",
+            "d": "#E6EDF3"
+          }
+        }
+      }
+    }
   },
   "audiences": {
     "elementary": {

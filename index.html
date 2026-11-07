@@ -2,9 +2,9 @@
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>親子教育架構</title>
 <style>
-:root{--ink:#1F2A3A;--mut:#4A5568;--line:#DDE3E1;--bg:#FBFBF8;--card:#fff;--teal:#2A7F7A;--amber:#B7791F;--red:#B5473A;--blue:#2A5C8A;--track:#E9EEF2}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745}}
-:root[data-theme="dark"]{--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745}
+:root{--ink:#1F2A3A;--mut:#4A5568;--line:#DDE3E1;--bg:#FBFBF8;--card:#fff;--teal:#2A7F7A;--amber:#B7791F;--red:#B5473A;--blue:#2A5C8A;--track:#E9EEF2;--chipfg:#FFFFFF;--sky:#E4EDF4;--sea:#BFD9EE}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745;--chipfg:#10233A;--sky:#1A2230;--sea:#223B57}}
+:root[data-theme="dark"]{--ink:#E6EDF3;--mut:#A9B4C2;--line:#2F3B4C;--bg:#161C26;--card:#1E2733;--teal:#5FC4BD;--amber:#E9B872;--red:#F08A7E;--blue:#7DB4E6;--track:#2C3745;--chipfg:#10233A;--sky:#1A2230;--sea:#223B57}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',Arial,sans-serif;padding:16px;line-height:1.55}
 .wrap{max-width:980px;margin:0 auto}
@@ -22,9 +22,30 @@ button.primary{background:var(--teal);color:#fff;border-color:var(--teal)}
 .tabs button{border-radius:10px;padding:9px 16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.layerrow{border-left:6px solid var(--teal);background:var(--track);border-radius:8px;padding:8px 12px;margin:8px 0}
-.layerrow.l2{border-color:var(--blue)}.layerrow.l3{border-color:var(--amber)}
-.layerrow small{display:block;color:var(--mut)}
+.layerrow{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0}
+.layerrow small{display:block;opacity:.8}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;margin:2px 4px 2px 0;background:var(--c);color:var(--chipfg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+.legend b{font-size:13px;color:var(--mut);margin-right:4px}
+.sky{background:var(--sky);padding:10px 0 0;border-radius:12px 12px 0 0}
+.sea{background:var(--sea);padding:0 0 10px;border-radius:0 0 12px 12px}
+.wl{position:relative;border-top:3px dashed var(--blue);height:0}
+.wl span{position:absolute;right:8px;top:-22px;font-size:12px;color:var(--blue);font-weight:700}
+.band{text-align:center;font-size:14px;line-height:1.45}
+.band small{display:block;font-size:12px;opacity:.85;margin-bottom:2px}
+.band.b1{clip-path:polygon(24% 0,76% 0,94% 100%,6% 100%);padding:16px 17% 14px;margin:0 6%}
+.band.b2{clip-path:polygon(4% 0,96% 0,100% 100%,0 100%);padding:16px 12% 14px}
+.band.b3{clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);padding:14px 16% 26px}
+.f4{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--c);border-radius:12px;padding:12px}
+.fc .fb{display:inline-block;background:var(--c);color:var(--chipfg);border-radius:999px;padding:1px 12px;font-weight:700;margin-right:6px}
+.map{display:grid;grid-template-columns:auto 18px auto 18px 1fr;gap:6px 4px;align-items:center;margin:8px 0}
+.map .ar{text-align:center;color:var(--mut)}
+.map .box{border-radius:10px;padding:8px 10px;font-size:14px;font-weight:700}
+.sel5{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.sc{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--c);border-radius:12px;padding:12px;font-size:14px}
+.sc .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--chipfg);align-items:center;justify-content:center;font-weight:700;margin-right:6px}
+.sc small{display:block;color:var(--mut);margin:4px 0}
 .chain{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:8px 0}
 .chain div{flex:1 1 150px;background:var(--track);border-radius:10px;padding:8px 10px;font-size:14px}
 .chain b{display:block;font-size:12px;color:var(--teal)}
@@ -72,31 +93,60 @@ function drawAud(){ $('aud').innerHTML=PF.AUDIENCES.map(a=>'<button data-a="'+a+
 function drawTabs(){ $('tabs').innerHTML=TABS.map(t=>'<button data-t="'+t[0]+'" class="'+(state.tab===t[0]?'on':'')+'">'+t[1]+'</button>').join('');}
 function plan(){return PF.buildPlan(fw,{situation:state.sit,audience:state.aud,resultsDisplay:$('rd').value||undefined});}
 function ul(a){return '<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';}
-function icebergCol(title,ic,layers){
-  return '<div><h3>'+title+'</h3>'+layers.map((l,i)=>'<div class="layerrow l'+(i+1)+'"><small>'+esc(l.label)+'</small>'+esc(ic[l.id])+'</div>').join('')+'</div>';}
+function colorCSS(){const c=fw.core.colors;let l='',d='';
+  Object.keys(c.fourF).forEach(k=>{l+='--f-'+k+':'+c.fourF[k].l+';';d+='--f-'+k+':'+c.fourF[k].d+';';});
+  Object.keys(c.sel).forEach(k=>{l+='--s-'+k+':'+c.sel[k].l+';';d+='--s-'+k+':'+c.sel[k].d+';';});
+  Object.keys(c.iceberg).forEach(k=>{l+='--i-'+k+':'+c.iceberg[k].bg.l+';--if-'+k+':'+c.iceberg[k].fg.l+';';d+='--i-'+k+':'+c.iceberg[k].bg.d+';--if-'+k+':'+c.iceberg[k].fg.d+';';});
+  return ':root{'+l+'}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){'+d+'}}:root[data-theme="dark"]{'+d+'}';}
+const st=document.createElement('style');st.textContent=colorCSS();document.head.appendChild(st);
+const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
+const chipS=(id,t)=>'<span class="chip" style="--c:var(--s-'+id+')">'+esc(t)+'</span>';
+const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
+const selOf=id=>fw.core.sel.find(x=>x.id===id);
+const fOf=id=>fw.core.fourF.find(x=>x.id===id);
+const iceBg=id=>'background:var(--i-'+id+');color:var(--if-'+id+')';
+
+function icebergBlock(title,ic,layers){
+  const L=layers;
+  const band=(i,cls)=>'<div class="band '+cls+'" style="'+iceBg(L[i].id)+'"><small>'+esc(L[i].label)+'</small>'+esc(ic[L[i].id])+'</div>';
+  return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
+
+function legendCard(){
+  const c=fw.core;
+  return '<div class="card"><h2>色彩對照</h2><div class="legend"><b>4F</b>'+c.fourFOrder.map(id=>chipF(id,fOf(id).label)).join('')+'</div>'
+   +'<div class="legend"><b>SEL 五大核心</b>'+c.sel.map(s=>chipS(s.id,s.label)).join('')+'</div>'
+   +'<div class="legend"><b>冰山三層</b>'+c.iceberg.layers.map(l=>chipI(l.id,l.label)).join('')+'</div>'
+   +'<p class="mut">同一個顏色在每個畫面都代表同一件事，看顏色就知道現在是哪一步、哪一層、哪一項能力。</p></div>';
+}
 
 // ───────── 層次 ─────────
 function viewLayers(){
   const p=plan(),L=p.layers,c=L.coherence,ib=L.iceberg,a=L.audience;let h='';
   h+='<div class="card"><h2>範例（'+esc(p.audienceLabel)+'）</h2><p><b>'+esc(p.example)+'</b></p>'+(p.extras.leadIn?'<p class="mut">'+esc(p.extras.leadIn)+'</p>':'')+'</div>';
+  h+=legendCard();
   h+='<div class="card"><h2>1 邏輯一貫性</h2><p>'+esc(c.storyline)+'</p><div class="chain">'+c.chain.map(x=>'<div><b>'+esc(x.label)+'</b>'+esc(x.text)+'</div>').join('')+'</div>'
-   +'<h3>4F 與冰山、SEL 對應</h3><ul>'+c.fourFPath.map(x=>'<li><b>'+esc(x.step)+'</b> → '+esc(x.iceberg)+'；能力：'+esc(x.sel.join('、'))+'</li>').join('')+'</ul>'
+   +'<h3>冰山 × 4F × SEL 怎麼對應</h3><div class="map">'+c.fourFPath.map(x=>
+     '<div class="box" style="background:var(--f-'+x.id+');color:var(--chipfg)">'+esc(x.step.split(' ')[0])+'</div><div class="ar">→</div>'
+    +'<div class="box" style="'+iceBg(x.icebergId)+';border:1px solid var(--line)">'+esc(x.iceberg.replace(/（.*）/,''))+'</div><div class="ar">→</div>'
+    +'<div>'+x.selIds.map(s=>chipS(s,selOf(s).label)).join('')+'</div>').join('')+'</div>'
    +'<details><summary class="mut">一致性規則</summary>'+ul(c.rules)+'</details></div>';
-  h+='<div class="card"><h2>2 冰山模式</h2><p class="mut">'+esc(ib.note)+'　'+esc(ib.depthNote)+'</p><div class="grid">'+icebergCol('孩子的冰山',ib.child,ib.layers)+icebergCol('父母的冰山',ib.parent,ib.layers)+'</div>'
+  h+='<div class="card"><h2>2 冰山模式</h2><p class="mut">'+esc(ib.note)+'　'+esc(ib.depthNote)+'</p><div class="grid">'+icebergBlock('孩子的冰山',ib.child,ib.layers)+icebergBlock('父母的冰山',ib.parent,ib.layers)+'</div>'
    +'<p><b>兩座冰山：</b>'+esc(ib.interplay)+'</p><p class="mut">'+esc(ib.rule)+'</p></div>';
-  h+='<div class="card"><h2>3 I do · You do · We do</h2><div class="grid">'+L.stages.map(s=>{
-    let x='<div><h3>'+esc(s.label)+'</h3><p>'+esc(s.purpose)+'</p>';
+  h+='<div class="card"><h2>3 I do · You do · We do</h2><div class="grid">'+L.stages.map((s,i)=>{
+    const col=['var(--s-self_awareness)','var(--s-social_awareness)','var(--s-responsible_decision)'][i];
+    let x='<div style="border-top:8px solid '+col+';border-radius:10px;padding-top:6px"><h3>'+esc(s.label)+'</h3><p>'+esc(s.purpose)+'</p>';
     x+='<p class="mut">講師：'+esc(s.leaderMoves.join('；'))+'<br>家長：'+esc(s.participantMoves.join('；'))+'<br>成果：'+esc(s.output)+'</p>';
     if(s.id==='ido')x+='<p>'+esc(s.content.trigger)+'</p><p>示範句：'+esc(s.content.model)+'</p><p class="'+(s.content.experience.status==='TODO'?'todo':'')+'">'+esc(s.content.experience.text)+'</p>';
     if(s.id==='youdo'){x+=ul(s.content.questions);if(s.content.reasons)x+='<p class="mut">可能的原因：'+esc(s.content.reasons.join('、'))+'</p>';}
     if(s.id==='wedo')x+='<p>'+esc(s.content.future)+'</p><p class="mut">約定方式：'+esc(s.content.contractStyle)+'</p>';
     return x+'</div>';}).join('')+'</div></div>';
-  h+='<div class="card"><h2>4 4F 模式</h2>'+L.fourF.map(f=>'<div class="item"><b>'+esc(f.label)+'</b> <span class="tag">'+esc(f.iceberg)+'</span><span class="tag">'+esc(f.sel.join('、'))+'</span>'
-   +'<p>'+esc(f.script)+'</p><p class="mut">'+esc(a.label)+'的說法：'+esc(f.stem)+'　避免：'+esc(f.avoid)+'</p></div>').join('')+'</div>';
+  h+='<div class="card"><h2>4 4F 模式</h2><div class="f4">'+L.fourF.map((f,i)=>'<div class="fc" style="--c:var(--f-'+f.id+')"><span class="fb">F'+(i+1)+'</span><b>'+esc(f.label)+'</b>'
+   +'<p>'+esc(f.script)+'</p><p class="mut">'+esc(a.label)+'的說法：'+esc(f.stem)+'<br>避免：'+esc(f.avoid)+'</p>'
+   +'<div>'+chipI(f.icebergId,f.iceberg)+f.selIds.map(s=>chipS(s,selOf(s).label)).join('')+'</div></div>').join('')+'</div></div>';
   h+='<div class="card"><h2>5 對象：'+esc(a.label)+'（'+esc(a.grades)+'）</h2><p>'+esc(a.developmental)+'</p><p><b>決策權：</b>'+esc(a.autonomy)+'<br><b>家長角色：</b>'+esc(a.parentRole)+'<br><b>約定方式：</b>'+esc(a.contractStyle)+'</p><h3>說話方式</h3>'+ul(a.language)+'<h3>要避免</h3>'+ul(a.cautions)+'</div>';
-  h+='<div class="card"><h2>SEL 五大核心在這個情境</h2><ul>'+p.extras.sel.map(s=>'<li><b>'+esc(s.label)+'</b>：'+esc(s.inThisCase)+'</li>').join('')+'</ul>'
+  h+='<div class="card"><h2>SEL 五大核心：在這個情境裡</h2><div class="sel5">'+p.extras.sel.map((s,i)=>'<div class="sc" style="--c:var(--s-'+s.id+')"><span class="num">'+(i+1)+'</span><b>'+esc(s.label)+'</b><small>'+esc(s.desc)+'</small>'+esc(s.inThisCase)+'</div>').join('')+'</div>'
    +(p.extras.system?'<h3>系統觀</h3><p>'+esc(p.extras.system.layers.join(' → '))+'<br>'+esc(p.extras.system.question)+'</p>':'')
-   +'<h3>今天帶走一個行動</h3><ol>'+p.extras.closing.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol>'
+   +'<h3>今天帶走一個行動</h3><div class="f4">'+p.extras.closing.map((x,i)=>'<div class="fc" style="--c:var(--f-'+fw.core.fourFOrder[i]+')"><span class="fb">F'+(i+1)+'</span>'+esc(x)+'</div>').join('')+'</div>'
    +'<p class="mut">'+esc(p.extras.results.text)+'</p>'+(p.extras.referral?'<p class="mut"><b>轉介提醒：</b>'+esc(p.extras.referral)+'</p>':'')+'</div>';
   if(p.todos.length)h+='<div class="card"><h2>待確認</h2><ul>'+p.todos.map(t=>'<li class="todo">'+esc(t)+'</li>').join('')+'</ul></div>';
   return h;
@@ -115,13 +165,13 @@ function viewInteract(){
     if(it.type==='scale')h+='<input type="range" min="1" max="5" value="3" data-scale="'+idx+'"> <span id="sv'+idx+'">3</span>　<span class="mut">'+esc(d.labels[0])+' ←→ '+esc(d.labels[1])+'</span>';
     if(it.type==='reflect'){ if(d.model)h+='<p class="mut">示範：'+esc(d.model)+'</p>'; h+='<textarea rows="2" placeholder="用一句話寫下來"></textarea>'; if(d.options)h+=d.options.map(o=>'<label style="color:var(--ink)"><input type="radio" name="cr"> '+esc(o)+'</label>').join(''); }
     if(it.type==='guess'){ const n=state.guess; h+='<p><b>'+esc(d.example)+'</b></p>'
-        +d.steps.map((s,i)=>'<div class="layerrow l'+(i+1)+'"><small>'+esc(s.label)+'</small>'+(i<=n?esc(s.text):'？')+'</div>').join('')
+        +d.steps.map((s,i)=>'<div class="layerrow" style="'+iceBg(s.layer)+'"><small>'+esc(s.label)+'</small>'+(i<=n?esc(s.text):'？')+'</div>').join('')
         +'<button class="primary" data-guess="1">'+(n>=2?'重來':'按一下（第 '+(n+2)+' 下揭曉）')+'</button>'; }
-    if(it.type==='match'){ const sh=shuffle(d.items,state.sit+state.aud); h+=sh.map((x,i)=>'<div class="item"><p>'+esc(x.text)+'</p><select data-match="'+idx+'" data-ans="'+x.answer+'"><option value="">放進哪一層？</option>'+d.layers.map(l=>'<option value="'+l.id+'">'+esc(l.label)+'</option>').join('')+'</select> <span class="r"></span></div>').join('')+'<button data-check="match" data-i="'+idx+'">檢查</button>'; }
+    if(it.type==='match'){ h+='<div class="legend">'+d.layers.map(l=>chipI(l.id,l.label)).join('')+'</div>'; const sh=shuffle(d.items,state.sit+state.aud); h+=sh.map((x,i)=>'<div class="item"><p>'+esc(x.text)+'</p><select data-match="'+idx+'" data-ans="'+x.answer+'"><option value="">放進哪一層？</option>'+d.layers.map(l=>'<option value="'+l.id+'">'+esc(l.label)+'</option>').join('')+'</select> <span class="r"></span></div>').join('')+'<button data-check="match" data-i="'+idx+'">檢查</button>'; }
     if(it.type==='roleswap')h+=d.roles.map(r=>'<label style="color:var(--ink)">'+esc(r.role)+'會說什麼？<textarea rows="2"></textarea></label><details><summary class="mut">提示</summary><p class="mut">他心裡可能相信：'+esc(r.hint)+'</p></details>').join('');
     if(it.type==='order'){ const sh=shuffle(d.items,state.aud+state.sit+'o'); h+=sh.map(x=>'<div class="item"><p>'+esc(x.text)+'</p><select data-order="'+idx+'" data-ans="'+x.answer+'"><option value="">第幾步？</option><option>1</option><option>2</option><option>3</option><option>4</option></select> <span class="r"></span></div>').join('')+'<button data-check="order" data-i="'+idx+'">檢查</button>'; }
     if(it.type==='commit'){ h+=d.fields.map(f=>'<label style="color:var(--ink)">'+esc(f)+'<input type="text"></label>').join('')+'<p class="mut">參考：'+esc(d.example)+'</p>'; }
-    if(it.type==='ladder')h+=d.rungs.map((r,i)=>'<div class="layerrow l'+(i%3+1)+'"><small>'+esc(r.layer)+'</small>'+ul(r.questions)+'</div>').join('');
+    if(it.type==='ladder')h+=d.rungs.map((r,i)=>'<div class="layerrow" style="'+(['behavior','feeling','belief'][i]?iceBg(['behavior','feeling','belief'][i]):i===3?'background:var(--f-future);color:var(--chipfg)':'')+'"><small>'+esc(r.layer)+'</small>'+ul(r.questions)+'</div>').join('');
     h+='</div>';
   });
   return h;
