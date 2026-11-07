@@ -112,8 +112,8 @@ Object.assign(GLYPH,{
  link2:'<path d="M-3 3L3 -3M-6 0L-8 2Q-10 5 -7 7Q-5 9 -2 7L0 5M6 0L8 -2Q10 -5 7 -7Q5 -9 2 -7L0 -5"/>'
 });
 const ico=(k,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'" viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(GLYPH[k]||GLYPH.sparkle)+'</svg>';
-const KICK=[[/冰山|水面/,'iceberg'],[/診斷|結構層|價值信念/,'magnifier'],[/SEL|五大核心|能力/,'sprout'],[/4F/,'chat'],[/問卷|統計|結果|比對/,'chart'],[/地圖|主線|順序|邏輯|三個工具|兩個理論/,'map'],[/帶回家|一週|收束/,'home'],[/約定|行動/,'flag'],[/觀察/,'eye'],[/輔導者|提問|問題|我的問題/,'question'],[/講師|講者|示範/,'pencil'],[/學員|聽眾|You do/,'ears'],[/I do|家長的冰山/,'eye'],[/We do|一起/,'people'],[/API|設定/,'key'],[/情境|例子|這一場|開場|破題|為什麼/,'book'],[/系統/,'link2'],[/孩子/,'heart']];
-const STIC={s_open:'door',s_ice:'iceberg',s_4f:'chat',s_go:'flag',open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
+const KICK=[[/吃什麼卡/,'gift'],[/動物/,'heart'],[/Check-in/,'heart'],[/冰山|水面/,'iceberg'],[/診斷|結構層|價值信念/,'magnifier'],[/SEL|五大核心|能力/,'sprout'],[/4F/,'chat'],[/問卷|統計|結果|比對/,'chart'],[/地圖|主線|順序|邏輯|三個工具|兩個理論/,'map'],[/帶回家|一週|收束/,'home'],[/約定|行動/,'flag'],[/觀察/,'eye'],[/輔導者|提問|問題|我的問題/,'question'],[/講師|講者|示範/,'pencil'],[/學員|聽眾|You do/,'ears'],[/I do|家長的冰山/,'eye'],[/We do|一起/,'people'],[/API|設定/,'key'],[/情境|例子|這一場|開場|破題|為什麼/,'book'],[/系統/,'link2'],[/孩子/,'heart']];
+const STIC={ci:'heart',t_ci:'heart',s_ci:'heart',s_open:'door',s_ice:'iceberg',s_4f:'chat',s_go:'flag',open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
 const HERO='<svg class="herodeco" viewBox="0 0 220 150" aria-hidden="true"><path d="M0 150V118Q40 96 80 112T160 104T220 112V150Z" style="fill:var(--s-self_management)" opacity=".22"/><path d="M0 150V132Q50 116 100 128T220 126V150Z" style="fill:var(--f-findings)" opacity=".28"/><circle cx="178" cy="34" r="14" style="fill:var(--amber)" opacity=".85"/><g style="fill:var(--card)" opacity=".9"><ellipse cx="60" cy="30" rx="22" ry="7"/><ellipse cx="76" cy="25" rx="13" ry="7"/></g><g transform="translate(96 78)"><circle cx="0" cy="-22" r="8" style="fill:var(--i-feeling)"/><path d="M-10 18V-8Q0 -14 10 -8V18Z" style="fill:var(--i-feeling)"/><circle cx="26" cy="-6" r="6" style="fill:var(--f-feelings)"/><path d="M19 18V4Q26 0 33 4V18Z" style="fill:var(--f-feelings)"/><path d="M10 2L19 6" style="stroke:var(--i-feeling)" stroke-width="3" stroke-linecap="round"/><path d="M13 -34C8 -40 0 -36 5 -30L13 -22L21 -30C26 -36 18 -40 13 -34Z" style="fill:var(--red)" opacity=".85"/></g></svg>';
 function decorate(){
  if(!A)return;
@@ -137,6 +137,7 @@ const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
 const STP=[
+ {id:'ci',n:'Check-in',tag:'今天的我'},
  {id:'open',n:'開場',tag:'為什麼是這個情境'},
  {id:'ido',n:'I do',tag:'冰山・先看自己'},
  {id:'youdo',n:'You do',tag:'冰山＋SEL・看見孩子'},
@@ -144,6 +145,7 @@ const STP=[
  {id:'close',n:'約定',tag:'明天就能做的事'}];
 const STT=(fw.theory?fw.theory.timeline:[]).map(x=>({id:x.id,n:x.n,tag:x.min+' 分・'+x.tag}));
 const STS=[
+ {id:'s_ci',n:'Check-in',tag:'今天的我'},
  {id:'s_open',n:'開場',tag:'一個情境'},
  {id:'s_ice',n:'冰山',tag:'看見水面下'},
  {id:'s_4f',n:'4F',tag:'說得出口'},
@@ -151,6 +153,7 @@ const STS=[
 function STL(){return S.mode==='simple'?STS:S.mode==='theory'&&STT.length?STT:STP;}
 const stageDef=id=>fw.core.stages.find(x=>x.id===id);
 function plan(){return PF.buildPlan(fwx(),{situation:S.sit,audience:S.aud,resultsDisplay:'projector'});}
+function firstStage(){const i=STL().findIndex(x=>/^(open|t_open|s_open)$/.test(x.id));return i<0?0:i;}
 function setStage(i){S.stage=Math.max(0,Math.min(STL().length-1,i));draw();window.scrollTo({top:0});}
 function topbar(extra){return '<div class="topbar"><button data-act="flow">← 回講師主線</button><span class="mut">'+(extra||'')+'</span></div>';}
 
@@ -165,6 +168,7 @@ function leader(def){return '<details class="lead" open><summary>講師帶領</s
 function ask(key,label,ph){return '<div class="audience"><label for="'+key+'">聽眾一句話：'+esc(label)+'</label><textarea id="'+key+'" rows="2" placeholder="'+esc(ph||'')+'">'+esc(S.mine[key]||'')+'</textarea></div>';}
 
 function stageHTML(id){
+ if(id==='ci'||id==='t_ci'||id==='s_ci')return checkinHTML(id);
  if(id.indexOf('t_')===0)return theoryHTML(id);
  if(id.indexOf('s_')===0)return simpleHTML(id);
  const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];
@@ -214,6 +218,17 @@ function stageHTML(id){
   +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';
  }
+ return h;}
+function checkinHTML(id){
+ const C=fw.checkin;if(!C)return '';S.ci=S.ci||{};
+ const nextTxt={ci:'接下來進入今天的情境。',t_ci:'認識了自己的冰山，我們來看冰山理論。',s_ci:'認識了自己的冰山，接下來看今天的情境。'}[id];
+ let h='<div class="card hero2"><p class="kicker">Check-in</p><h2>'+esc(C.title)+'</h2><p class="big2">請先選，不必解釋。選完兩人一組，只說三句。</p></div>';
+ C.cards.forEach(c=>{const pick=S.ci[c.id],it=pick!=null?c.items[pick]:null;
+  h+='<div class="card"><p class="kicker">'+esc(c.name)+'</p><div class="q">'+esc(c.ask)+'</div><div class="cichips">'+c.items.map((x,i)=>'<button data-act="cipick" data-c="'+c.id+'" data-v="'+i+'" class="cichip '+(pick===i?'primary':'')+'" aria-pressed="'+(pick===i)+'">'+esc(x.t)+'</button>').join('')+'</div>'
+   +(it?'<div class="note"><b>'+esc(it.t)+'</b>：'+esc(it.f)+'<br><span class="mut">這只是一個邀請，答案以選的人自己的說法為準。</span></div>':'<p class="mut">點一張，看看它可能代表什麼。</p>')+'</div>';});
+ h+='<div class="card"><p class="kicker">瞭解自己的冰山</p><div class="ice3">'+C.iceberg.map(l=>'<div style="'+iceBg(l.id)+'"><small>'+esc(l.label)+'</small>'+esc(l.q)+'</div>').join('')+'</div>'
+  +'<p class="kicker" style="margin-top:12px">兩人一組怎麼做</p>'+ul(C.how)+'</div>'
+  +bridge(C.closing+' '+nextTxt)+'<p class="mut">'+esc(C.note)+'</p>';
  return h;}
 function simpleHTML(id){
  const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];let h='';
@@ -453,9 +468,9 @@ A.addEventListener('click',e=>{
   case 'clearkey':S.ai.key='';saveAI();return draw();
   case 'match':return doMatch();
   case 'usematchall':S.sit=d.s;S.all=true;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
-  case 'usematch':S.sit=d.s;S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
+  case 'usematch':S.sit=d.s;S.stage=firstStage();S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'gen':return doGen();
-  case 'usecustom':S.sit='custom';S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
+  case 'usecustom':S.sit='custom';S.stage=firstStage();S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'live':S.view='live';liveStart();draw();return window.scrollTo({top:0});
   case 'livego':liveStart();return draw();
   case 'livestop':liveStop();return draw();
@@ -464,6 +479,7 @@ A.addEventListener('click',e=>{
   case 'copy':{const t=$('sumtxt').textContent,ok=()=>{$('copied').textContent='已複製，可以貼到 LINE 或筆記。';};
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,()=>{$('copied').textContent='無法自動複製，請長按文字手動複製。';});else $('copied').textContent='無法自動複製，請長按文字手動複製。';return;}
   case 'print':return window.print();
+  case 'cipick':{S.ci=S.ci||{};const v=+d.v;S.ci[d.c]=S.ci[d.c]===v?null:v;return draw();}
   case 'dgdom':S.diag={dom:d.v,st:[],bl:[]};return draw();
   case 'dgst':case 'dgbl':{const D=fw.theory.diagnosis,dk=PF.diagnose(fw,curTally(),{domain:S.diag.dom}).conclusion.domain;S.diag.dom=dk;const key=d.act==='dgst'?'structure':'beliefs',arr=d.act==='dgst'?S.diag.st:S.diag.bl,v=D.domains[dk][key][+d.v],i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);return draw();}
   case 'dgsit':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.view='flow';return setStage(Math.max(0,STL().findIndex(x=>x.id==='t_ido')));
@@ -471,7 +487,7 @@ A.addEventListener('click',e=>{
   case 'submit':{const pk={};fw.survey.groups.forEach(g=>{pk[g.key]=S.picks[g.key].slice();S.picks[g.key]=[];});S.resp.push({role:S.role,picks:pk});return draw();}
   case 'demo':S.resp=PF.demoResponses(fw,20,20);return draw();
   case 'clear':S.resp=[];fw.survey.groups.forEach(g=>S.picks[g.key]=[]);return draw();
-  case 'sitgo':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.stage=0;S.view='flow';draw();return window.scrollTo({top:0});
+  case 'sitgo':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.stage=firstStage();S.view='flow';draw();return window.scrollTo({top:0});
  }
 });
 draw();

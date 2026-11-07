@@ -209,3 +209,5 @@ input[type=password],input[type=text]{width:100%}
 @media(max-width:900px){.tools2{grid-template-columns:1fr}}
 .stepper:has(button:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
 .tools2 figure:nth-child(2) svg{max-width:100%}.tools2 .f4lab b{font-size:14px}
+
+.cichips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.cichip{padding:8px 14px;border-radius:999px;font-weight:600}
