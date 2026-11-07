@@ -87,25 +87,29 @@
         "id": "facts",
         "label": "Facts 事實",
         "prompt": "發生了什麼事？只還原過程，不評論。",
-        "avoid": "「你怎麼又…」「你就是…」"
+        "avoid": "「你怎麼又…」「你就是…」",
+        "q": "What 什麼事"
       },
       {
         "id": "feelings",
         "label": "Feelings 感受",
         "prompt": "你當下的心情如何？哪一部分最挫折、最開心？",
-        "avoid": "「這有什麼好難過的」"
+        "avoid": "「這有什麼好難過的」",
+        "q": "How 感覺如何"
       },
       {
         "id": "findings",
         "label": "Findings 發現",
         "prompt": "找出原因與需要：這個情緒或行為在提醒我們什麼？",
-        "avoid": "急著給答案或下結論"
+        "avoid": "急著給答案或下結論",
+        "q": "Why 為什麼"
       },
       {
         "id": "future",
         "label": "Future 未來",
         "prompt": "約定具體的下一步：時間、地點、誰、做什麼。",
-        "avoid": "只說「下次不要」"
+        "avoid": "只說「下次不要」",
+        "q": "When 何時做"
       }
     ],
     "fourFOrder": [

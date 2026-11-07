@@ -28,6 +28,7 @@ const iceBg=id=>'background:var(--i-'+id+');color:var(--if-'+id+')';
 const chipI=(id,t)=>'<span class="chip" style="background:var(--i-'+id+');color:var(--if-'+id+');border:1px solid var(--line)">'+esc(t)+'</span>';
 const chipF=(id,t)=>'<span class="chip" style="--c:var(--f-'+id+')">'+esc(t)+'</span>';
 const chipS=(id,t)=>'<span class="chip" style="--c:var(--s-'+id+')">'+esc(t)+'</span>';
+const wq=f=>{const q=(fOf(f.id)||{}).q;return q?'<i class="wq">'+esc(q)+'</i>':'';};
 // ── 插圖（SVG）：冰山、SEL 五核心、4F 路徑 ──
 const GLYPH={
  eye:'<path d="M-9 0Q0 -8 9 0Q0 8 -9 0Z"/><circle r="2.8"/>',
@@ -78,7 +79,7 @@ function f4Path(){
  const xs=[80,240,400,560],ys=[96,50,96,50],ids=['facts','feelings','findings','future'],g=['camera','heart','bulb','flag'];
  let d='M0 74 C40 74 40 96 80 96 S200 50 240 50 S360 96 400 96 S520 50 560 50 S620 60 640 60';
  let nodes='';ids.forEach((id,i)=>{nodes+='<g transform="translate('+xs[i]+' '+ys[i]+')"><circle r="33" style="fill:var(--f-'+id+')" opacity=".2"/><circle r="26" style="fill:var(--f-'+id+')"/><g>'+(id==='feelings'?'<path d="M0 9C-13 -1 -9 -11 0 -4C9 -11 13 -1 0 9Z" style="fill:var(--chipfg)"/>':glyph(g[i],1.15))+'</g><circle cx="-24" cy="-24" r="10" style="fill:var(--card);stroke:var(--f-'+id+')" stroke-width="2"/><text x="-24" y="-20" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--ink)">'+(i+1)+'</text></g>';});
- const lab=F.map((f,i)=>'<div style="color:var(--f-'+f.id+')"><b>'+esc(f.label.split(' ')[0])+'</b><small>'+esc(f.label.split(' ')[1]||'')+'</small></div>').join('');
+ const lab=F.map((f,i)=>'<div style="color:var(--f-'+f.id+')"><b>'+esc(f.label.split(' ')[0])+'</b><small>'+esc(f.label.split(' ')[1]||'')+'</small><em class="wq">'+esc(f.q||'')+'</em></div>').join('');
  return '<div class="f4art"><svg viewBox="0 0 640 140" role="img" aria-label="4F 對話路徑：Facts、Feelings、Findings、Future"><path d="'+d+'" fill="none" style="stroke:var(--line)" stroke-width="10" stroke-linecap="round"/><path d="'+d+'" fill="none" style="stroke:var(--card)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>'+nodes+'</svg><div class="f4lab">'+lab+'</div></div>';}
 function toolsOverview(){
  return '<div class="card tools"><p class="kicker">三個工具，一眼看</p><div class="tools3"><figure>'+iceArt()+'<figcaption><b>冰山</b>看見水面下</figcaption></figure><figure>'+selFlower()+'<figcaption><b>SEL 五核心</b>要培養的能力</figcaption></figure><figure>'+f4Path()+'<figcaption><b>4F</b>說得出口的順序</figcaption></figure></div></div>';}
@@ -191,7 +192,7 @@ function stageHTML(id){
  if(id==='wedo'){
   const d=stageDef('wedo');
   h+='<div class="card"><p class="kicker">We do　一起對話</p><h2>Facts → Feelings → Findings → Future</h2>'+leader(d)+'</div>'
-  +'<div class="card"><p class="kicker">4F 如何對應冰山與 SEL</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div><details><summary>提問與要避免的話</summary>'+ul(f.questions||[])+'<p class="mut">避免：'+esc(f.avoid)+'</p><p class="mut">'+esc(a.label)+'句型：'+esc(a.fourFStyle[f.id])+'</p></details></div></div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">4F 如何對應冰山與 SEL</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b>'+wq(f)+'</div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">'+esc(f.prompt)+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div><details><summary>提問與要避免的話</summary>'+ul(f.questions||[])+'<p class="mut">避免：'+esc(f.avoid)+'</p><p class="mut">'+esc(a.label)+'句型：'+esc(a.fourFStyle[f.id])+'</p></details></div></div>').join('')+'</div></div>'
   +'<div class="card"><p class="kicker">為什麼是這個順序</p><p>先還原事實，對方才不會防衛；先說自己的感受，才輪到對方；一起找到需要，約定才會有人遵守；最後才訂下一步。</p><div class="note">'+esc(fw.core.coherenceRules[1])+'</div></div>'
   +'<div class="card"><p class="kicker">輔導者的立場：用提問引出孩子自己的答案</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>'
   +(s.counselorQuestions?'<div class="card"><p class="kicker">四種啟發式提問（針對這個情境）</p><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div></div>':'')
@@ -237,7 +238,7 @@ function theoryHTML(id){
    +bridge('有了看見，也知道要培養什麼能力。我們需要一個說得出口的順序。');}
  if(id==='t_4f'){
   const m=T.modules.f4;
-  return theoryCard('f4','方法','<div class="card"><p class="kicker">4F 如何串起冰山、SEL 與 I/You/We do</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">誰先說：'+esc(m.speakers[f.id])+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div></div></div>').join('')+'</div></div>'
+  return theoryCard('f4','方法','<div class="card"><p class="kicker">4F 如何串起冰山、SEL 與 I/You/We do</p>'+f4Path()+'<div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b>'+wq(f)+'</div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">誰先說：'+esc(m.speakers[f.id])+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div></div></div>').join('')+'</div></div>'
    +'<div class="card"><p class="kicker">輔導者的立場</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>')
    +bridge('方法有了。接下來用一個操作程序做一遍：先看我做，再換你做，最後一起做。');}
  if(id==='t_diag'){
@@ -275,7 +276,7 @@ function theoryHTML(id){
   if(id==='t_you'){
    h2+=where('<p class="big2">'+esc(au.example)+'</p><div class="grid2">'+ice('孩子的冰山（參考答案）',au.childIceberg)+'<div><h3>家長角色可以這樣問（'+esc(a.label)+'）</h3>'+ul(au.youDoQuestions)+'<h3>SEL 輔導提問</h3>'+ul(SEL.map(c=>s.selQuestions&&s.selQuestions[c.id]).filter(Boolean).slice(0,3))+'</div></div>')+ask('swap','孩子心裡可能在說…','先猜他的感受與需要，不評論對錯');
    return h2+bridge('你們看見了孩子的冰山。接下來，我們一起把它走成一個約定。');}
-  h2+=where(f4Path()+'<div class="f4t">'+F.map((f,k)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(k+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p><p class="mut">誰先說：'+esc(T.modules.f4.speakers[f.id])+'</p></div></div>').join('')+'</div>'
+  h2+=where(f4Path()+'<div class="f4t">'+F.map((f,k)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(k+1)+'</span><b>'+esc(f.label)+'</b>'+wq(f)+'</div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p><p class="mut">誰先說：'+esc(T.modules.f4.speakers[f.id])+'</p></div></div>').join('')+'</div>'
    +(s.counselorQuestions?'<h3>四種啟發式提問</h3><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div>':''))
    +'<div class="card"><p class="kicker">觀察者檢核表</p>'+ul(T.observer)+'<div class="note">'+esc(p.extras.referral)+'</div></div>';
   return h2+bridge('練習過後，帶一個約定回家。');}
