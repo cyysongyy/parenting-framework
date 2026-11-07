@@ -281,7 +281,8 @@
     const f = fw.core, selIds = f.sel.map(x => x.id);
     // 理論到實務模式
     if (fw.theory) {
-      ['iceberg', 'sel', 'ido', 'f4'].forEach(k => { const m = fw.theory.modules && fw.theory.modules[k]; if (!m) return E('theory 缺少模組：' + k); ['name', 'oneLine', 'why', 'question', 'interaction'].forEach(f => { if (!m[f]) E('theory.' + k + ' 缺少 ' + f); }); if (!m.notes || !m.notes.length) E('theory.' + k + ' 缺少講者備忘'); });
+      ['iceberg', 'sel', 'f4'].forEach(k => { const m = fw.theory.modules && fw.theory.modules[k]; if (!m) return E('theory 缺少模組：' + k); ['name', 'oneLine', 'why', 'question', 'interaction'].forEach(f => { if (!m[f]) E('theory.' + k + ' 缺少 ' + f); }); if (!m.notes || !m.notes.length) E('theory.' + k + ' 缺少講者備忘'); });
+      const pr = fw.theory.procedure; if (!pr || !pr.steps || pr.steps.length !== 3) E('theory.procedure 需有 I do / You do / We do 三個步驟'); else pr.steps.forEach(st => { ['leader', 'learner', 'output', 'timing'].forEach(f => { if (!st[f] || !st[f].length) E('theory.procedure.' + st.id + ' 缺少 ' + f); }); });
       const total = (fw.theory.timeline || []).reduce((a, x) => a + x.min, 0);
       if (total !== 80) E('theory 時間軸總和應為 80 分鐘，目前 ' + total);
     }
