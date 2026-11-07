@@ -156,3 +156,32 @@ input[type=password],input[type=text]{width:100%}
 .diagres{border-left:6px solid var(--f-future)}
 .ice3{display:grid;gap:8px;margin:10px 0}.ice3>div{border-radius:14px;padding:10px 14px;line-height:1.7}.ice3 small{display:block;font-size:11px;font-weight:700;opacity:.85}
 .row2.wrap{flex-wrap:wrap}.warnbox{margin-top:12px}
+
+/* ── 圖示 ── */
+.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em}
+.kicker{display:flex;align-items:center;gap:8px}
+.kic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--teal);border:1px solid var(--line)}
+.kic .ic{width:16px;height:16px;vertical-align:0}
+.stepper .sic{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--soft);color:var(--teal);margin-bottom:2px}
+.stepper .sic .ic{width:18px;height:18px;vertical-align:0}
+.stepper .on .sic{background:var(--teal);color:var(--chipfg)}
+.stepper .past .sic{background:var(--track)}
+.bic{width:1.05em;height:1.05em;margin-right:6px;vertical-align:-.15em}
+.mic{width:22px;height:22px;display:block;margin:0 auto 2px}
+.modebar button{text-align:center}
+.cic{position:absolute;right:10px;top:10px;width:24px;height:24px;opacity:.55}
+.chain5 .cl,.f4r .f4h,.sc2{position:relative}
+.chain5 .cl .cic{position:static;display:block;margin:0 0 4px;opacity:.8}
+.f4h{padding-right:40px}
+.herodeco{position:absolute;right:0;bottom:0;width:min(260px,38%);height:auto;opacity:.95;pointer-events:none;z-index:0}
+.hero2>:not(.herodeco){position:relative;z-index:1}
+.hero2 .big2{max-width:calc(100% - min(240px,34%))}
+.bridge span .ic{margin-right:4px}
+.lead summary{display:flex;align-items:center}
+@media(max-width:700px){.herodeco{width:130px;opacity:.55}.hero2 .big2{max-width:none}.stepper .sic{width:24px;height:24px}.stepper .sic .ic{width:15px;height:15px}}
+.tools3{grid-template-columns:1fr 1fr 1.6fr;align-items:center}
+.tools3 .f4lab b{font-size:12px;white-space:nowrap}.tools3 .f4lab small{font-size:11px}
+.herodeco{width:min(300px,42%)}
+@media(max-width:900px){.tools3{grid-template-columns:1fr}}
+
+.f4h{padding-right:12px}.f4h b,.f4h span{white-space:nowrap}

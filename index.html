@@ -270,6 +270,35 @@ input[type=password],input[type=text]{width:100%}
 .ice3{display:grid;gap:8px;margin:10px 0}.ice3>div{border-radius:14px;padding:10px 14px;line-height:1.7}.ice3 small{display:block;font-size:11px;font-weight:700;opacity:.85}
 .row2.wrap{flex-wrap:wrap}.warnbox{margin-top:12px}
 
+/* ── 圖示 ── */
+.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em}
+.kicker{display:flex;align-items:center;gap:8px}
+.kic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--teal);border:1px solid var(--line)}
+.kic .ic{width:16px;height:16px;vertical-align:0}
+.stepper .sic{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--soft);color:var(--teal);margin-bottom:2px}
+.stepper .sic .ic{width:18px;height:18px;vertical-align:0}
+.stepper .on .sic{background:var(--teal);color:var(--chipfg)}
+.stepper .past .sic{background:var(--track)}
+.bic{width:1.05em;height:1.05em;margin-right:6px;vertical-align:-.15em}
+.mic{width:22px;height:22px;display:block;margin:0 auto 2px}
+.modebar button{text-align:center}
+.cic{position:absolute;right:10px;top:10px;width:24px;height:24px;opacity:.55}
+.chain5 .cl,.f4r .f4h,.sc2{position:relative}
+.chain5 .cl .cic{position:static;display:block;margin:0 0 4px;opacity:.8}
+.f4h{padding-right:40px}
+.herodeco{position:absolute;right:0;bottom:0;width:min(260px,38%);height:auto;opacity:.95;pointer-events:none;z-index:0}
+.hero2>:not(.herodeco){position:relative;z-index:1}
+.hero2 .big2{max-width:calc(100% - min(240px,34%))}
+.bridge span .ic{margin-right:4px}
+.lead summary{display:flex;align-items:center}
+@media(max-width:700px){.herodeco{width:130px;opacity:.55}.hero2 .big2{max-width:none}.stepper .sic{width:24px;height:24px}.stepper .sic .ic{width:15px;height:15px}}
+.tools3{grid-template-columns:1fr 1fr 1.6fr;align-items:center}
+.tools3 .f4lab b{font-size:12px;white-space:nowrap}.tools3 .f4lab small{font-size:11px}
+.herodeco{width:min(300px,42%)}
+@media(max-width:900px){.tools3{grid-template-columns:1fr}}
+
+.f4h{padding-right:12px}.f4h b,.f4h span{white-space:nowrap}
+
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親子教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
@@ -5197,6 +5226,53 @@ function f4Path(){
  return '<div class="f4art"><svg viewBox="0 0 640 140" role="img" aria-label="4F 對話路徑：Facts、Feelings、Findings、Future"><path d="'+d+'" fill="none" style="stroke:var(--line)" stroke-width="10" stroke-linecap="round"/><path d="'+d+'" fill="none" style="stroke:var(--card)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>'+nodes+'</svg><div class="f4lab">'+lab+'</div></div>';}
 function toolsOverview(){
  return '<div class="card tools"><p class="kicker">三個工具，一眼看</p><div class="tools3"><figure>'+iceArt()+'<figcaption><b>冰山</b>看見水面下</figcaption></figure><figure>'+selFlower()+'<figcaption><b>SEL 五核心</b>要培養的能力</figcaption></figure><figure>'+f4Path()+'<figcaption><b>4F</b>說得出口的順序</figcaption></figure></div></div>';}
+// ── 圖示庫（沿用冰山的眼睛／心／定錨風格：線條、圓角）──
+Object.assign(GLYPH,{
+ book:'<path d="M-9 -6Q-4 -8 0 -5Q4 -8 9 -6V7Q4 5 0 8Q-4 5 -9 7Z"/><path d="M0 -5V8"/>',
+ chat:'<path d="M-9 -7H9V3H1L-3 8V3H-9Z"/><path d="M-5 -3H5M-5 0H2"/>',
+ home:'<path d="M-9 0L0 -8L9 0M-6 -2V8H6V-2M-2 8V3H2V8"/>',
+ clock:'<circle r="9"/><path d="M0 -5V0L4 3"/>',
+ star:'<path d="M0 -9L2.5 -3L9 -2.5L4 2L5.5 8.5L0 5L-5.5 8.5L-4 2L-9 -2.5L-2.5 -3Z"/>',
+ sprout:'<path d="M0 9V0M0 0Q-9 0 -9 -8Q0 -8 0 0M0 3Q9 3 9 -4Q0 -4 0 3"/>',
+ target:'<circle r="9"/><circle r="5"/><circle r="1.2"/>',
+ shield:'<path d="M0 -9L8 -6V1Q8 7 0 9Q-8 7 -8 1V-6Z"/><path d="M-3 0L-1 3L4 -3"/>',
+ people:'<circle cx="-4" cy="-5" r="3"/><circle cx="6" cy="-4" r="2.5"/><path d="M-10 8Q-10 0 -4 0Q2 0 2 8M3 8Q3 2 6 2Q10 2 10 8"/>',
+ phone:'<rect x="-5" y="-9" width="10" height="18" rx="2.5"/><path d="M-1.5 6H1.5"/>',
+ sun:'<circle r="4"/><path d="M0 -9V-6M0 6V9M-9 0H-6M6 0H9M-6 -6L-4 -4M4 4L6 6M6 -6L4 -4M-4 4L-6 6"/>',
+ pencil:'<path d="M-8 8L-7 3L4 -8L8 -4L-3 7Z"/><path d="M1 -5L5 -1"/>',
+ question:'<circle r="9"/><path d="M-3 -3Q-3 -6 0 -6Q3 -6 3 -3Q3 0 0 1V3"/><path d="M0 6V6.2"/>',
+ map:'<path d="M-9 -6L-3 -8L3 -6L9 -8V6L3 8L-3 6L-9 8Z"/><path d="M-3 -8V6M3 -6V8"/>',
+ gift:'<rect x="-8" y="-2" width="16" height="10" rx="1.5"/><path d="M-9 -2H9V-6H-9ZM0 -6V8M0 -6Q-6 -11 -6 -8Q-6 -6 0 -6M0 -6Q6 -11 6 -8Q6 -6 0 -6"/>',
+ check:'<circle r="9"/><path d="M-4 0L-1 3L5 -3"/>',
+ sparkle:'<path d="M0 -9Q1 -1 9 0Q1 1 0 9Q-1 1 -9 0Q-1 -1 0 -9Z"/>',
+ magnifier:'<circle cx="-2" cy="-2" r="6"/><path d="M3 3L9 9"/>',
+ chart:'<path d="M-8 8H8M-6 8V1M0 8V-5M6 8V-1"/>',
+ door:'<path d="M-6 9V-8H6V9M-8 9H8"/><path d="M3 1V1.2"/>',
+ key:'<circle cx="-4" cy="0" r="4"/><path d="M0 0H9M6 0V4M9 0V3"/>',
+ print:'<path d="M-5 -3V-9H5V-3M-8 -3H8V4H-8ZM-5 1H5V9H-5Z"/>',
+ iceberg:'<path d="M-3 -9L0 -4L3 -7L7 -1H-7Z"/><path d="M-9 1Q-5 -1 0 1T9 1M-6 3L-3 9H3L6 3"/>',
+ layers:'<path d="M0 -8L9 -3L0 2L-9 -3ZM-9 1L0 6L9 1M-9 5L0 10L9 5"/>',
+ link2:'<path d="M-3 3L3 -3M-6 0L-8 2Q-10 5 -7 7Q-5 9 -2 7L0 5M6 0L8 -2Q10 -5 7 -7Q5 -9 2 -7L0 -5"/>'
+});
+const ico=(k,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'" viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(GLYPH[k]||GLYPH.sparkle)+'</svg>';
+const KICK=[[/冰山|水面/,'iceberg'],[/診斷|結構層|價值信念/,'magnifier'],[/SEL|五大核心|能力/,'sprout'],[/4F/,'chat'],[/問卷|統計|結果|比對/,'chart'],[/地圖|主線|順序|邏輯|三個工具|兩個理論/,'map'],[/帶回家|一週|收束/,'home'],[/約定|行動/,'flag'],[/觀察/,'eye'],[/輔導者|提問|問題|我的問題/,'question'],[/講師|講者|示範/,'pencil'],[/學員|聽眾|You do/,'ears'],[/I do|家長的冰山/,'eye'],[/We do|一起/,'people'],[/API|設定/,'key'],[/情境|例子|這一場|開場|破題|為什麼/,'book'],[/系統/,'link2'],[/孩子/,'heart']];
+const STIC={open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
+const HERO='<svg class="herodeco" viewBox="0 0 220 150" aria-hidden="true"><path d="M0 150V118Q40 96 80 112T160 104T220 112V150Z" style="fill:var(--s-self_management)" opacity=".22"/><path d="M0 150V132Q50 116 100 128T220 126V150Z" style="fill:var(--f-findings)" opacity=".28"/><circle cx="178" cy="34" r="14" style="fill:var(--amber)" opacity=".85"/><g style="fill:var(--card)" opacity=".9"><ellipse cx="60" cy="30" rx="22" ry="7"/><ellipse cx="76" cy="25" rx="13" ry="7"/></g><g transform="translate(96 78)"><circle cx="0" cy="-22" r="8" style="fill:var(--i-feeling)"/><path d="M-10 18V-8Q0 -14 10 -8V18Z" style="fill:var(--i-feeling)"/><circle cx="26" cy="-6" r="6" style="fill:var(--f-feelings)"/><path d="M19 18V4Q26 0 33 4V18Z" style="fill:var(--f-feelings)"/><path d="M10 2L19 6" style="stroke:var(--i-feeling)" stroke-width="3" stroke-linecap="round"/><path d="M13 -34C8 -40 0 -36 5 -30L13 -22L21 -30C26 -36 18 -40 13 -34Z" style="fill:var(--red)" opacity=".85"/></g></svg>';
+function decorate(){
+ if(!A)return;
+ A.querySelectorAll('.kicker').forEach(k=>{if(k.querySelector('.kic'))return;const t=k.textContent;let n='sparkle';for(const [re,g] of KICK){if(re.test(t)){n=g;break;}}k.insertAdjacentHTML('afterbegin','<span class="kic">'+ico(n)+'</span>');});
+ const sl=STL();A.querySelectorAll('.stepper button').forEach((b,i)=>{const x=sl[i];if(x&&!b.querySelector('.sic'))b.insertAdjacentHTML('afterbegin','<span class="sic">'+ico(STIC[x.id]||'sparkle')+'</span>');});
+ A.querySelectorAll('.modebar button').forEach(b=>{if(!b.querySelector('.ic'))b.insertAdjacentHTML('afterbegin',ico(b.dataset.mode==='theory'?'book':'question','mic'));});
+ const AI={one:'book',proj:'sun',survey:'chart',ask:'sparkle',demo:'chart',submit:'check',print:'print',copy:'check',prev:null,next:null};
+ A.querySelectorAll('.ctlbtns button').forEach(b=>{const g=AI[b.dataset.act];if(g&&!b.querySelector('.ic')){b.innerHTML=b.innerHTML.replace(/^📄\s*|^✨\s*/,'');b.insertAdjacentHTML('afterbegin',ico(g,'bic'));}});
+ A.querySelectorAll('.iyw .iy').forEach(d=>{const b=d.querySelector('b');if(!b||b.querySelector('.ic'))return;const g=/I do/.test(b.textContent)?'eye':/You/.test(b.textContent)?'ears':'people';b.insertAdjacentHTML('afterbegin',ico(g,'bic'));});
+ A.querySelectorAll('.chain5 .cl').forEach((c,i)=>{if(c.querySelector('.ic'))return;c.insertAdjacentHTML('afterbegin',ico(['eye','heart','anchor','sprout','flag'][i]||'sparkle','cic'));});
+ A.querySelectorAll('.sel5b').forEach(g=>g.querySelectorAll('.sc2').forEach((c,i)=>{if(!c.querySelector('.ic'))c.insertAdjacentHTML('afterbegin',ico(['eye','wave','ears','link','flag'][i]||'sparkle','cic'));}));
+ A.querySelectorAll('.hero2').forEach(h=>{if(!h.querySelector('.herodeco'))h.insertAdjacentHTML('beforeend',HERO);});
+ A.querySelectorAll('.bridge span').forEach(sp=>{if(!sp.querySelector('.ic'))sp.insertAdjacentHTML('afterbegin',ico('link2','bic'));});
+ A.querySelectorAll('.lead summary').forEach(sm=>{if(!sm.querySelector('.ic'))sm.insertAdjacentHTML('afterbegin',ico('pencil','bic'));});
+ A.querySelectorAll('.audience label').forEach(l=>{if(!l.querySelector('.ic'))l.insertAdjacentHTML('afterbegin',ico('chat','bic'));});
+}
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
 const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,diag:{dom:null,st:[],bl:[]},ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
@@ -5430,7 +5506,7 @@ function vSurvey(){
  return h;}
 
 
-function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();}
+function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();decorate();}
 A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
