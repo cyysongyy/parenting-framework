@@ -2,9 +2,19 @@
 
 把「四湖國中親職教育」講座的內容整理成一個可重複使用的模組：依情境（例如：孩子憤怒、拖延作業、手機衝突、人際衝突）產生不同的講座段落。
 
+## 目前的情境
+- `emotion_outburst`：孩子憤怒到極點（師生衝突）
+- `exam_drop`：考試退步（小安的故事）
+- `school_anxiety`：上學焦慮，說肚子痛
+- `procrastination`：拖延作業
+- `phone_conflict`：手機使用與親子衝突（行為領域延伸，含系統觀）
+- `family_rules`：家庭規範被挑戰
+- `interpersonal_conflict`：人際衝突與不敢表達
+
 ## 檔案
 - `framework.json`：架構資料（I do / You do / We do、4F、SEL 五大核心、冰山、系統觀、各情境的例子與腳本）。
 - `generator.js`：`buildPlan(fw, { situation, resultsDisplay })` 依情境產生段落。
+- `validate.js`：檢查每個情境的欄位、4F 與 SEL 代碼是否一致（`node validate.js`）。
 - `index.html`：簡單的檢視頁，選情境即可看到產生的內容。
 
 ## 已納入的修正（對應講座內容檢查的 8 點）

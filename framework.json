@@ -4,27 +4,89 @@
   "status": "draft（待講師確認標註為 TODO 的欄位）",
   "core": {
     "dialogueSteps": [
-      { "id": "ido", "label": "I do", "meaning": "講師先分享自己的經驗與做法，先理解自己，不急著批判他人。" },
-      { "id": "youdo", "label": "You do", "meaning": "換位思考，看見孩子、家長、教師的不同觀點與背後感受。" },
-      { "id": "wedo", "label": "We do", "meaning": "一起用 4F 找出解方，並約定下一步。" }
+      {
+        "id": "ido",
+        "label": "I do",
+        "meaning": "講師先分享自己的經驗與做法，先理解自己，不急著批判他人。"
+      },
+      {
+        "id": "youdo",
+        "label": "You do",
+        "meaning": "換位思考，看見孩子、家長、教師的不同觀點與背後感受。"
+      },
+      {
+        "id": "wedo",
+        "label": "We do",
+        "meaning": "一起用 4F 找出解方，並約定下一步。"
+      }
     ],
     "fourF": [
-      { "id": "facts", "label": "Facts 事實", "prompt": "發生了什麼事？只還原過程，不評論。" },
-      { "id": "feelings", "label": "Feelings 感受", "prompt": "你當下的心情如何？哪一部分最挫折、最開心？" },
-      { "id": "findings", "label": "Findings 發現", "prompt": "找出原因與需要：這個情緒或行為在提醒我們什麼？" },
-      { "id": "future", "label": "Future 未來", "prompt": "約定具體的下一步：時間、地點、誰、做什麼。" }
+      {
+        "id": "facts",
+        "label": "Facts 事實",
+        "prompt": "發生了什麼事？只還原過程，不評論。"
+      },
+      {
+        "id": "feelings",
+        "label": "Feelings 感受",
+        "prompt": "你當下的心情如何？哪一部分最挫折、最開心？"
+      },
+      {
+        "id": "findings",
+        "label": "Findings 發現",
+        "prompt": "找出原因與需要：這個情緒或行為在提醒我們什麼？"
+      },
+      {
+        "id": "future",
+        "label": "Future 未來",
+        "prompt": "約定具體的下一步：時間、地點、誰、做什麼。"
+      }
     ],
-    "fourFOrder": ["facts", "feelings", "findings", "future"],
+    "fourFOrder": [
+      "facts",
+      "feelings",
+      "findings",
+      "future"
+    ],
     "sel": [
-      { "id": "self_awareness", "label": "自我覺察", "desc": "知道自己的情緒、想法與價值" },
-      { "id": "self_management", "label": "自我管理", "desc": "調整情緒與行為，不被情緒牽著走" },
-      { "id": "social_awareness", "label": "社會覺察", "desc": "理解他人的立場與感受" },
-      { "id": "relationship_skills", "label": "關係技巧", "desc": "溝通、合作與解決衝突" },
-      { "id": "responsible_decision", "label": "負責任決定", "desc": "考慮後果，做出合宜的選擇" }
+      {
+        "id": "self_awareness",
+        "label": "自我覺察",
+        "desc": "知道自己的情緒、想法與價值"
+      },
+      {
+        "id": "self_management",
+        "label": "自我管理",
+        "desc": "調整情緒與行為，不被情緒牽著走"
+      },
+      {
+        "id": "social_awareness",
+        "label": "社會覺察",
+        "desc": "理解他人的立場與感受"
+      },
+      {
+        "id": "relationship_skills",
+        "label": "關係技巧",
+        "desc": "溝通、合作與解決衝突"
+      },
+      {
+        "id": "responsible_decision",
+        "label": "負責任決定",
+        "desc": "考慮後果，做出合宜的選擇"
+      }
     ],
-    "icebergLayers": ["行為表層（看得到）", "感受與需求（水面下）", "價值信念（最深處）"],
+    "icebergLayers": [
+      "行為表層（看得到）",
+      "感受與需求（水面下）",
+      "價值信念（最深處）"
+    ],
     "icebergNote": "冰山理論：薩提爾（Virginia Satir）",
-    "systemLayers": ["家庭", "親子互動", "學校", "社會"],
+    "systemLayers": [
+      "家庭",
+      "親子互動",
+      "學校",
+      "社會"
+    ],
     "systemQuestion": "別只問「孩子為什麼這麼沒自制力」，先問「是什麼環境，讓他離不開？」",
     "closingSteps": [
       "先問「發生什麼事」（Facts）",
@@ -40,17 +102,36 @@
       "title": "孩子憤怒到極點",
       "example": "師生衝突，孩子憤怒到極點！",
       "triggerForParent": "孩子早上拖拖拉拉、快遲到了，我生氣地說了什麼？",
-      "parentIceberg": { "behavior": "大罵：「不准甩門！」", "feeling": "焦慮、生氣、無力；需要孩子守規矩、需要被尊重", "belief": "「情緒要自己處理」「孩子要乖，我才是好父母」" },
-      "childIceberg": { "behavior": "甩門", "feeling": "委屈、生氣、受傷；需要被理解、被接住", "belief": "「不大聲，就沒有人聽我」「我的感受不重要」" },
-      "youDoQuestions": ["今天學校發生什麼事？", "你最擔心的是哪一部分？", "我想聽你說，你願意說多少都可以"],
-      "lecturerExperience": { "status": "TODO", "text": "[講師自己的經驗]（待講師填寫）" },
+      "parentIceberg": {
+        "behavior": "大罵：「不准甩門！」",
+        "feeling": "焦慮、生氣、無力；需要孩子守規矩、需要被尊重",
+        "belief": "「情緒要自己處理」「孩子要乖，我才是好父母」"
+      },
+      "childIceberg": {
+        "behavior": "甩門",
+        "feeling": "委屈、生氣、受傷；需要被理解、被接住",
+        "belief": "「不大聲，就沒有人聽我」「我的感受不重要」"
+      },
+      "youDoQuestions": [
+        "今天學校發生什麼事？",
+        "你最擔心的是哪一部分？",
+        "我想聽你說，你願意說多少都可以"
+      ],
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
       "wedoScript": {
         "facts": "「剛剛你把門關得很大聲。」不加評論。",
         "feelings": "「我現在很擔心…」取代「你怎麼又…」",
         "findings": "這個情緒在提醒我們什麼？深呼吸三次，再開口。",
         "future": "家庭共同約定情緒來時去哪裡、做什麼。"
       },
-      "selFocus": ["self_awareness", "self_management"]
+      "selFocus": [
+        "self_awareness",
+        "self_management"
+      ],
+      "referralNote": null
     },
     {
       "id": "procrastination",
@@ -58,18 +139,38 @@
       "title": "拖延作業",
       "example": "拖延作業",
       "triggerForParent": "晚上十一點，孩子還躲在棉被裡玩手機，一開口就大吼：「不要管我！」",
-      "parentIceberg": { "behavior": "碎念催促、責罵、威脅處罰", "feeling": "焦慮、憤怒、無助", "belief": "怕孩子的未來受影響；覺得他沒有自制力；想起自己小時候，感到落差" },
-      "childIceberg": { "behavior": "拖延作業", "feeling": "壓力大、怕做不好、想先逃開；想要一點自己能決定的時間", "belief": "「不做，就不會被說做不好」；用拖延保護自己、換回一點掌控感" },
-      "reasonsToCheck": ["挫折感", "不會做、缺乏方法", "注意力困難", "親子衝突後的抗拒", "對課業失去動機"],
+      "parentIceberg": {
+        "behavior": "碎念催促、責罵、威脅處罰",
+        "feeling": "焦慮、憤怒、無助",
+        "belief": "怕孩子的未來受影響；覺得他沒有自制力；想起自己小時候，感到落差"
+      },
+      "childIceberg": {
+        "behavior": "拖延作業",
+        "feeling": "壓力大、怕做不好、想先逃開；想要一點自己能決定的時間",
+        "belief": "「不做，就不會被說做不好」；用拖延保護自己、換回一點掌控感"
+      },
+      "reasonsToCheck": [
+        "挫折感",
+        "不會做、缺乏方法",
+        "注意力困難",
+        "親子衝突後的抗拒",
+        "對課業失去動機"
+      ],
       "referralNote": "若懷疑注意力或學習困難，請轉介學校輔導。",
-      "lecturerExperience": { "status": "TODO", "text": "[講師自己的經驗]（待講師填寫）" },
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
       "wedoScript": {
         "facts": "這週有幾天作業拖到晚上 9 點後才開始寫？通常拖在哪一科、哪個時段？",
         "feelings": "家長擔心孩子睡太晚、壓力大；孩子覺得一直被催、怕做不好。",
         "findings": "拖延卡在哪裡？是不會做、太累、被手機分心，還是不知道從哪裡開始？",
         "future": "放學先休息 30 分鐘，晚上 7 點開始寫、手機放客廳；先寫最難的 15 分鐘；每週日晚上 15 分鐘檢討。"
       },
-      "selFocus": ["self_management", "responsible_decision"]
+      "selFocus": [
+        "self_management",
+        "responsible_decision"
+      ]
     },
     {
       "id": "phone_conflict",
@@ -84,22 +185,184 @@
         "findings": "什麼時候最容易停不下來？背後需要的是什麼？",
         "future": "約定使用時段、睡前管理與每週檢討；父母也一起遵守（例如全家晚餐不看手機）。"
       },
-      "selFocus": ["self_management", "relationship_skills"]
+      "selFocus": [
+        "self_management",
+        "relationship_skills"
+      ],
+      "parentIceberg": {
+        "behavior": "反覆提醒、沒收手機、爭吵",
+        "feeling": "焦慮、挫折、擔心；需要孩子能自我控制",
+        "belief": "「手機會毀了孩子」「不管就是放任」"
+      },
+      "childIceberg": {
+        "behavior": "一有空就滑手機、被提醒就頂嘴",
+        "feeling": "無聊、壓力大、需要被連結；需要一點自主與放鬆",
+        "belief": "「手機是我唯一能放鬆的地方」「大人都不懂我」"
+      },
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "triggerForParent": "晚上十一點，孩子還躲在棉被裡玩手機，一開口就大吼：「不要管我！」",
+      "referralNote": null
     },
     {
       "id": "interpersonal_conflict",
       "domain": "interpersonal",
       "title": "人際衝突與不敢表達",
       "example": "孩子放學很生氣：「我再也不要跟小明當朋友了！他當著大家的面笑我！」",
-      "parentIceberg": { "behavior": "責備多於傾聽、急著給建議", "feeling": "擔心、著急、無力；需要確認孩子平安、需要被孩子信任", "belief": "「大人的話不能質疑」「為孩子好，就要管」" },
-      "childIceberg": { "behavior": "不敢表達意見、默默配合", "feeling": "害怕被討厭、孤單、委屈；需要被接納、有歸屬感", "belief": "「表達意見會被討厭」「不要給別人添麻煩」" },
+      "parentIceberg": {
+        "behavior": "責備多於傾聽、急著給建議",
+        "feeling": "擔心、著急、無力；需要確認孩子平安、需要被孩子信任",
+        "belief": "「大人的話不能質疑」「為孩子好，就要管」"
+      },
+      "childIceberg": {
+        "behavior": "不敢表達意見、默默配合",
+        "feeling": "害怕被討厭、孤單、委屈；需要被接納、有歸屬感",
+        "belief": "「表達意見會被討厭」「不要給別人添麻煩」"
+      },
       "wedoScript": {
         "facts": "「你最近回家都不說話，怎麼了嗎？」不評論、不猜想。",
         "feelings": "「我擔心你覺得不能說…」「你是不是怕說了會被罵？」先聽完再回應。",
         "findings": "是怕被否定、怕麻煩別人，還是覺得大人的話不能質疑？",
         "future": "每週一次，孩子先說一件想說的事，家長只聽、不急著評論。"
       },
-      "selFocus": ["social_awareness", "relationship_skills"]
+      "selFocus": [
+        "social_awareness",
+        "relationship_skills"
+      ],
+      "triggerForParent": "孩子放學很生氣：「我再也不要跟小明當朋友了！他當著大家的面笑我！」",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "reasonsToCheck": [
+        "被同學排擠或取笑",
+        "怕麻煩別人、不敢說",
+        "覺得大人的話不能質疑",
+        "害怕被否定"
+      ],
+      "referralNote": null
+    },
+    {
+      "id": "exam_drop",
+      "domain": "emotion",
+      "title": "考試退步",
+      "example": "小安段考數學考了 52 分，回家把書包丟在地上，大喊：「我就是笨，不想念了！」",
+      "triggerForParent": "孩子段考退步，回家就把書包丟在地上。你第一句話是什麼？",
+      "parentIceberg": {
+        "behavior": "追問成績、比較、叨念「你到底有沒有用心」",
+        "feeling": "失望、著急、擔心未來；需要孩子努力、需要被看見付出",
+        "belief": "「成績代表努力」「不逼他，他就不會進步」"
+      },
+      "childIceberg": {
+        "behavior": "摔書包、大喊「我就是笨」",
+        "feeling": "挫折、羞愧、覺得自己不夠好；需要被理解、被接住",
+        "belief": "「我是不是很笨？」「考不好，大人就不愛我」"
+      },
+      "youDoQuestions": [
+        "這次哪一題最讓你卡住？",
+        "考完之後，你心裡是什麼感覺？",
+        "你希望我怎麼陪你一起處理？"
+      ],
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "wedoScript": {
+        "facts": "「你回來把書包丟在地上，然後說自己很笨。」只說看到和聽到的，不評論成績。",
+        "feelings": "「我看到你很挫折，我也有點擔心。」先說自己的感受，再問他的感受。",
+        "findings": "這次錯在哪裡？是不會、粗心，還是害怕再次失敗？",
+        "future": "今晚先訂正錯題，一週後一起去問老師；這週不再追問分數。"
+      },
+      "selFocus": [
+        "self_awareness",
+        "self_management",
+        "responsible_decision"
+      ],
+      "referralNote": null
+    },
+    {
+      "id": "school_anxiety",
+      "domain": "emotion",
+      "title": "上學焦慮，說肚子痛",
+      "example": "孩子晚上翻來覆去、早上說肚子痛不想上學",
+      "triggerForParent": "早上孩子說肚子痛，不想去學校。你會怎麼反應？",
+      "parentIceberg": {
+        "behavior": "先懷疑孩子裝病、催促、硬送去學校",
+        "feeling": "著急、擔心、煩躁；需要孩子準時上學、需要確認他平安",
+        "belief": "「不能讓他逃避」「逃避一次，以後就會更難」"
+      },
+      "childIceberg": {
+        "behavior": "肚子痛、拖延出門、不肯說原因",
+        "feeling": "害怕、焦慮、怕被笑；需要被相信、需要安全感",
+        "belief": "「去學校就會出事」「沒有人會幫我」"
+      },
+      "youDoQuestions": [
+        "今天學校發生什麼事？",
+        "你最擔心的是哪一部分？",
+        "你願意說多少都可以"
+      ],
+      "referralNote": "若焦慮持續超過兩週、影響睡眠或食慾，請轉介學校輔導或專業諮商。",
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "wedoScript": {
+        "facts": "「你早上說肚子痛，最近晚上也睡不好。」只說發生的事，不下結論。",
+        "feelings": "「我看到你很緊張，我也很擔心你。」先接住情緒，再談上學。",
+        "findings": "害怕的是哪一件事？是同學、課業，還是某個老師或某個地方？",
+        "future": "先和班導聯絡確認校內狀況；明天早上用約定好的方式出門，並一起決定如果不舒服要找誰。"
+      },
+      "selFocus": [
+        "self_awareness",
+        "social_awareness",
+        "relationship_skills"
+      ]
+    },
+    {
+      "id": "family_rules",
+      "domain": "behavior",
+      "title": "家庭規範被挑戰",
+      "example": "吃飯時一直滑手機、被提醒就頂嘴：「不要管我！」",
+      "triggerForParent": "家裡有規定餐桌時間不滑手機，孩子卻一直拿著手機，被提醒就頂嘴。你會怎麼處理？",
+      "parentIceberg": {
+        "behavior": "一直唸、罵人、乾脆不管了",
+        "feeling": "生氣、無力、覺得權威被挑戰；需要規矩被尊重、需要家人一起遵守",
+        "belief": "「大人說了就要算」「不管就是放縱」"
+      },
+      "childIceberg": {
+        "behavior": "頂嘴、滑手機、故意不理",
+        "feeling": "不服氣、煩、覺得被管太多；需要被尊重、需要自己能決定一些事",
+        "belief": "「規定只針對我」「反正說了也沒用」"
+      },
+      "reasonsToCheck": [
+        "規定沒有一起討論過",
+        "規定對大人和孩子不一樣",
+        "孩子在用手機逃避壓力",
+        "親子衝突後的抗拒"
+      ],
+      "youDoQuestions": [
+        "你覺得這條規定哪裡不合理？",
+        "吃飯時，你最想跟家人聊什麼？",
+        "如果是你，你希望大人怎麼提醒你？"
+      ],
+      "lecturerExperience": {
+        "status": "TODO",
+        "text": "[講師自己的經驗]（待講師填寫）"
+      },
+      "wedoScript": {
+        "facts": "「吃飯時你的手機一直亮著，我們之前說好餐桌時間不滑手機。」只說事實。",
+        "feelings": "「我有點生氣，也很想跟你好好吃頓飯。」再聽他說。",
+        "findings": "規定是怎麼來的？大家都覺得公平嗎？哪一條最難做到？",
+        "future": "全家一起修訂餐桌規則，大人也一起遵守；每週家庭會議檢討一次。"
+      },
+      "selFocus": [
+        "self_management",
+        "relationship_skills",
+        "responsible_decision"
+      ],
+      "referralNote": null
     }
   ],
   "tbdFields": {
