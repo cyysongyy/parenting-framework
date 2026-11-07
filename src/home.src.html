@@ -48,7 +48,7 @@ function setStage(i){S.stage=Math.max(0,Math.min(ST.length-1,i));draw();window.s
 function topbar(extra){return '<div class="topbar"><button data-act="flow">← 回講師主線</button><span class="mut">'+(extra||'')+'</span></div>';}
 
 function ctl(){
- return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+fw.situations.map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+DOMAIN[x.domain]+'・'+esc(x.title)+'</option>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
+ return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
  +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
 function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+ST.map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+ST.map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
@@ -111,7 +111,7 @@ function vFlow(){
  return ctl()+stepper()+'<div class="allbar"><b>全部答案</b><span class="mut">五個階段一次展開，可直接往下讀、投影或列印。</span><button data-act="print">列印／存成 PDF</button><button data-act="one">回到逐步模式</button></div>'
   +ST.map((x,i)=>'<section class="allsec" id="sec-'+x.id+'"><h2 class="sechead"><span class="sn">'+(i+1)+'</span>'+esc(x.n)+'<small>'+esc(x.tag)+'</small></h2>'+stageHTML(x.id)+'</section>').join('');}
 function summary(s,au,a){const ag=S.mine.mineag!=null?S.mine.mineag:au.future;const ch=S.opts.map(k=>au.options[k]).filter(Boolean);
- return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+s.referralNote;}
+ return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+(s.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。');}
 
 
 // ── 我的問題：內建情境比對＋AI 產生 ──

@@ -221,15 +221,18 @@
     cmp.forEach(g => g.items.forEach(i => { flat[g.key + '|' + i.item] = i; }));
     const th = fw.survey.gapThreshold;
     const list = fw.situations.map(s => {
-      let score = 0; const evidence = [];
+      const ws = []; const evidence = [];
       Object.keys(s.surveyLink).forEach(g => s.surveyLink[g].forEach(item => {
         const e = flat[g + '|' + item]; if (!e || e.none) return;
         const p = e.parentPct || 0, st = e.studentPct || 0;
         let w = p + st;
         if (e.gap !== null && Math.abs(e.gap) >= th) w += Math.abs(e.gap) * 0.5;
-        score += w;
+        ws.push(w);
         evidence.push({ group: g, item, parentPct: e.parentPct, studentPct: e.studentPct, gap: e.gap, tag: e.tag });
       }));
+      // 只取最高的兩項取平均，避免連結題目較多的情境自動排前面
+      ws.sort((x, y) => y - x);
+      const top = ws.slice(0, 2), score = top.length ? top.reduce((x, y) => x + y, 0) / top.length : 0;
       return { situation: s.id, title: s.title, domain: s.domain, score: Math.round(score * 1000) / 1000, evidence };
     });
     list.sort((x, y) => y.score - x.score);
