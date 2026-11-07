@@ -32,32 +32,35 @@ function ice(title,ic){const band=(i,cls)=>'<div class="band '+cls+'" style="'+i
  return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+const S={mode:'problem',all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
 (function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
-const ST=[
+const STP=[
  {id:'open',n:'開場',tag:'為什麼是這個情境'},
  {id:'ido',n:'I do',tag:'冰山・先看自己'},
  {id:'youdo',n:'You do',tag:'冰山＋SEL・看見孩子'},
  {id:'wedo',n:'We do',tag:'4F・一起對話'},
  {id:'close',n:'約定',tag:'明天就能做的事'}];
+const STT=(fw.theory?fw.theory.timeline:[]).map(x=>({id:x.id,n:x.n,tag:x.min+' 分・'+x.tag}));
+function STL(){return S.mode==='theory'&&STT.length?STT:STP;}
 const stageDef=id=>fw.core.stages.find(x=>x.id===id);
 function plan(){return PF.buildPlan(fwx(),{situation:S.sit,audience:S.aud,resultsDisplay:'projector'});}
-function setStage(i){S.stage=Math.max(0,Math.min(ST.length-1,i));draw();window.scrollTo({top:0});}
+function setStage(i){S.stage=Math.max(0,Math.min(STL().length-1,i));draw();window.scrollTo({top:0});}
 function topbar(extra){return '<div class="topbar"><button data-act="flow">← 回講師主線</button><span class="mut">'+(extra||'')+'</span></div>';}
 
 function ctl(){
- return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
+ return (fw.theory?'<div class="modebar" role="tablist"><button data-mode="problem" class="'+(S.mode==='problem'?'primary':'')+'">問題導引<small>從情境出發</small></button><button data-mode="theory" class="'+(S.mode==='theory'?'primary':'')+'">理論到實務<small>從為什麼出發</small></button></div>':'')+'<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+['emotion','behavior','interpersonal'].map(d=>'<optgroup label="'+DOMAIN[d]+'（'+fw.situations.filter(x=>x.domain===d).length+'）">'+fw.situations.filter(x=>x.domain===d).map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</optgroup>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
  +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
-function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+ST.map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+ST.map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
-function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+ST[S.stage-1].n+'</button>':'')+(S.stage<ST.length-1?'<button class="primary" data-act="next">'+ST[S.stage+1].n+' →</button>':'')+'</div>';}
+function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+STL().map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+STL().map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
+function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+STL()[S.stage-1].n+'</button>':'')+(S.stage<STL().length-1?'<button class="primary" data-act="next">'+STL()[S.stage+1].n+' →</button>':'')+'</div>';}
 const bridge=t=>'<div class="bridge"><span>承接語</span>'+esc(t)+'</div>';
 function leader(def){return '<details class="lead" open><summary>講師帶領</summary><p class="mut" style="margin:6px 0">'+esc(def.purpose)+'</p>'+ul(def.leaderMoves)+'</details>';}
 function ask(key,label,ph){return '<div class="audience"><label for="'+key+'">聽眾一句話：'+esc(label)+'</label><textarea id="'+key+'" rows="2" placeholder="'+esc(ph||'')+'">'+esc(S.mine[key]||'')+'</textarea></div>';}
 
 function stageHTML(id){
+ if(id.indexOf('t_')===0)return theoryHTML(id);
  const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];
  let h='';
  if(id==='open'){
@@ -107,9 +110,59 @@ function stageHTML(id){
  }
  return h;}
 function vFlow(){
- if(!S.all)return ctl()+stepper()+stageHTML(ST[S.stage].id)+pager();
+ if(!S.all)return ctl()+stepper()+stageHTML(STL()[S.stage].id)+pager();
  return ctl()+stepper()+'<div class="allbar"><b>全部答案</b><span class="mut">五個階段一次展開，可直接往下讀、投影或列印。</span><button data-act="print">列印／存成 PDF</button><button data-act="one">回到逐步模式</button></div>'
-  +ST.map((x,i)=>'<section class="allsec" id="sec-'+x.id+'"><h2 class="sechead"><span class="sn">'+(i+1)+'</span>'+esc(x.n)+'<small>'+esc(x.tag)+'</small></h2>'+stageHTML(x.id)+'</section>').join('');}
+  +STL().map((x,i)=>'<section class="allsec" id="sec-'+x.id+'"><h2 class="sechead"><span class="sn">'+(i+1)+'</span>'+esc(x.n)+'<small>'+esc(x.tag)+'</small></h2>'+stageHTML(x.id)+'</section>').join('');}
+
+// ── 理論到實務模式 ──
+function notes(m,min){return '<details class="lead" open><summary>講者備忘'+(min?'（'+min+' 分鐘）':'')+'</summary>'+ul(m.notes)+'<p class="mut"><b>聽眾互動：</b>'+esc(m.interaction)+'</p></details>';}
+function srcNote(m){return m.source?'<p class="todo">出處：待講者確認。'+esc(m.source.suggestion)+'</p>':'';}
+function theoryCard(key,kick,extra){const m=fw.theory.modules[key],tl=fw.theory.timeline.find(x=>x.id==='t_'+({iceberg:'ice',sel:'sel',ido:'ido',f4:'4f'})[key]);
+ return '<div class="card"><p class="kicker">'+esc(kick)+'</p><h2>'+esc(m.name)+'</h2><p class="big2">'+esc(m.oneLine)+'</p><h3>為什麼對親子有效</h3><p>'+esc(m.why)+'</p><h3>常見誤解</h3>'+ul(m.misconceptions)+'<div class="note"><b>想一想：</b>'+esc(m.question)+'</div>'+notes(m,tl&&tl.min)+srcNote(m)+'</div>'+(extra||'');}
+function theoryTitle(){return '';}
+function theoryHTML(id){
+ const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud],T=fw.theory;let h='';
+ const where=(t)=>'<div class="card"><p class="kicker">放進情境看看：'+esc(DOMAIN[s.domain])+'・'+esc(s.title)+'（'+esc(a.label)+'）</p>'+t+'</div>';
+ if(id==='t_open'){
+  const tot=T.timeline.reduce((x,y)=>x+y.min,0);
+  return '<div class="card hero2"><p class="kicker">'+esc(T.title)+'</p><h2>'+esc(T.hook.question)+'</h2>'+T.hook.lines.map(l=>'<p class="big2">'+esc(l)+'</p>').join('')+'</div>'
+  +'<div class="card"><p class="kicker">今天的地圖（'+tot+' 分鐘）</p><div class="tl">'+T.timeline.map((x,i)=>'<div class="tlseg" style="flex:'+x.min+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+x.min+' 分</small></div>').join('')+'</div><div class="note">'+esc(T.hook.promise)+'</div>'
+  +'<div class="row2"><button data-act="survey">開場：看全場問卷現況</button></div></div>'
+  +'<div class="card"><p class="kicker">三個理論，一個方法</p><div class="sel5b">'+['iceberg','sel','ido','f4'].map((k,i)=>'<div class="sc2" style="border-top:5px solid var(--'+(['i-feeling','s-self_awareness','f-future','f-feelings'][i])+')"><b>'+esc(T.modules[k].name)+'</b><p>'+esc(T.modules[k].oneLine)+'</p></div>').join('')+'</div></div>'
+  +bridge('先從最底下的一層開始：我們看不見的那一層。');}
+ if(id==='t_ice'){
+  return theoryCard('iceberg','理論一',where('<div class="grid2">'+ice('家長的冰山',s.parentIceberg)+ice('孩子的冰山',au.childIceberg)+'</div><p class="mut">同一件事，兩座冰山：水面上是「行為」，水面下是感受、需求與信念。</p>'))
+   +bridge('看見水面下之後，孩子需要的是哪一些能力？');}
+ if(id==='t_sel'){
+  return theoryCard('sel','理論二',where('<div class="sel5b">'+SEL.map(c=>'<div class="sc2" style="border-top:5px solid var(--s-'+c.id+')">'+chipS(c.id,c.label)+'<p class="mut">'+esc(c.desc)+'</p><p>'+esc(s.selMap[c.id])+'</p>'+(s.selQuestions&&s.selQuestions[c.id]?'<p class="sq"><small>輔導提問</small>'+esc(s.selQuestions[c.id])+'</p>':'')+'</div>').join('')+'</div>'))
+   +bridge('能力不是講一次就會。大人要怎麼帶，孩子才學得會？');}
+ if(id==='t_ido'){
+  const d=fw.core.stages;
+  return theoryCard('ido','理論三','<div class="card"><p class="kicker">責任一步步交還給孩子</p><div class="iyw">'+d.map((x,i)=>'<div class="iy" style="--c:var(--'+['f-facts','f-findings','f-future'][i]+')"><b>'+esc(x.label)+'</b><p>'+esc(x.purpose)+'</p><small>'+esc(x.icebergLink)+'</small></div>').join('<span class="ar">→</span>')+'</div></div>'+where('<p><b>I do：</b>'+esc(s.idoModel)+'</p><p><b>You do：</b>'+esc(au.youDoQuestions[0])+'</p><p><b>We do：</b>'+esc(au.future)+'</p>'))
+   +bridge('三個理論都有了。接下來要把它們變成一個說得出口的順序。');}
+ if(id==='t_4f'){
+  const m=T.modules.f4;
+  return theoryCard('f4','方法','<div class="card"><p class="kicker">4F 如何串起冰山、SEL 與 I/You/We do</p><div class="f4t">'+p.layers.fourF.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id]||f.script)+'</p><p class="mut">誰先說：'+esc(m.speakers[f.id])+'</p><div>'+chipI(f.icebergId,f.iceberg)+(f.selIds||[]).map(x=>chipS(x,selOf(x).label)).join('')+'</div></div></div>').join('')+'</div></div>'
+   +'<div class="card"><p class="kicker">輔導者的立場</p><div class="stance">'+fw.core.counselorStance.map(x=>'<div><b>'+esc(x.label)+'</b><p>'+esc(x.text)+'</p></div>').join('')+'</div></div>')
+   +bridge('方法講完了。現在換你們用。');}
+ if(id==='t_demo'){
+  const D=T.demo;
+  return '<div class="card"><p class="kicker">示範與練習（30 分鐘）</p><h2>'+esc(s.title)+'</h2><p class="big2">'+esc(au.example)+'</p><p class="mut">在上方選擇情境與年段，示範與練習都會跟著換。</p></div>'
+  +'<div class="card"><p class="kicker">流程</p><div class="steps3">'+D.steps.map((x,i)=>'<div class="st3"><span class="sn">'+(i+1)+'</span><b>'+esc(x.t)+'</b><small>'+x.min+' 分</small><p>'+esc(x.d)+'</p></div>').join('')+'</div></div>'
+  +'<div class="card"><p class="kicker">講者示範：兩座冰山</p><div class="grid2">'+ice('家長的冰山',s.parentIceberg)+ice('孩子的冰山',au.childIceberg)+'</div></div>'
+  +'<div class="card"><p class="kicker">講者示範：4F 要說的句子</p><div class="f4t">'+F.map((f,i)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(i+1)+'</span><b>'+esc(f.label)+'</b></div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p></div></div>').join('')+'</div>'
+  +(s.counselorQuestions?'<h3>四種啟發式提問</h3><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div>':'')+'</div>'
+  +'<div class="card"><p class="kicker">觀察者檢核表</p>'+ul(D.observer)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
+  +bridge('練習過後，帶一個約定回家。');}
+ if(id==='t_home'){
+  const ag=S.mine.mineag!=null?S.mine.mineag:au.future;
+  return '<div class="card"><p class="kicker">帶回家</p><h2>一個明天就能做的約定</h2><p class="mut">'+esc(a.contractStyle)+'</p><h3>先問孩子：你想用哪一個方法？</h3><div class="choices">'
+   +au.options.map((o,k)=>'<button class="choice '+(S.opts.indexOf(k)>-1?'right':'')+'" data-opt="'+k+'" aria-pressed="'+(S.opts.indexOf(k)>-1)+'">'+esc(o)+'</button>').join('')+'</div>'
+   +'<label for="mineag">我們的約定（可以直接修改）</label><textarea id="mineag" rows="4">'+esc(ag)+'</textarea><label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select></div>'
+   +'<div class="card"><p class="kicker">一週後回頭看</p>'+ul(T.home.review)+'</div>'
+   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>'
+   +'<div class="bridge"><span>收尾</span>'+esc(T.home.closing)+'</div>';}
+ return h;}
 function summary(s,au,a){const ag=S.mine.mineag!=null?S.mine.mineag:au.future;const ch=S.opts.map(k=>au.options[k]).filter(Boolean);
  return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+(s.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。');}
 
@@ -193,6 +246,7 @@ A.addEventListener('change',e=>{const t=e.target;
 A.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;
  if(d.aud){S.aud=d.aud;S.mine.mineag=undefined;S.opts=[];return draw();}
+ if(d.mode){S.mode=d.mode;S.stage=0;return draw();}
  if(d.jump){const el=document.getElementById('sec-'+d.jump);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return;}
  if(d.stage!=null&&d.stage!==''){return setStage(+d.stage);}
  if(d.opt!=null&&d.opt!==''){const k=+d.opt,i=S.opts.indexOf(k);if(i>-1)S.opts.splice(i,1);else S.opts.push(k);const sx=sitOf(S.sit);if(S.mine.mineag==null||true){}return draw();}

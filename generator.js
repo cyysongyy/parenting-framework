@@ -279,6 +279,12 @@
     const errors = [], warns = [];
     const E = m => errors.push(m);
     const f = fw.core, selIds = f.sel.map(x => x.id);
+    // 理論到實務模式
+    if (fw.theory) {
+      ['iceberg', 'sel', 'ido', 'f4'].forEach(k => { const m = fw.theory.modules && fw.theory.modules[k]; if (!m) return E('theory 缺少模組：' + k); ['name', 'oneLine', 'why', 'question', 'interaction'].forEach(f => { if (!m[f]) E('theory.' + k + ' 缺少 ' + f); }); if (!m.notes || !m.notes.length) E('theory.' + k + ' 缺少講者備忘'); });
+      const total = (fw.theory.timeline || []).reduce((a, x) => a + x.min, 0);
+      if (total !== 80) E('theory 時間軸總和應為 80 分鐘，目前 ' + total);
+    }
     // 輔導式內容（啟發性提問與可選做法）
     (fw.situations || []).forEach(sit => {
       selIds.forEach(id => { if (!sit.selQuestions || !sit.selQuestions[id]) E(sit.id + ' 缺少 SEL 提問：' + id); });
