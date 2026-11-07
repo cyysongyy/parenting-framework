@@ -4605,5 +4605,55 @@
       }
     ],
     "closing": "每個人都有自己的冰山。今天先看見自己，再看見孩子。"
+  },
+  "taiwanese": {
+    "title": "SEL 五大核心 × 台語智慧　連連看",
+    "ask": "哪一句台語智慧，對應哪一個 SEL 核心？先點一個核心，再點一句台語。",
+    "source": "台語句與解釋取自講座 deck；講者可依自己的說法調整。",
+    "items": [
+      {
+        "id": "tw1",
+        "say": "知輕重、幾兩重",
+        "mean": "知道自己的斤兩與分量",
+        "core": "self_awareness"
+      },
+      {
+        "id": "tw2",
+        "say": "知吃知穿，知分寸",
+        "mean": "懂得節制、拿捏分寸",
+        "core": "self_management"
+      },
+      {
+        "id": "tw3",
+        "say": "目色好",
+        "mean": "會看場合與臉色，察覺他人感受",
+        "core": "social_awareness"
+      },
+      {
+        "id": "tw4",
+        "say": "互相、人情留一線",
+        "mean": "互相禮讓，凡事留餘地",
+        "core": "relationship_skills"
+      },
+      {
+        "id": "tw5",
+        "say": "做人要有肩胛頭",
+        "mean": "敢擔當、負責任",
+        "core": "responsible_decision"
+      }
+    ],
+    "order": [
+      "tw4",
+      "tw1",
+      "tw5",
+      "tw3",
+      "tw2"
+    ]
+  },
+  "modes": {
+    "sel4": {
+      "name": "SEL 版",
+      "sub": "五核心＋冰山＋4F"
+    }
   }
 }

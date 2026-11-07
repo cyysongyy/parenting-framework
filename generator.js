@@ -315,6 +315,7 @@
       if (total !== 80) E('theory 時間軸總和應為 80 分鐘，目前 ' + total);
     }
       const ci = fw.checkin; if (!ci) E('缺少 checkin'); else { if (!ci.cards || ci.cards.length !== 2) E('checkin 需有兩張卡'); else ci.cards.forEach(c => { if (!c.items || c.items.length < 8) E('checkin.' + c.id + ' 至少 8 項'); c.items.forEach(i => { if (!i.t || !i.f) E('checkin.' + c.id + ' 項目需有文字與感受'); }); }); if (!ci.iceberg || ci.iceberg.length !== 3) E('checkin 需有三層冰山提問'); }
+      const tw = fw.taiwanese; if (!tw || !tw.items || tw.items.length !== 5) E('taiwanese 需有 5 句'); else tw.items.forEach(i => { if (selIds.indexOf(i.core) < 0) E('taiwanese ' + i.id + ' 對應的 SEL 核心不存在'); });
     // 輔導式內容（啟發性提問與可選做法）
     (fw.situations || []).forEach(sit => {
       selIds.forEach(id => { if (!sit.selQuestions || !sit.selQuestions[id]) E(sit.id + ' 缺少 SEL 提問：' + id); });
