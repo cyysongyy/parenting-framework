@@ -1,32 +1,35 @@
 # 親子教育架構（parenting-framework）
 
-把「四湖國中親職教育」講座的內容整理成一個可重複使用的模組：依情境（例如：孩子憤怒、拖延作業、手機衝突、人際衝突）產生不同的講座段落。
+把「四湖國中親職教育」講座整理成可重複使用的模組：同一個情境，依孩子的年段（國小／國中／高中）產生六個層次的內容，並支援家長／學生問卷統計。
 
-## 目前的情境
-- `emotion_outburst`：孩子憤怒到極點（師生衝突）
-- `exam_drop`：考試退步（小安的故事）
-- `school_anxiety`：上學焦慮，說肚子痛
-- `procrastination`：拖延作業
-- `phone_conflict`：手機使用與親子衝突（行為領域延伸，含系統觀）
-- `family_rules`：家庭規範被挑戰
-- `interpersonal_conflict`：人際衝突與不敢表達
+## 六個層次
+1. **邏輯一貫性**：每個情境有一條主線（水面上行為 → 感受與需求 → 價值信念 → 用到的能力 → 約定）。4F 與冰山對應：Facts→行為、Feelings→感受與需求、Findings→價值信念、Future→把新做法帶回水面（與講座 rel 頁一致）。
+2. **冰山模式**：先孩子、後父母，三層；並說明兩座冰山如何碰撞。
+3. **I do · You do · We do**：每個階段有目的、講師與家長的動作、成果。
+4. **4F 模式**：每一步有提問、示範說法、要避免的話，以及對應的冰山層與 SEL 核心。
+5. **對象**：國小／國中／高中。步驟不變，改變語氣、決策權、冰山深度與約定方式。
+6. **提問與互動**：提問階梯、猜一猜（逐次揭曉）、冰山配對、4F 排序、角色換位、承諾約定；加上問卷統計。
+
+## 問卷：家長／學生
+- 兩種身分用同一組選項（家長版為原文，學生版為第一人稱改寫），統計時以原選項對應。
+- 統計並排顯示家長與學生的比例，落差達 15 個百分點時標示「家長更多／學生更多」。
+- 依兩邊比例（落差加權）把 8 個情境排序，決定今天先討論哪些。
+- 送到 Apps Script 的格式：`{ role, emotion, behavior, social }`。`sihu-parent-survey` 的 Code.gs 需另外新增 `role` 欄；本模組不修改該專案。
+
+## 情境（8 個 × 3 個年段）
+孩子憤怒到極點、考試退步、上學焦慮、拖延作業、手機使用與親子衝突、家庭規範被挑戰、人際衝突與不敢表達、被排擠／孤立／網路霸凌。
 
 ## 檔案
-- `framework.json`：架構資料（I do / You do / We do、4F、SEL 五大核心、冰山、系統觀、各情境的例子與腳本）。
-- `generator.js`：`buildPlan(fw, { situation, resultsDisplay })` 依情境產生段落。
-- `validate.js`：檢查每個情境的欄位、4F 與 SEL 代碼是否一致（`node validate.js`）。
-- `index.html`：簡單的檢視頁，選情境即可看到產生的內容。
+- `framework.json`：架構資料。
+- `generator.js`：`buildPlan`、`buildInteractions`、`surveySpec`、`tally`、`compare`、`insights`、`recommendFromSurvey`、`checkCoherence`。
+- `index.html`：檢視頁（需 GitHub Pages 或本機伺服器）。
+- `demo-offline.html`：單一檔案離線版，由 `node build-offline.js` 產生。
+- `validate.js`：`node validate.js` 檢查所有情境與年段是否完整一致。
 
-## 已納入的修正（對應講座內容檢查的 8 點）
-1. 結尾順序改為 Facts → Feelings → Findings → Future，與 4F 一致。
-2. 手機衝突列為行為領域的延伸，並可加上過場說明（`leadIn`）與系統觀。
-3. 「[講師自己的經驗]」改為明確的 TODO 欄位，產生時會列在「待確認」。
-4. 「3C」列為待定義欄位（`tbdFields`），提出的定義僅為建議。
-5. 冰山例子「鳥屎」改為待確認的替代用語（`settings.iceExampleReplacement`）。
-6. SEL 對應由情境的 `selFocus` 決定，不再用單一台語句硬配。
-7. 網頁版與 Slides 的差異改由 `settings.deckVariant` 控制，不再各自維護。
-8. 結果顯示方式由 `resultsDisplay`（projector / phone）決定，文字自動跟著改。
+## 待確認（TODO）
+- 各情境的「[講師自己的經驗]」。
+- 「3C」的定義（`tbdFields`）。
+- 冰山例子「鳥屎」的替代用語（`settings.iceExampleReplacement`）。
+- 各年段的情境內容為草稿，請依實際經驗調整。
 
-## 注意
-- 本模組不修改 `sihu-parent-survey` 的 deck.html、deck-offline.html 或 Slides。
-- 標註 TODO 的內容需要講師確認後再定稿。
+本模組不修改 `sihu-parent-survey` 的 deck.html、deck-offline.html、Slides 或問卷。
