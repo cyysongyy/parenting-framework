@@ -32,7 +32,7 @@ function ice(title,ic){const band=(i,cls)=>'<div class="band '+cls+'" style="'+i
  return '<div><h3>'+title+'</h3><div class="sky">'+band(0,'b1')+'</div><div class="wl"><span>水面</span></div><div class="sea">'+band(1,'b2')+band(2,'b3')+'</div></div>';}
 const ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
 
-const S={view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
+const S={all:false,go:false,view:'flow',aud:'junior',sit:'emotion_outburst',stage:0,mine:{},opts:[],role:'parent',picks:{},resp:[],proj:false,when:'明天',custom:null,ai:{key:'',model:'claude-sonnet-5-5',remember:false},ask:{q:'',busy:false,err:'',match:null}};
 (function(){try{const raw=localStorage.getItem('pf_ai')||sessionStorage.getItem('pf_ai');if(raw){const o=JSON.parse(raw);S.ai.key=o.key||'';S.ai.model=o.model||S.ai.model;S.ai.remember=!!localStorage.getItem('pf_ai');}}catch(e){}})();
 function saveAI(){try{localStorage.removeItem('pf_ai');sessionStorage.removeItem('pf_ai');if(S.ai.key){(S.ai.remember?localStorage:sessionStorage).setItem('pf_ai',JSON.stringify({key:S.ai.key,model:S.ai.model}));}}catch(e){}}
 function fwx(){return S.custom?Object.assign({},fw,{situations:fw.situations.concat([S.custom])}):fw;}
@@ -50,16 +50,16 @@ function topbar(extra){return '<div class="topbar"><button data-act="flow">← �
 function ctl(){
  return '<div class="ctlbar"><div><label for="sit">生活情境</label><select id="sit">'+fw.situations.map(x=>'<option value="'+x.id+'" '+(x.id===S.sit?'selected':'')+'>'+DOMAIN[x.domain]+'・'+esc(x.title)+'</option>').join('')+(S.custom?'<option value="custom" '+(S.sit==='custom'?'selected':'')+'>✨ 我的問題・'+esc(S.custom.title)+'</option>':'')+'</select></div>'
  +'<div><label>孩子年段</label><div class="seg2">'+AUD.map(a=>'<button data-aud="'+a+'" class="'+(S.aud===a?'primary':'')+'">'+esc(fw.audiences[a].label)+'</button>').join('')+'</div></div>'
- +'<div class="ctlbtns"><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
-function stepper(){return '<nav class="stepper" aria-label="講師主線">'+ST.map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
+ +'<div class="ctlbtns"><button data-act="one" class="'+(S.all?'primary':'')+'">📄 一鍵看全部答案</button><button data-act="proj" class="'+(S.proj?'primary':'')+'">投影大字</button><button data-act="survey">問卷統計</button><button data-act="ask">✨ 我的問題</button></div></div>';}
+function stepper(){if(S.all)return '<nav class="stepper" aria-label="跳到段落">'+ST.map((x,i)=>'<button data-jump="'+x.id+'"><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';return '<nav class="stepper" aria-label="講師主線">'+ST.map((x,i)=>'<button data-stage="'+i+'" class="'+(i===S.stage?'on':'')+(i<S.stage?' past':'')+'" '+(i===S.stage?'aria-current="step"':'')+'><span class="sn">'+(i+1)+'</span><b>'+esc(x.n)+'</b><small>'+esc(x.tag)+'</small></button>').join('')+'</nav>';}
 function pager(){return '<div class="row2">'+(S.stage>0?'<button data-act="prev">← '+ST[S.stage-1].n+'</button>':'')+(S.stage<ST.length-1?'<button class="primary" data-act="next">'+ST[S.stage+1].n+' →</button>':'')+'</div>';}
 const bridge=t=>'<div class="bridge"><span>承接語</span>'+esc(t)+'</div>';
 function leader(def){return '<details class="lead" open><summary>講師帶領</summary><p class="mut" style="margin:6px 0">'+esc(def.purpose)+'</p>'+ul(def.leaderMoves)+'</details>';}
 function ask(key,label,ph){return '<div class="audience"><label for="'+key+'">聽眾一句話：'+esc(label)+'</label><textarea id="'+key+'" rows="2" placeholder="'+esc(ph||'')+'">'+esc(S.mine[key]||'')+'</textarea></div>';}
 
-function vFlow(){
- const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud],id=ST[S.stage].id;
- let h=ctl()+stepper();
+function stageHTML(id){
+ const p=plan(),s=sitOf(S.sit),au=s.byAudience[S.aud],a=fw.audiences[S.aud];
+ let h='';
  if(id==='open'){
   const ch=p.layers.coherence.chain,col=['behavior','feeling','belief'];
   h+='<div class="card hero2"><p class="kicker">'+esc(DOMAIN[s.domain])+'・'+esc(a.label)+'</p><h2>'+esc(s.title)+'</h2><p class="big2">'+esc(p.layers.coherence.storyline)+'</p></div>'
@@ -105,7 +105,11 @@ function vFlow(){
   +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';
  }
- return h+pager();}
+ return h;}
+function vFlow(){
+ if(!S.all)return ctl()+stepper()+stageHTML(ST[S.stage].id)+pager();
+ return ctl()+stepper()+'<div class="allbar"><b>全部答案</b><span class="mut">五個階段一次展開，可直接往下讀、投影或列印。</span><button data-act="print">列印／存成 PDF</button><button data-act="one">回到逐步模式</button></div>'
+  +ST.map((x,i)=>'<section class="allsec" id="sec-'+x.id+'"><h2 class="sechead"><span class="sn">'+(i+1)+'</span>'+esc(x.n)+'<small>'+esc(x.tag)+'</small></h2>'+stageHTML(x.id)+'</section>').join('');}
 function summary(s,au,a){const ag=S.mine.mineag!=null?S.mine.mineag:au.future;const ch=S.opts.map(k=>au.options[k]).filter(Boolean);
  return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+s.referralNote;}
 
@@ -140,14 +144,14 @@ async function doGen(){const q=S.ask.q.trim();
   ['title','storyline','chain','childIceberg','parentIceberg','wedoScript','selMap','selQuestions','counselorQuestions','options','future','example'].forEach(k=>{if(o[k]==null)throw new Error('AI 回傳的格式不完整（缺少 '+k+'），請再試一次');});
   const ba={};AUD.forEach(x=>{ba[x]={example:o.example,childIceberg:o.childIceberg,youDoQuestions:o.youDoQuestions||[],options:o.options,future:o.future};});
   S.custom={id:'custom',domain:['emotion','behavior','interpersonal'].indexOf(o.domain)>-1?o.domain:'emotion',title:o.title,storyline:o.storyline,surveyLink:{},chain:o.chain,triggerForParent:o.triggerForParent||'',parentIceberg:o.parentIceberg,idoModel:o.idoModel||'',lecturerExperience:null,byAudience:ba,wedoScript:o.wedoScript,selMap:o.selMap,selQuestions:o.selQuestions,counselorQuestions:o.counselorQuestions,referralNote:o.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。',aiGenerated:true,question:q,audience:S.aud};
-  S.ask.busy=false;draw();
- }catch(e){S.ask.busy=false;S.ask.err=(e&&e.message)||'發生錯誤';if(/Failed to fetch|NetworkError/i.test(S.ask.err))S.ask.err='連不上 Anthropic（請確認網路連線）。';draw();}}
+  S.ask.busy=false;if(S.go){S.go=false;S.sit='custom';S.all=true;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});}draw();
+ }catch(e){S.ask.busy=false;S.go=false;S.ask.err=(e&&e.message)||'發生錯誤';if(/Failed to fetch|NetworkError/i.test(S.ask.err))S.ask.err='連不上 Anthropic（請確認網路連線）。';draw();}}
 function vAsk(){const k=S.ask,m=k.match;
  let h=topbar('輔導者的提問')+'<div class="card"><p class="kicker">我的問題</p><h2>內建 8 個情境以外的問題，可以交給 AI 依同一套架構產生</h2><p class="mut">先比對內建情境；沒有符合，再用 AI 依冰山、SEL、4F 與輔導立場產生一個新情境，之後的每一頁都會直接使用它。目前年段：<b>'+esc(fw.audiences[S.aud].label)+'</b>（在主線頁切換）。</p>'
  +'<label for="qtext">請描述孩子的狀況（不要寫真實姓名）</label><textarea id="qtext" rows="4" placeholder="例如：孩子最近很不想參加社團，回家就關在房間，問他也只說沒事。">'+esc(k.q)+'</textarea>'
- +'<div class="row2"><button data-act="match">先比對內建情境</button><button class="primary" data-act="gen" '+(k.busy?'disabled':'')+'>'+(k.busy?'產生中，約需 20～40 秒…':'用 AI 產生')+'</button><button data-act="settings">⚙ API key 設定'+(S.ai.key?'（已設定）':'')+'</button></div>'
+ +'<div class="row2"><button data-act="match">先比對內建情境</button><button class="primary" data-act="genall" '+(k.busy?'disabled':'')+'>'+(k.busy?'產生中，約需 20～40 秒…':'✨ 一鍵生成全部答案')+'</button><button data-act="gen" '+(k.busy?'disabled':'')+'>只產生情境</button><button data-act="settings">⚙ API key 設定'+(S.ai.key?'（已設定）':'')+'</button></div>'
  +(k.err?'<div class="note bad">'+esc(k.err)+'</div>':'')+'</div>';
- if(m){h+='<div class="card"><p class="kicker">比對結果</p>'+(m.x?'<p>最接近的內建情境是：<b>'+esc(DOMAIN[m.x.domain])+'・'+esc(m.x.title)+'</b></p><div class="row2"><button class="primary" data-act="usematch" data-s="'+m.x.id+'">使用這個情境</button></div><p class="mut">如果不太像，請用 AI 產生。</p>':'<p>沒有明顯接近的內建情境，建議用 AI 產生。'+(S.ai.key?'':'需要先到「API key 設定」輸入你自己的 key。')+'</p>')+'</div>';}
+ if(m){h+='<div class="card"><p class="kicker">比對結果</p>'+(m.x?'<p>最接近的內建情境是：<b>'+esc(DOMAIN[m.x.domain])+'・'+esc(m.x.title)+'</b></p><div class="row2"><button class="primary" data-act="usematch" data-s="'+m.x.id+'">使用這個情境</button><button data-act="usematchall" data-s="'+m.x.id+'">一鍵看全部答案</button></div><p class="mut">如果不太像，請用 AI 產生。</p>':'<p>沒有明顯接近的內建情境，建議用 AI 產生。'+(S.ai.key?'':'需要先到「API key 設定」輸入你自己的 key。')+'</p>')+'</div>';}
  if(S.custom){h+='<div class="card"><p class="kicker">已產生的情境</p><p><b>'+esc(S.custom.title)+'</b>（'+esc(fw.audiences[S.custom.audience].label)+'）</p><p class="mut">'+esc(S.custom.storyline)+'</p><div class="note">這是 AI 依架構產生的草稿，請用輔導專業判斷後再使用。</div><div class="row2"><button class="primary" data-act="usecustom">進入講師主線</button></div></div>';}
  return h;}
 function vSettings(){
@@ -180,7 +184,7 @@ function vSurvey(){
 
 
 function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():vSurvey();}
-A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&ST[S.stage].id==='close'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
+A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
  if(t.id==='airemember'){S.ai.remember=t.checked;return;}
@@ -189,10 +193,13 @@ A.addEventListener('change',e=>{const t=e.target;
 A.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;
  if(d.aud){S.aud=d.aud;S.mine.mineag=undefined;S.opts=[];return draw();}
+ if(d.jump){const el=document.getElementById('sec-'+d.jump);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return;}
  if(d.stage!=null&&d.stage!==''){return setStage(+d.stage);}
  if(d.opt!=null&&d.opt!==''){const k=+d.opt,i=S.opts.indexOf(k);if(i>-1)S.opts.splice(i,1);else S.opts.push(k);const sx=sitOf(S.sit);if(S.mine.mineag==null||true){}return draw();}
  switch(d.act){
   case 'flow':S.view='flow';return draw();
+  case 'one':S.all=!S.all;S.view='flow';draw();return window.scrollTo({top:0});
+  case 'genall':S.go=true;return doGen();
   case 'prev':return setStage(S.stage-1);
   case 'next':return setStage(S.stage+1);
   case 'proj':S.proj=!S.proj;return draw();
@@ -201,6 +208,7 @@ A.addEventListener('click',e=>{
   case 'savekey':saveAI();S.view=S.ask.pending?'ask':'flow';return draw();
   case 'clearkey':S.ai.key='';saveAI();return draw();
   case 'match':return doMatch();
+  case 'usematchall':S.sit=d.s;S.all=true;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'usematch':S.sit=d.s;S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
   case 'gen':return doGen();
   case 'usecustom':S.sit='custom';S.stage=0;S.view='flow';S.mine.mineag=undefined;S.opts=[];draw();return window.scrollTo({top:0});
