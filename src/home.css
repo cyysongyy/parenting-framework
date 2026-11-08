@@ -268,3 +268,10 @@ input[type=password],input[type=text]{width:100%}
 .ctlbar{grid-template-columns:minmax(220px,300px) auto}
 .ctlbar .ctlbtns{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
 @media(max-width:700px){.ctlbar{grid-template-columns:1fr}}
+
+/* 風險提醒：縮小、低調，但保留內容 */
+.risk{margin:10px 0 0;font-size:12.5px;color:var(--mut);border:1px solid var(--line);border-radius:12px;padding:6px 12px;background:transparent}
+.risk summary{cursor:pointer;display:flex;align-items:center;gap:4px;font-weight:600;list-style:none}.risk summary::-webkit-details-marker{display:none}
+.risk p{margin:6px 0 2px;line-height:1.6}
+.risk-on{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;border-color:var(--amber)}
+.risk-on b{color:var(--amber)}.risk-on span{flex:1 1 220px}

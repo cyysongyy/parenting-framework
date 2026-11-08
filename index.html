@@ -385,6 +385,13 @@ input[type=password],input[type=text]{width:100%}
 .ctlbar .ctlbtns{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
 @media(max-width:700px){.ctlbar{grid-template-columns:1fr}}
 
+/* 風險提醒：縮小、低調，但保留內容 */
+.risk{margin:10px 0 0;font-size:12.5px;color:var(--mut);border:1px solid var(--line);border-radius:12px;padding:6px 12px;background:transparent}
+.risk summary{cursor:pointer;display:flex;align-items:center;gap:4px;font-weight:600;list-style:none}.risk summary::-webkit-details-marker{display:none}
+.risk p{margin:6px 0 2px;line-height:1.6}
+.risk-on{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;border-color:var(--amber)}
+.risk-on b{color:var(--amber)}.risk-on span{flex:1 1 220px}
+
 </style></head>
 <body><a class="skip-link" href="#app">跳到內容</a><div class="wrap">
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><path d="M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">親職教育架構</div><small>GROW TOGETHER · 一起練習，一起成長</small></div></div><div class="header-right"><span class="offline">離線也能使用</span><a class="offline" href="full.html" style="color:var(--teal);text-decoration:underline">完整內容</a><button class="theme-button" id="themeToggle" type="button" aria-label="切換為深色模式" aria-pressed="false">◐ 深色模式</button></div></header>
@@ -1002,10 +1009,11 @@ function stageHTML(id){
   +au.options.map((o,k)=>'<button class="choice '+(S.opts.indexOf(k)>-1?'right':'')+'" data-opt="'+k+'" aria-pressed="'+(S.opts.indexOf(k)>-1)+'">'+esc(o)+'</button>').join('')+'</div>'
   +'<label for="mineag">我們的約定（可以直接修改成你們的話）</label><textarea id="mineag" rows="4">'+esc(ag)+'</textarea>'
   +'<label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select></div>'
-  +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+'<div class="note">'+esc(p.extras.referral)+'</div></div>'
+  +'<div class="card"><p class="kicker">本場收束的四句話</p>'+ul(p.extras.closing)+''+riskNote(p.extras.referral)+'</div>'
   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';
  }
  return h;}
+function riskNote(t){return t?'<details class="risk"><summary>'+ico('shield','bic')+'需要轉介時</summary><p>'+esc(t)+'</p></details>':'';}
 function checkinHTML(id){
  const C=fw.checkin;if(!C)return '';S.ci=S.ci||{};
  const nextTxt={ci:'接下來進入今天的情境。',t_ci:'認識了自己的冰山，我們來看冰山理論。',s_ci:'認識了自己的冰山，接下來看今天的情境。',k_ci:'認識了自己，接下來看孩子需要培養的五個能力。'}[id];
@@ -1117,7 +1125,7 @@ function theoryHTML(id){
     +'<div class="ice3"><div style="'+iceBg('behavior')+'"><small>水面上</small>'+esc(c.top)+'</div><div style="'+iceBg('feeling')+'"><small>結構層</small>'+(c.structure.length?c.structure.map(esc).join('；'):'（待現場補充）')+'</div><div style="'+iceBg('belief')+'"><small>價值信念</small>'+(c.beliefs.length?c.beliefs.map(esc).join('　'):'（待現場補充）')+'</div></div>'
     +'<p class="kicker" style="margin-top:12px">下一步：4F 起手式（取自講座 deck）</p><ul>'+c.f4.map(esc).map(x=>'<li>'+x+'</li>').join('')+'</ul>'
     +(c.situations.length?'<p class="kicker">建議用哪個情境進入 I do</p><div class="row2 wrap">'+c.situations.map(x=>'<button class="primary" data-act="dgsit" data-s="'+x.id+'">'+esc(x.title)+' →</button>').join('')+'</div>':'')
-    +(dg.cautions.length?'<div class="note warnbox"><b>提醒</b><ul>'+dg.cautions.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>':'')
+    +(dg.cautions.length?'<div class="risk risk-on" role="note"><b>'+ico('shield','bic')+'提醒</b>'+dg.cautions.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>':'')
     +'<p class="mut">'+esc(D.closing)+'</p></div>';
   }
   return h2+'<p class="mut">'+esc(D.source)+'</p>'+bridge('看見了水面下的原因，接下來用操作程序練習：先看我做，再換你做，最後一起做。');}
@@ -1135,7 +1143,7 @@ function theoryHTML(id){
    return h2+bridge('你們看見了孩子的冰山。接下來，我們一起把它走成一個約定。');}
   h2+=where(f4Path()+'<div class="f4t">'+F.map((f,k)=>'<div class="f4r" style="--c:var(--f-'+f.id+')"><div class="f4h"><span class="n">'+(k+1)+'</span><b>'+esc(f.label)+'</b>'+wq(f)+'</div><div class="f4b"><p class="say">'+esc(s.wedoScript[f.id])+'</p><p class="mut">誰先說：'+esc(T.modules.f4.speakers[f.id])+'</p></div></div>').join('')+'</div>'
    +(s.counselorQuestions?'<h3>四種啟發式提問</h3><div class="cqs">'+Object.keys(fw.core.counselorQuestionTypes).map(k=>'<div class="cq"><span class="tag">'+esc(fw.core.counselorQuestionTypes[k])+'</span><p>'+esc(s.counselorQuestions[k])+'</p></div>').join('')+'</div>':''))
-   +'<div class="card"><p class="kicker">觀察者檢核表</p>'+ul(T.observer)+'<div class="note">'+esc(p.extras.referral)+'</div></div>';
+   +'<div class="card"><p class="kicker">觀察者檢核表</p>'+ul(T.observer)+''+riskNote(p.extras.referral)+'</div>';
   return h2+bridge('練習過後，帶一個約定回家。');}
  
 if(id==='t_home'){
