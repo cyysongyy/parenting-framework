@@ -256,3 +256,15 @@ input[type=password],input[type=text]{width:100%}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 .brand small{letter-spacing:.14em}@media(max-width:700px){.brand small{letter-spacing:.06em;font-size:11px}}
 .brand small{text-wrap:balance}.header-right button,.header-right a{white-space:nowrap}@media(max-width:700px){.brand small{letter-spacing:.02em;font-size:10.5px}.header-right .offline{display:none}}
+
+.findbar{margin:12px 0;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line)}
+.findrow{display:flex;gap:10px;margin:6px 0}.findrow input{flex:1;min-width:0}
+.findres{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.conf{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;margin-left:4px}
+.conf.high{background:var(--teal);color:var(--chipfg)}.conf.mid{background:var(--amber);color:var(--chipfg)}
+
+.kdot{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:700;background:var(--track);color:var(--mut)}
+.kdot.on{background:var(--teal);color:var(--chipfg)}
+.ctlbar{grid-template-columns:minmax(220px,300px) auto}
+.ctlbar .ctlbtns{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+@media(max-width:700px){.ctlbar{grid-template-columns:1fr}}
