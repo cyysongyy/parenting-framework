@@ -1,4 +1,4 @@
-// 親子教育架構 v2：依「情境 × 年段」產生六個層次的內容，並處理家長／學生問卷統計
+// 親職教育架構 v2：依「情境 × 年段」產生六個層次的內容，並處理家長／學生問卷統計
 // 用法：const plan = ParentingFramework.buildPlan(fw, { situation: 'procrastination', audience: 'junior' });
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();

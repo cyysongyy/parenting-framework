@@ -254,3 +254,5 @@ input[type=password],input[type=text]{width:100%}
 .skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--card);padding:8px 14px;border-radius:10px;z-index:99;text-decoration:none}.skip:focus{top:8px}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.brand small{letter-spacing:.14em}@media(max-width:700px){.brand small{letter-spacing:.06em;font-size:11px}}
+.brand small{text-wrap:balance}.header-right button,.header-right a{white-space:nowrap}@media(max-width:700px){.brand small{letter-spacing:.02em;font-size:10.5px}.header-right .offline{display:none}}
