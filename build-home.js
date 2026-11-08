@@ -8,7 +8,7 @@ let html = fs.readFileSync('src/home.src.html', 'utf8');
 const css = fs.readFileSync('src/home.css', 'utf8');
 html = html.replace('/*STYLES*/', () => styles + '\n' + css)
   .replace('<!--MASTHEAD-->', () => masthead)
-  .replace('/*FW*/', () => fs.readFileSync('framework.json', 'utf8'))
+  .replace('/*FW*/', () => JSON.stringify(JSON.parse(fs.readFileSync('framework.json', 'utf8'))))
   .replace('/*QR*/', () => 'data:image/png;base64,' + fs.readFileSync('assets/survey-qr.png').toString('base64'))
   .replace('/*GEN*/', () => fs.readFileSync('generator.js', 'utf8'));
 fs.writeFileSync('index.html', html);

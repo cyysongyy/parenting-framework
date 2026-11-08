@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>親子教育架構・練習</title>
+<meta name="description" content="親子教育架構：冰山、SEL 五大核心、4F 與 I do／You do／We do，給家長的親職教育練習。">
+<meta name="theme-color" content="#3b5e4f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='7' fill='%233b5e4f'/%3E%3Cpath d='M14 24V13M14 17C5 18 3 11 4 6c7-1 11 3 10 11ZM14 13C13 6 18 2 24 3c1 6-3 11-10 10Z' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
 /*STYLES*/
 </style></head>
@@ -115,6 +118,7 @@ const ico=(k,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'" viewBox="-12 -12 24 24" 
 const KICK=[[/吃什麼卡/,'gift'],[/動物/,'heart'],[/Check-in/,'heart'],[/冰山|水面/,'iceberg'],[/診斷|結構層|價值信念/,'magnifier'],[/SEL|五大核心|能力/,'sprout'],[/4F/,'chat'],[/問卷|統計|結果|比對/,'chart'],[/地圖|主線|順序|邏輯|三個工具|兩個理論/,'map'],[/帶回家|一週|收束/,'home'],[/約定|行動/,'flag'],[/觀察/,'eye'],[/輔導者|提問|問題|我的問題/,'question'],[/講師|講者|示範/,'pencil'],[/學員|聽眾|You do/,'ears'],[/I do|家長的冰山/,'eye'],[/We do|一起/,'people'],[/API|設定/,'key'],[/情境|例子|這一場|開場|破題|為什麼/,'book'],[/系統/,'link2'],[/孩子/,'heart']];
 const STIC={k_ci:'heart',k_sel:'sprout',k_ice:'iceberg',k_4f:'chat',k_go:'flag',ci:'heart',t_ci:'heart',s_ci:'heart',s_open:'door',s_ice:'iceberg',s_4f:'chat',s_go:'flag',open:'door',ido:'eye',youdo:'ears',wedo:'people',close:'flag',t_open:'door',t_ice:'iceberg',t_sel:'sprout',t_4f:'chat',t_diag:'magnifier',t_ido:'eye',t_you:'ears',t_we:'people',t_home:'home'};
 const HERO='<svg class="herodeco" viewBox="0 0 220 150" aria-hidden="true"><path d="M0 150V118Q40 96 80 112T160 104T220 112V150Z" style="fill:var(--s-self_management)" opacity=".22"/><path d="M0 150V132Q50 116 100 128T220 126V150Z" style="fill:var(--f-findings)" opacity=".28"/><circle cx="178" cy="34" r="14" style="fill:var(--amber)" opacity=".85"/><g style="fill:var(--card)" opacity=".9"><ellipse cx="60" cy="30" rx="22" ry="7"/><ellipse cx="76" cy="25" rx="13" ry="7"/></g><g transform="translate(96 78)"><circle cx="0" cy="-22" r="8" style="fill:var(--i-feeling)"/><path d="M-10 18V-8Q0 -14 10 -8V18Z" style="fill:var(--i-feeling)"/><circle cx="26" cy="-6" r="6" style="fill:var(--f-feelings)"/><path d="M19 18V4Q26 0 33 4V18Z" style="fill:var(--f-feelings)"/><path d="M10 2L19 6" style="stroke:var(--i-feeling)" stroke-width="3" stroke-linecap="round"/><path d="M13 -34C8 -40 0 -36 5 -30L13 -22L21 -30C26 -36 18 -40 13 -34Z" style="fill:var(--red)" opacity=".85"/></g></svg>';
+function a11yInit(){const bn=document.querySelector('.brand-name');if(bn&&!bn.getAttribute('role')){bn.setAttribute('role','heading');bn.setAttribute('aria-level','1');}if(!document.getElementById('skip')){document.body.insertAdjacentHTML('afterbegin','<a id="skip" class="skip" href="#app">跳到主要內容</a>');}document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.live.on)livePoll();});}
 function decorate(){
  if(!A)return;
  A.querySelectorAll('.kicker').forEach(k=>{if(k.querySelector('.kic'))return;const t=k.textContent;let n='sparkle';for(const [re,g] of KICK){if(re.test(t)){n=g;break;}}k.insertAdjacentHTML('afterbegin','<span class="kic">'+ico(n)+'</span>');});
@@ -433,12 +437,12 @@ function curTally(){
 let liveTimer=null;
 function liveRelevant(){return S.view==='live'||S.view==='survey'||(S.view==='flow'&&S.mode==='theory'&&STL()[S.stage]&&STL()[S.stage].id==='t_diag');}
 async function livePoll(){
- const c=liveCfg();if(!c||!S.live.on)return;
+ const c=liveCfg();if(!c||!S.live.on||document.hidden)return;
  try{const r=await fetch(c.api+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
   if(typeof j.total!=='number')throw new Error('格式不符');
   const sig=JSON.stringify(j);S.live.err='';S.live.ts=Date.now();const changed=sig!==S.live.sig;S.live.sig=sig;S.live.data=j;
-  if((changed||true)&&liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}
- }catch(e){S.live.err='讀不到問卷後端（'+(e.message||e)+'）。請確認網路，或先用「載入示範資料」。';if(liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}}
+  if(changed&&liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}
+ }catch(e){const msg='讀不到問卷後端（'+(e.message||e)+'）。請確認網路，或先用「載入示範資料」。';const was=S.live.err;S.live.err=msg;if(was!==msg&&liveRelevant()){const ae=document.activeElement;if(!(ae&&/TEXTAREA|INPUT|SELECT/.test(ae.tagName)))draw();}}
 }
 function liveStart(){const c=liveCfg();if(!c)return;S.live.on=true;clearInterval(liveTimer);livePoll();liveTimer=setInterval(livePoll,Math.max(3,c.pollSec||5)*1000);}
 function liveStop(){S.live.on=false;clearInterval(liveTimer);liveTimer=null;}
@@ -473,7 +477,14 @@ function vSurvey(){
  return h;}
 
 
-function draw(){A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():S.view==='live'?vLive():vSurvey();decorate();}
+const FKEYS=['act','v','c','stage','aud','mode','s','opt','jump'];
+function focusKey(){const e=document.activeElement;if(!e||e===document.body||!A.contains(e))return null;
+ if(/^(TEXTAREA|INPUT|SELECT)$/.test(e.tagName)&&e.id)return {id:e.id};
+ const sel=e.tagName.toLowerCase()+FKEYS.filter(k=>e.dataset[k]!=null).map(k=>'['+'data-'+k+'="'+CSS.escape(e.dataset[k])+'"]').join('');
+ if(sel===e.tagName.toLowerCase())return null;
+ const list=[...A.querySelectorAll(sel)];return {sel,i:Math.max(0,list.indexOf(e))};}
+function focusRestore(k){if(!k)return;try{const el=k.id?A.querySelector('#'+CSS.escape(k.id)):A.querySelectorAll(k.sel)[k.i]||A.querySelector(k.sel);if(el&&el.focus)el.focus({preventScroll:true});}catch(e){}}
+function draw(){const fk=focusKey();A.className='app'+(S.proj?' proj':'');A.innerHTML=S.view==='flow'?vFlow():S.view==='ask'?vAsk():S.view==='settings'?vSettings():S.view==='live'?vLive():vSurvey();decorate();focusRestore(fk);}
 A.addEventListener('input',e=>{const t=e.target;if(t.id==='qtext'){S.ask.q=t.value;return;}if(t.id==='aikey'){S.ai.key=t.value.trim();return;}if(t.id==='aimodel'){S.ai.model=t.value.trim();return;}if(t.tagName==='TEXTAREA'){S.mine[t.id]=t.value;if(S.view==='flow'&&$('sumtxt')){const sx=sitOf(S.sit);$('sumtxt').textContent=summary(sx,sx.byAudience[S.aud],fw.audiences[S.aud]);}}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.id==='sit'){S.sit=t.value;S.mine.mineag=undefined;S.opts=[];return draw();}
@@ -526,7 +537,7 @@ A.addEventListener('click',e=>{
   case 'sitgo':S.sit=d.s;S.mine.mineag=undefined;S.opts=[];S.stage=firstStage();S.view='flow';draw();return window.scrollTo({top:0});
  }
 });
-draw();
+a11yInit();draw();
 const tb=$('themeToggle');if(tb)tb.addEventListener('click',function(){const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';this.textContent=dark?'☀ 淺色模式':'◐ 深色模式';this.setAttribute('aria-pressed',String(dark));this.setAttribute('aria-label',dark?'切換為淺色模式':'切換為深色模式');});
 })();
 </script></body></html>
