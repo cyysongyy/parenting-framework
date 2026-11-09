@@ -287,6 +287,7 @@ function simpleHTML(id){
  if(id==='s_go'){
   const ag=S.mine.mineag!=null?S.mine.mineag:au.future;
   return '<div class="card"><p class="kicker">約定</p><h2>把理解變成明天的一個小行動</h2><p class="mut">'+esc(a.contractStyle)+'</p>'
+  +'<h3>先問孩子：你想用哪一個方法？（可複選，也可以自己想）</h3><div class="choices">'+au.options.map((o,k)=>'<button class="choice '+(S.opts.indexOf(k)>-1?'right':'')+'" data-opt="'+k+'" aria-pressed="'+(S.opts.indexOf(k)>-1)+'">'+esc(o)+'</button>').join('')+'</div>'
   +'<label for="mineag">我們的約定（可以直接修改成你們的話）</label><textarea id="mineag" rows="4">'+esc(ag)+'</textarea>'
   +'<label for="when">什麼時候開始？</label><select id="when">'+['今天晚上','明天','這個週末','下週一'].map(w=>'<option '+(S.when===w?'selected':'')+'>'+w+'</option>').join('')+'</select></div>'
   +'<div class="card"><p class="kicker">我的約定卡</p><div class="summary" id="sumtxt">'+esc(summary(s,au,a))+'</div><div class="row2"><button class="primary" data-act="copy">複製</button><button data-act="print">列印</button></div><p class="mut" id="copied"></p></div>';}
@@ -373,7 +374,7 @@ if(id==='t_home'){
    +'<div class="bridge"><span>收尾</span>'+esc(T.home.closing)+'</div>';}
  return h;}
 function summary(s,au,a){const ag=S.mine.mineag!=null?S.mine.mineag:au.future;const ch=S.opts.map(k=>au.options[k]).filter(Boolean);
- return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:'')+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+(s.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。');}
+ return '【親子約定卡】'+s.title+'（'+a.label+'）\n\n孩子的冰山\n・行為：'+au.childIceberg.behavior+'\n・感受與需求：'+au.childIceberg.feeling+'\n・價值信念：'+au.childIceberg.belief+(S.mode==='simple'||S.mode==='sel4'?'':'\n\n我的做法：'+(S.mine.ido||s.idoModel)+(S.mine.swap?'\n我猜孩子心裡在說：'+S.mine.swap:''))+'\n\n我會用 4F 開口\n'+F.map(f=>'・'+f.label+'：'+(s.wedoScript[f.id]||f.prompt)).join('\n')+'\n\n孩子選的方法：'+(ch.length?ch.join('；'):'（孩子自己想的）')+'\n\n我的約定（'+S.when+'開始）\n'+ag+'\n\n提醒：'+(s.referralNote||'若情況持續或影響安全，請尋求學校輔導室或專業協助。');}
 
 
 // ── 我的問題：內建情境比對＋AI 產生 ──
